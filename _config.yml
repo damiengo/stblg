@@ -3,7 +3,7 @@ title: 10 contre 11
 email: damien@10contre11.fr
 description: "A 10 contre 11, on joue au football avec les chiffres."
 baseurl: ""
-url: "http://10contre11.fr"
+url: "10contre11.fr"
 
 # Build settings
 markdown: kramdown
