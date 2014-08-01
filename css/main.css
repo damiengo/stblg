@@ -10,10 +10,11 @@ html, body { height: 100%; }
 
 body {
   font-family: Courier, "Lucida Sans Typewriter", "Lucida Typewriter", "DejaVu Sans Mono", monospace;
-  font-size: 16px;
+  font-size: 87.5%;
   line-height: 1.5;
   font-weight: 300;
-  background-color: #fdfdfd;
+  color: #352C26;
+  background-color: #F3ECE2;
 }
 
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 400; }
@@ -44,7 +45,7 @@ a:visited { color: #205caa; }
   border-top: 5px solid #333;
   border-bottom: 1px solid #e8e8e8;
   min-height: 56px;
-  background-color: white;
+  background-color: #F3ECE2;
 }
 
 .site-title,
@@ -137,7 +138,7 @@ a:visited { color: #205caa; }
 
 .page-content {
   padding: 30px 0;
-  background-color: #fff;
+  background-color: #F3ECE2;
 }
 
 
@@ -169,16 +170,19 @@ a:visited { color: #205caa; }
 .post-header { margin: 10px 0 30px; }
 
 .post-header h1 {
-  font-size: 42px;
+  font-size: 36px;
   letter-spacing: -1.75px;
   line-height: 1;
   font-weight: 300;
+  text-align: center;
 }
 
 .post-header .meta {
   font-size: 15px;
   color: #818181;
   margin-top: 5px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 .post-content { margin: 0 0 30px; }

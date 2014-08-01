@@ -12,10 +12,19 @@ La **Ligue 1** a évolué depuis sa création en 1933.
 $(function () {
         $('#results_chart').highcharts({
             chart: {
-                type: 'spline'
+                type: 'spline', 
+                backgroundColor:'rgba(255, 255, 255, 0.1)', 
+                style: {
+                    fontFamily: 'Courier, "Lucida Sans Typewriter", "Lucida Typewriter", "DejaVu Sans Mono", monospace', 
+                    color: '#352C26'
+                }
             },
             title: {
-                text: 'Evolution des résultats des matchs depuis 1933'
+                text: 'Evolution des résultats des matchs depuis 1933', 
+                style: {
+                    fontFamily: 'Courier, "Lucida Sans Typewriter", "Lucida Typewriter", "DejaVu Sans Mono", monospace', 
+                    color: '#352C26'
+                }
             },
             xAxis: {
                 type: 'datetime',
@@ -25,83 +34,12 @@ $(function () {
             },
             yAxis: {
                 title: {
-                    text: 'Taux de résultat'
+                    text: 'Résultats'
                 },
                 min: 0,
                 minorGridLineWidth: 0,
                 gridLineWidth: 0,
-                alternateGridColor: null,
-                plotBands: [{ // Light air
-                    from: 0.3,
-                    to: 1.5,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'Light air',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Light breeze
-                    from: 1.5,
-                    to: 3.3,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: 'Light breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Gentle breeze
-                    from: 3.3,
-                    to: 5.5,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'Gentle breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Moderate breeze
-                    from: 5.5,
-                    to: 8,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: 'Moderate breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Fresh breeze
-                    from: 8,
-                    to: 11,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'Fresh breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Strong breeze
-                    from: 11,
-                    to: 14,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: 'Strong breeze',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // High wind
-                    from: 14,
-                    to: 15,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: 'High wind',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }]
+                alternateGridColor: null
             },
             tooltip: {
                 valueSuffix: ' '
@@ -122,7 +60,7 @@ $(function () {
                 }
             },
             series: [{
-                name: 'Hestavollane',
+                name: 'Victoires',
                 data: [4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
                     7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
                     8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
@@ -130,7 +68,7 @@ $(function () {
                     3.0, 3.0]
     
             }, {
-                name: 'Voll',
+                name: 'Nuls',
                 data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.3, 0.0,
                     0.0, 0.4, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                     0.0, 0.6, 1.2, 1.7, 0.7, 2.9, 4.1, 2.6, 3.7, 3.9, 1.7, 2.3,
