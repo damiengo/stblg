@@ -15,7 +15,7 @@ Il est cependant intéressant de noter que le nombre de buts marqués à domicil
 
 Les buts sont à l'origine des victoires dans le football. Cette baisse du nombre de buts à domicile à engendré une baisse des victoires à domicile, essentiellement depuis le début des **années 90**. Inversement, l'augmentation du nombre de buts à l'extérieur à provoqué une augmentation des victoires à l'extérieur. La fluctuation des matchs nuls est quant à elle moins nette, même s'il semble y avoir une augmentation de ceux-ci.
 
---> Que s'est-il passé entre 1989 et 1990
+Le graphique présenté plus loin montre que les années 90 sont un tournant dans le championnat de France de Ligue 1. Les équipes jouant à l'extérieur ont commencé à marqué de plus en plus de buts, et par conséquent à gagner plus de matchs. L'année 2010 est l'exercice durant lequel la Ligue 1 a enregistré le plus faible taux de victoires à domicile (41%), cette année étant marquée par un fort taux de matchs nuls à 34%, porté par des équipes comme l'AJ Auxerre (19 nuls), Valenciennes (18 nuls), ou encore l'AS Monaco (17 nuls).
 
 <div id="results_chart"></div>
 
