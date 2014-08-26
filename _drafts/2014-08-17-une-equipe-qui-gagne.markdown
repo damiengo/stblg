@@ -24,3 +24,32 @@ Concernant les matchs nuls, les résultats sont encore moins bons, puisque le li
 Si l'on observe ces même données à une époque plus récente, depuis la saison 1993/1994, les résultats montrent une corrélation de 0.48 pour les victoires (le coefficient de détermination étant de 0.23), 0.42 pour les défaites (détermination de 0.17), et 0.12 pour les matchs nuls (0.02 pour le coefficient de détermination).
 
 ### Et par équipe?
+
+L'analyse de la corrélation des résultats par équipe d'une saison sur l'autre a été réalisée à partir de la saison 1994/1995. La tableau suivant montre que le **LOSC** et **Le Havre** semblent répéter leurs performances d'une saison sur l'autre, bien que les chiffres de corrélation ne soient pas très élevés.
+
+<table>
+  <tr>
+    <th>Victoires</th>
+    <th>Nuls</th>
+    <th>Défaites</th>
+  </tr>
+  <tr>
+    <td>Lille OSC <strong>0.66</strong></td>
+    <td>EA Guingamp <strong>0.60</strong></td>
+    <td>Le Mans FC <strong>0.89</strong></td>
+  </tr>
+  <tr>
+    <td>Le Havre AC<strong>0.65</strong></td>
+    <td>Le Havre AC <strong>0.55</strong></td>
+    <td>Lille OSC <strong>0.52</strong></td>
+  </tr>
+  <tr>
+    <td>AS Saint Etienne <strong>0.60</strong></td>
+    <td>OGC Nice <strong>0.55</strong></td>
+    <td>FC Sochaux <strong>0.47</strong></td>
+  </tr>
+</table> 
+
+### Un lien faible
+
+Cette analyse montre que les résultats des équipes d'une saison sur l'autre ne permettent pas de faire ressortir de liens. Une analyse qui ne montre rien, à quoi ça sert? Il ne faut pas se fier aux résultats d'une saison pour déterminer ceux de la suivante...
