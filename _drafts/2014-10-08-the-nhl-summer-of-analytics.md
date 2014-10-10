@@ -4,7 +4,7 @@ title:  "The NHL summer of analytics"
 date:   2014-10-08 14:40:00
 ---
 
-La NHL (ligue professionnelle de hockey sur glace Nord Américaine) a connu un été 2014 incroyable. En marge des transferts des joueurs entre équipes, 
+La **NHL** (ligue professionnelle de hockey sur glace Nord Américaine) a connu un été 2014 incroyable. En marge des transferts des joueurs entre équipes, 
 d'autres transferts ont animé la trève estivale, les personnes concernées travaillant plus derrière un écran d'ordinateur qu'avec une crosse ou 
 un palet. Le *"Summer of analytics"* comme il a été nommé par la presse, a vu l'embauche par les franchises NHL de plusieurs statisticiens indépendants 
 renommés outre Atlantique, qui ont vu leur travail valorisé, après plusieurs années de combat (et parfois même de railleries), face à la presse standard 
@@ -27,23 +27,23 @@ D'autres franchises ont participé à cette vague d'embauche d'analystes. Les **
 
 ## Les chiffres parlent objectivement
 
- -> Autres sports (moneyball)
- -> Prédiction des saisons précédentes
+L'utilisation des statistiques pour analyser les résultats des matchs n'est pas un fait nouveau. Dans d'autres sports comme le Baseball, l'arrivée des statistiques a bouleversé les forces en présence, les **Oakland Athletics** de *Billy Beane* ayant utilisé le pourcentage d'arrivée sur base afin de recruter leur équipe, qui leur a permis d'établir un record de ratio victoires/défaites de 103/59, avec une série de 20 victoires consécutives.
 
-## Exemple de métriques
+En Novembre 2013, les **Toronto Maple Leaf** étaient sur une série de 11 victoires et 6 défaites, malgré une statistique (Corsi), [en désaccord avec ce type de résultat](http://www.theglobeandmail.com/sports/hockey/leafs-beat/are-the-leafs-an-outstanding-shooting-team/article15019910/ "Leafs Corsi"), les **Leaf** semblaient en surrégime. Les mois qui suivirent furent beaucoup plus moyens, l'équipe terminant finalement à la 6ème place de la conférence Est.
 
- -> Corsi, Fenwick, zone entry, etc
+## Quelques de métriques
 
-## Conséquences
+Quels chiffres sont à l'origine de ce chamboulement en NHL? En voici un faible échantillon.
 
- -> Nouvelle ère
- -> La communauté doit se renouveler
- -> Les sports avancent vers l'analyse de données
+ * **Corsi**. [Ce chiffre](http://www.silversevensens.com/2011/10/3/2461198/introduction-to-advanced-hockey-statistics-corsi-ottawa-senators "Description Corsi") essaie de mesurer la possession du palet pour l'équipe. Il s'agit de la somme des tirs de l'équipe courante et des tirs bloqués par l'équipe courante, moins la somme des tirs de l'équipe adverse et des tirs bloqués par 
+l'équipe adverse: *(tirs tentés courante + tirs bloqués courante) - (tirs tentés adverses + tirs bloqués adverses)*. Le nom de cette statistique vient de l'ancien gardien *Jim Corsi*, qui cherchait à mesurer la possession de son équipe, les **Buffalo Sabres**.
 
-Analyse:
-Plusieurs bloggeurs et propriétaires de sites de statistiques sur la NHL ont été embauchés par des franchises
+ * **Fenwick**. Dérivé du nom de *Matt Fenwick*, [ce chiffre](http://www.matchsticksandgasoline.com/2011/7/29/2290643/understanding-advanced-stats-part-one-corsi-fenwick "Description Fenwick") est le même que le Corsi, à la différence près que les tirs bloqués ne sont pas comptabilisés, puisqu'ils ne seraient pas un élément aléatoire mais plutôt une capacité du gardien.
 
-Conséquences: La NHL passe à l'ère de la statistique, comme le base ball avant elle.
-              Plus de sites sur les stats en NHL
+ * **PDO**. Il s'agit de la somme du pourcentage de tirs marqués et du pourcentage de tirs bloqués: (buts marqués/tirs tentés) + (tirs adverses raté/tirs adverses tentés). [Ce chiffre](http://blogs.thescore.com/nhl/2013/01/21/pdo-explained/ "Description PDO") a été inventé par *Brian King*, un fan des **Edmonton Oilers** qui souhaitait analyser les résultats de son équipe en 2008.
 
-Conclusion: Cela arrivera t'il dans le football?
+## Ce qu'on va voir
+
+La NHL entre dans une nouvelle ère pour la saison 2014/2015. Les résultats des équipes concernées par le *"NHL summer of analytics"* seront à observer avec attention, bien qu'ils ne devraient être visibles que dans quelques années, lorsque les effectifs auront été modelés avec l'aide des statisticiens.
+
+La communauté des analystes statistiques sur la NHL doit maintenant [se renouveler](http://www.sportsnet.ca/hockey/nhl/where-to-go-now-for-nhl-advanced-stats/ "Nouveaux analystes NHL") pour continuer à faire avancer publiquement ces recherches. [Des initiatives ont déjà démarré](http://www.russianmachineneverbreaks.com/2014/08/19/extraskater-is-dead-lets-build-a-new-stat-site/ "Le nouveau extraskater.com") pour relancer un site similaire à extraskater.com, arrêté depuis le recrutement de son créateur *Darryl Metcalf* par les **Toronto Maple Leaf**.
