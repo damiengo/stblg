@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The NHL summer of analytics"
-date:   2014-10-08 14:40:00
+date:   2014-10-11 22:40:00
 ---
 
 La **NHL** (ligue professionnelle de hockey sur glace Nord Américaine) a connu un été 2014 incroyable. En marge des transferts des joueurs entre équipes, 
@@ -13,27 +13,27 @@ et aux courants de pensée plus ancrés dans les traditions.
 ## Des départements d'analyse statistiques
 
 Certaines franchises NHL ont opéré un changement dans leur mode d'analyse des matchs et des joueurs, en recrutant des personnes aptes à analyser la 
-masse de données récoltées lors des matchs. La création de départements d'analyses des données a vu le jour dans plusieurs équipes, ou ceux-ci se sont 
+masse de données récoltées lors des matchs. Des départements d'analyses des données ont vu le jour dans plusieurs équipes, ou ceux-ci se sont 
 étoffés cet été. Plusieurs bloggeurs reconnus dans la sphère de l'analyse de données statistiques ont ainsi été recrutés.
 
 L'équipe la plus active a certainement été les **Toronto Maple Leaf**, qui a recruté pas moins de 4 personnes pour son nouveau département *Hockey metrics*, sous l'impulsion de leur nouveau président *Brendan Shanahan*:
 
- * *Kyle Dubas*, qui devient assistant du manager principal a seulement 28 ans, est un fervent défenseur des chiffres dans l'anaylse des matchs, était manager général d'une équipe de division inférieure
- * *Darryl Metcalf*, le créateur du site extrastaker.com (fermé depuis), permettant à tout amateur de hockey de retrouver les statistiques et analyses des équipes de NHL
+ * *[Kyle Dubas](https://twitter.com/kyledubas "Kyle Dubas twitter")*, qui devient assistant du manager principal a seulement 28 ans, est un fervent défenseur des chiffres dans l'anaylse des matchs, était manager général d'une équipe de division inférieure (les Greyhounds de Sault-Sainte-Marie)
+ * *[Darryl Metcalf](https://twitter.com/ExtraSkater "Darryl Metcalf twitter")*, le créateur du site extrastaker.com (fermé depuis), permettant à tout amateur de hockey de retrouver les statistiques et analyses des équipes de NHL
  * *Cam Charron*, bloggeur pour Yahoo Sport Canada, qui avait égratigné les Leafs au regard de leurs statistiques en inadéquation avec leur véritable niveau (l'équipe étant en sur-régime, ce qui s'était vérifé par la suite)
- * *Rob Pettapiece*, également bloggeur statistiques pour Yahoo, diplômé de mathématique et statistiques, ayant déjà travaillé pour StatsCan, organisme national des statistiques du Canada 
+ * *[Rob Pettapiece](https://twitter.com/RobPettapiece "Rob Pettapiece twitter")*, également bloggeur statistiques pour Yahoo, diplômé de mathématiques et statistiques, ayant déjà travaillé pour StatsCan, organisme national des statistiques du Canada 
 
-D'autres franchises ont participé à cette vague d'embauche d'analystes. Les **Edmonton Oilers** se sont attachés les services de *Tyler Dellow*, un bloggeur basant ses analyses de matchs sur les statistiques. Du côté des **New Jersey Devils**, c'est le joueur de poker professionnel *Sunny Mehta*, également bloggeur statistique sur le hockey, qui a été recruté en tant que *Director of Hockey Analytics*. Enfin, *Eric Tulshy*, écrivant des articles sur différents sites, a été recruté par une franchise dont le nom n'a pas été dévoilé.
+D'autres franchises ont participé à cette vague d'embauche d'analystes. Les **Edmonton Oilers** se sont attachés les services de *[Tyler Dellow](https://twitter.com/mc79hockey "Tyler Dellow twitter")*, un bloggeur basant ses analyses de matchs sur les statistiques. Du côté des **New Jersey Devils**, c'est le joueur de poker professionnel *Sunny Mehta*, également bloggeur statistique sur le hockey, qui a été recruté en tant que *Director of Hockey Analytics*. Enfin, *[Eric Tulsky](https://twitter.com/BSH_EricT "Eric Tulsky twitter")*, écrivant des articles sur différents sites, a été recruté par une franchise dont le nom n'a pas été dévoilé.
 
 ## Les chiffres parlent objectivement
 
-L'utilisation des statistiques pour analyser les résultats des matchs n'est pas un fait nouveau. Dans d'autres sports comme le Baseball, l'arrivée des statistiques a bouleversé les forces en présence, les **Oakland Athletics** de *Billy Beane* ayant utilisé le pourcentage d'arrivée sur base afin de recruter leur équipe, qui leur a permis d'établir un record de ratio victoires/défaites de 103/59, avec une série de 20 victoires consécutives.
+L'utilisation des statistiques pour analyser les résultats des matchs n'est pas un fait nouveau. Dans d'autres sports comme le Baseball, l'arrivée des statistiques a bouleversé les forces en présence, les **Oakland Athletics** de *Billy Beane* ayant utilisé le taux d'arrivée sur base afin de constituer leur équipe, qui leur a permis d'établir un record de ratio victoires/défaites de 103/59, avec une série de 20 victoires consécutives. En 2002, l'équipe remporte la conférence Est, mais échoue aux porte de la finale face aux *Anaheim Angel*.
 
 En Novembre 2013, les **Toronto Maple Leaf** étaient sur une série de 11 victoires et 6 défaites, malgré une statistique (Corsi), [en désaccord avec ce type de résultat](http://www.theglobeandmail.com/sports/hockey/leafs-beat/are-the-leafs-an-outstanding-shooting-team/article15019910/ "Leafs Corsi"), les **Leaf** semblaient en surrégime. Les mois qui suivirent furent beaucoup plus moyens, l'équipe terminant finalement à la 6ème place de la conférence Est.
 
 ## Quelques de métriques
 
-Quels chiffres sont à l'origine de ce chamboulement en NHL? En voici un faible échantillon.
+Quels chiffres sont à l'origine de ce chamboulement en NHL? En voici un échantillon.
 
  * **Corsi**. [Ce chiffre](http://www.silversevensens.com/2011/10/3/2461198/introduction-to-advanced-hockey-statistics-corsi-ottawa-senators "Description Corsi") essaie de mesurer la possession du palet pour l'équipe. Il s'agit de la somme des tirs de l'équipe courante et des tirs bloqués par l'équipe courante, moins la somme des tirs de l'équipe adverse et des tirs bloqués par 
 l'équipe adverse: *(tirs tentés courante + tirs bloqués courante) - (tirs tentés adverses + tirs bloqués adverses)*. Le nom de cette statistique vient de l'ancien gardien *Jim Corsi*, qui cherchait à mesurer la possession de son équipe, les **Buffalo Sabres**.
