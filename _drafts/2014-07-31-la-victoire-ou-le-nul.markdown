@@ -6,9 +6,9 @@ date:   2014-07-31 21:47:06
 
 La **Ligue 1** a évolué depuis sa création en 1932. Le format du championnat a changé, il a commencé avec 2 groupes en 1933-1934, pour continuer avec un seul et unique groupe ensuite. Le nombre d'équipes a souvent varié entre 16, 18 ou 20 clubs dans l'élite.
 
-Depuis 80 ans, le niveau des équipes s'est rapproché, comme en témoigne l'écart de buts par match depuis 1933. Cet écart s'est resseré au fil du temps, les premiers championnats flirtaient avec les **2 buts d'écart** par match, alors que les championnats plus récents ont vu cet écart tourner autour de **1.2 buts**. Le niveau entre les équipes s'est resseré, les tactiques ont évolué, les équipes marquent de moins en moins de buts.
+Depuis 80 ans, le niveau des équipes s'est rapproché, comme en témoigne l'écart de buts par match depuis 1933. Cet écart s'est resseré au fil du temps, les premiers championnats flirtaient avec les **2 buts d'écart** par match, alors que les championnats plus récents ont vu cet écart tourner autour de **1.2 buts**.
 
-Il est cependant intéressant de noter que le nombre de buts marqués à domicile décroit, alors que de plus en plus de buts sont marqué à l'extérieur. Depuis 4 saisons, la moyenne des buts marqués à l'extérieur est supérieure à 1, ce qui nous ramène aux même chiffres qu'il y'à une trentaine d'années.
+Il est cependant intéressant de noter que le nombre de buts marqués à domicile décroit, alors que de plus en plus de buts sont marqué à l'extérieur. Depuis 4 saisons, la moyenne des buts marqués à l'extérieur est supérieure à 1, ce qui nous ramène aux mêmes chiffres qu'il y'a une trentaine d'années.
 
 
 <div id="avg_diff_chart"></div>
