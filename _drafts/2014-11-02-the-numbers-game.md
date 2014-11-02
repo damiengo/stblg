@@ -29,3 +29,6 @@ Dans le football, les buts sont rares et deviennent de plus en plus rares. Le ni
 
 Les buts sont l'élément clé du football pour gagner les matchs, mais ils n'ont pas tous la même importance. Selon une étude, le premier but rapporte 0.8 point, alors que le deuxième but rapporte un point (le troisième rapportant 0.6 points). Dans le même ordre d'idée, marquer un but donne 25% de chances de gagner un match, alors que marquer 2 buts donne 60% de chances de victoire.
 
+L'intelligence dans le football, et pourquoi moins peut être plus
+
+
