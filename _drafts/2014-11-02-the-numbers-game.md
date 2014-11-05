@@ -36,3 +36,13 @@ L'objectif du football est de marquer des buts, mais faut-il attaquer ou défend
 Le football est un sport de possession de balle, mais surtout de perte de balle et de changement de possession. Les équipes doivent s'adapter à ces changements de possessions, et les meilleures équipes ne sont pas celles dont les joueurs sont les meilleurs en passes, mais celles dont les joueurs sont capables de **créer des situations** et des espaces pour rendre les passes faciles. La possession de balles et le succès sont fortement liés, simplement parce que les équipes ayant les meilleures capacités de passes sont aussi celles qui sont capables de **trouver des failles dans les défenses adverses** (l'intelligence de la passe). La possession permet également de réduire le nombre d'attaques adverses, et est donc le premier élément permettant de ne pas prendre de but.
 
 Pour Stoke City, la possession du ballon est avérée lorsque le ballon **n'est pas en jeu**. C'est l'une des facette du jeu de Stoke: hacher le jeu, et garder le ballon loin des buts de leur gardien. L'équipe possède moins le ballon, mais propose moins d'occasions à son adversaire de marquer et se procure des occasions par le jeu long. Les tactiques de jeu différentes et les idées nouvelles peuvent être difficile à faire accepter, mais offrent de nouvelles possibilités: c'est le cas des chiffres dans le football.
+
+##Construire des équipes, gérer des clubs
+
+Le football est un sport où le maillon faible a une grande importance sur les résultats d'une équipe. Malgré tout, une équipe composée uniquement de très bons joueurs n'est rien sans une tactique adaptée. Selon une étude statistique, augmenter la qualité de son plus faible joueur de 10% rapporerait 9 points de plus en fin de saison, alors qu'améliorer son meilleur joueuer rapporterait 5 points. L'objectif de toute équipe est de faire le moins d'erreurs possible. Plusieurs possibilités sont présentées pour résoudre le problème du maillon faible de l'équipe:
+
+ * Ne pas jouer avec lui: cela revient à jouer à 10 contre 11, ce qui coûterait 0.42 points à l'équipe en infériorité numérique
+ * Renforcer sa zone de jeu: cela peut fonctionner si c'est mis en place de manière préparée, à la façon du *catenaccio*
+ * Remplacer le joueur: une étude montre qu'effectuer ses trois remplacements aux 58è, 73è et 79è minutes permet aux équipes menées de revenir dans la partie dans 52% des cas en Italie, alors qu'en suivant une autre règle de remplacement, seulement 18% des équipes reviennent au score
+ * Essayer de l'améliorer: en le faisant travailler plus et de façon qualitative, et en développant ses qualités techniques et physique, avec l'aide de l'équipe
+ * En le vendant
