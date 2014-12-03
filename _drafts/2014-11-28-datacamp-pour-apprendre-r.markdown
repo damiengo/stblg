@@ -100,4 +100,17 @@ A partir de données sur la santé aux USA, ce chapitre permet de manipuler les 
 
 L'exemple précédent retourne le nombre de joueurs ayant marqué chaque nombre de buts.
 
-Quelques fonction graphique sont présentées: `barplot` pour un graphique en barres, `mosaicplot` pour des mosaïques, `boxplot` pour créer une *boîte à moustaches*, `hist` pour un histogramme, `plot` pour des points simples.
+Quelques fonction graphique sont présentées: `barplot` pour un graphique en barres (à utiliser avec *table*), `mosaicplot` pour des mosaïques, `boxplot` pour créer une *boîte à moustaches*, `hist` pour un histogramme, `plot` pour des points simples.
+
+### Chapitre 2: Probability
+
+Ce chapitre propose d'examiner le principe de la *main chaude* en *NBA* en prenant l'exemple d'un match de *Kobe Bryant* joué en 2009. La *main chaude* permettrait à un joueur d'enchaîner les paniers plus facilement si sa série en cours de paniers marqué est bonne.
+
+Une fonctione est directement mise à disposition la fonction [calc_streak](http://rstudio-pubs-static.s3.amazonaws.com/13989_27a3853c492c4001a2105b1d657ff1ca.html "Fonction calc_streak") permettant de calculer le nombre de paniers consécutifs. Grâce au graphique en barres (*barplot*), il est possible de visualiser aisément la distribution des différentes séries de paniers.
+
+Si le principe de la *main chaude* est vrai, cela signifie que les paniers marqués sont **dépendants**. A l'inverse, les paniers sont **indépendants** si ce principe n'est pas vérifié. Cette vérification peut être réalisée en comparant les données du match de *Kobe Bryant* avec celle d'un joueur dont les paniers sont totalement indépendants. Des paniers indépendants sont totalement aléatoires, la fonction `sample` de R permet de générer un liste de paniers aléatoirement, avec une probabilité de marquer un panier de 45%, qui est le taux de réussite lors de son match de 2009 (le paramètre *size = 133* représente le nombre de paniers inscrits par le joueur des *Lakers* ce soir là):
+
+    outcomes = c("H", "M")
+    sample(outcomes, size = 133, replace = TRUE, prob=c(0.45, 0.55))
+
+En comparant les graphiques en barre de *Kobe Bryant* et du joueur au paniers *indépendants*, on constate que ceux-ci se ressemblent fortement. Avec cette courte étude, il serait possible de conclure que le principe de la main chaude n'existe pas.
