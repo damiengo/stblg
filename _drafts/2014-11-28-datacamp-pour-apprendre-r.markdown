@@ -84,10 +84,20 @@ Ce cours est pratique pour apprendre les bases de R et se familiariser avec la s
 
 Ce cours destiné aux débutant est réalisable en 9 heures. Il propose d'apprendre à utiliser des données pour réaliser des analyses et extraire des informations avec des exemples concrets.
 
-### Chapitre 1: Introduction to R
+### Chapitre 0: Introduction to R
 
 Ce chapitre d'introduction au langage R permet d'entrer directement dans le vif du sujet en analysant des données réelles de naissances par années aux Etats-Unis. Des fonctions de lecture de fichier comme `read.table` sont présentées, ou la fonction `plot` qui permet de créer un graphique à partir de données:
 
     plot(years, presents, type="l")
 
 Hormis ces commandes basiques, des questions à choix multiple permettent de valider les connaissances de l'étudiant.
+
+### Chapitre 1: Introduction to Data
+
+A partir de données sur la santé aux USA, ce chapitre permet de manipuler les données d'un *data frame* comme cela a été présenté au cours précédent. La fonction `table` est intéressante pour sommer les occurences en groupant par catégorie:
+
+    table(players$goals)
+
+L'exemple précédent retourne le nombre de joueurs ayant marqué chaque nombre de buts.
+
+Quelques fonction graphique sont présentées: `barplot` pour un graphique en barres, `mosaicplot` pour des mosaïques, `boxplot` pour créer une *boîte à moustaches*, `hist` pour un histogramme, `plot` pour des points simples.
