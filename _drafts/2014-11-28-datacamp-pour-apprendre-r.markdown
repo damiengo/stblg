@@ -114,3 +114,15 @@ Si le principe de la *main chaude* est vrai, cela signifie que les paniers marqu
     sample(outcomes, size = 133, replace = TRUE, prob=c(0.45, 0.55))
 
 En comparant les graphiques en barre de *Kobe Bryant* et du joueur au paniers *indépendants*, on constate que ceux-ci se ressemblent fortement. Avec cette courte étude, il serait possible de conclure que le principe de la main chaude n'existe pas.
+
+### Chapitre 3: Foundations for inference: Sampling distributions
+
+En se basant sur les données de ventes de maisons d'une ville des USA, ce chapitre permet de manipuler principalement la commande `sample`, qui permet d'extraire un échantillon d'une grande liste de données:
+
+    samp50 = sample(games, 50)
+
+Cet exemple extrait 50 matchs au hasard dans la liste.
+
+Grâce aux boucles, il est possible d'extraire plusieurs fois une liste aléatoire d'éléments pour ensuite en calculer la moyenne (par exemple). L'utilisation de l'histogramme permet enfin de vérifier visuellement la tendance de cette moyenne.
+
+Il est intéressant de noter la fonction `rep(NA, 800)`, qui initialise un vecteur de 800 éléments avec la valeur *NA* (équivalent de *vide* dans **R**).
