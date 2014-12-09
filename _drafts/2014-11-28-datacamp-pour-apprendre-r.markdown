@@ -126,3 +126,20 @@ Cet exemple extrait 50 matchs au hasard dans la liste.
 Grâce aux boucles, il est possible d'extraire plusieurs fois une liste aléatoire d'éléments pour ensuite en calculer la moyenne (par exemple). L'utilisation de l'histogramme permet enfin de vérifier visuellement la tendance de cette moyenne.
 
 Il est intéressant de noter la fonction `rep(NA, 800)`, qui initialise un vecteur de 800 éléments avec la valeur *NA* (équivalent de *vide* dans **R**).
+
+### Chapitre 4: Foundation for inference: Confidence intervals
+
+Ce chapitre permet de vérifier la précision des échantillons du chapitre précédent, en se basant sur des **intervalles de confiance**.
+
+Pour calculer l'intervalle de confiance, il est necéssaire de connaitre l'*erreur type* (standard error). Celle-ci est calculée à partir de la formule suivante:
+
+    se = sd(samp)/sqrt(60)
+
+Où *samp* est l'échantillon de données, `sd` permet de calculer l'écart type et *60* le nombre de valeurs dans l'échantillon.
+
+Pour calculer un intervalle de confiance de 95%, il faut ajouter et soustraire 1.96 fois l'erreur type de la moyenne de l'échantillon, soit:
+
+    lower = sample_mean - 1.96 * se
+    upper = sample_mean + 1.96 * se
+
+Les valeurs `lower` et `upper` obtenues sont les bornes minimale et maximale de cet intervalle de confiance.
