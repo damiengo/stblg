@@ -143,3 +143,17 @@ Pour calculer un intervalle de confiance de 95%, il faut ajouter et soustraire 1
     upper = sample_mean + 1.96 * se
 
 Les valeurs `lower` et `upper` obtenues sont les bornes minimale et maximale de cet intervalle de confiance.
+
+### Chapitre 5: Inference for numerical data
+
+Dans ce chapitre, la commande `na.omit` est présentée pour supprimer les valeurs vide (NA) d'un jeu de données. La partie la plus importante du chapitre concerne l'*inférence statistique*, qui permet de déterminer des caractéristiques inconnue d'une population à partir d'un échantillon de cette population.
+
+Une fonction `inference` créée pour le cours masque la mécanique de génération de l'inférence.
+
+Une autre fonction, `by`, est présentée pour grouper un élément de catégorie avec un élément numérique:
+
+    by(weight, habit, mean)
+
+Cet exemple groupe le poids par habitude, en appliquant la fonction `mean` sur la valeur du poids.
+
+En fin de chapitre, une analyse de la variance (ANOVA) est réalisée pour verifier que plusieurs échantillons sont issus d'une même population.
