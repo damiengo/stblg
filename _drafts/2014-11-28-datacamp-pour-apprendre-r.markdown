@@ -157,3 +157,7 @@ Une autre fonction, `by`, est présentée pour grouper un élément de catégori
 Cet exemple groupe le poids par habitude, en appliquant la fonction `mean` sur la valeur du poids.
 
 En fin de chapitre, une analyse de la variance (ANOVA) est réalisée pour verifier que plusieurs échantillons sont issus d'une même population.
+
+### Chapitre 6: Inference for categorical data
+
+Ce chapitre reprend l'inférence statistique mais en se basant sur des données de catégorie. Un calcul de proportion des données extraite est réalisé à l'aide des commande `subset` et `nrow`. Un exemple de calcul de la *marge d'erreur* est donnée, celui étant en fait la moyenne des bornes haute et basse de l'intervalle de confiance.
