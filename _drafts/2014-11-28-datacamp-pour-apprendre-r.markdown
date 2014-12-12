@@ -161,3 +161,23 @@ En fin de chapitre, une analyse de la variance (ANOVA) est réalisée pour verif
 ### Chapitre 6: Inference for categorical data
 
 Ce chapitre reprend l'inférence statistique mais en se basant sur des données de catégorie. Un calcul de proportion des données extraite est réalisé à l'aide des commande `subset` et `nrow`. Un exemple de calcul de la *marge d'erreur* est donnée, celui étant en fait la moyenne des bornes haute et basse de l'intervalle de confiance.
+
+### Chapitre 7: Introduction to linear regression
+
+A partir du célèbre ouvrage *Moneyball*, ce chapitre propose une introduction à la *régression linéaire*, qui permet de déterminer la corrélation plus ou moins forte entre deux variable. La première commande intéressante est `cor`, qui permet de trouver le coefficient de corrélation entre deux variables:
+
+    cor(runs, at_bats)
+
+L'exemple précédent permet de trouver la corrélation entre les points et les passages à la batte.
+
+La fonction `lm` (*linear model*), permet de déterminer les données de régression linéaire entre deux variables:
+
+    lm(runs ~ at_bats, data = mlb11)
+
+En utilisant la fonction `summary` sur cette régression, il est possible de connaitre les données de cette régression.
+
+Graphiquement, une régression linéaire peut être représentée par la fonction `plot`. La ligne de régression peut être tracée à l'aide de la fonction suivante:
+
+    abline(lm(runs ~ at_bats, data=mlb11))
+
+
