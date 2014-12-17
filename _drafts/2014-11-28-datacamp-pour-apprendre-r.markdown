@@ -180,4 +180,16 @@ Graphiquement, une régression linéaire peut être représentée par la fonctio
 
     abline(lm(runs ~ at_bats, data=mlb11))
 
+### Chapitre 8: Multiple linear regression
 
+Ce dernier chapitre est la continuité du précédent, présentant les *régressions linéaires multiples*. Une première fonction intéressante dans ce chapitre est `jitter`, qui permet d'ajouter du *bruit* à une valeur, ce qui est pratique lorsque l'un affiche un graphique avec des données dont les valeurs sont discrètes.
+
+Les régressions linéaires multiples sont réalisées à l'aide de la commande `lm`, comme lors du chapitre précédent, au détail près que l'on peut ajouter des variables à la régressions à l'aide du *+*:
+
+    lm(goals ~ shots + crosses, data=ligue1games)
+
+Cette régression permet de connaitre le lien entre les buts et les tirs ou les centres.
+
+### Avis
+
+Ce cours permet d'effectuer une bonne revue des fonctions de *R* pour manipuler et faire parler les données. Les exemples concrets sont parlants, et illustrent parfaitement les objectifs des différents chapitres.
