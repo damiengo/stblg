@@ -10,4 +10,4 @@ Dans cet article, les données utilisées sont celle du championnat de France de
 
 ## Lien entre les matchs aller/retour
 
-
+Il est intéressant d'utiliser les données pour vérifier qu'un évènement peut se répéter ou être prédictible. Dans le cas des matchs aller/retour, une régression linéaire sur les points obtenus au match retour à partir des points, buts marqués ou buts encaissés du match aller ne donne pas de résultat intéressant (de la même façon, le nombre de buts marqué n'est pas prédictible significativement à partir des données précédentes).
