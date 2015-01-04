@@ -8,16 +8,36 @@ Le championnat de France de Ligue 1 a terminé sa phase aller il y a déjà deux
 
 Dans cet article, les données utilisées sont celle du championnat de France de Ligue 1 allant de la saison 2002/2003 à la saison 2013/2014.
 
-## Lien entre les matchs aller/retour
+## Anticipation du résultat du retour
 
-Il est intéressant d'utiliser les données pour vérifier qu'un évènement peut se répéter ou être prédictible. Dans le cas des matchs aller/retour, une régression linéaire sur les points obtenus au match retour à partir des points, buts marqués ou buts encaissés du match aller ne donne pas de résultat intéressant (de la même façon, le nombre de buts marqué n'est pas prédictible significativement à partir des données précédentes).
+Il est difficile d'établir un lien entre le résultat du match aller et celui du match retour. Il est cependant possible d'observer les probabilités de résultats au match retour à partir de ceux obtenus au match aller. J'ai séparé les résultats à domicile et à l'extérieur pour cette observation, ce qui donne des données intéressantes.
+
+<div id="home-percentages" class="graph"></div>
+
+Ce premier graphique (fig. 1) illustre la répartition des points obtenus au match retour à partir des points abtenus au matchs aller pour les équipes ayant joué à domicile. Le premier élément à noter est que le taux de matchs nul au retour est pratiquement identique que l'équipe ait pris 0, 1 ou 3 points à l'aller (28%, 29% et 30%).
+
+Dans un cas sur deux, perdre le match aller à domicile implique une défaite à au retour à l'extérieur (51%). On remarque que ce pourcentage de défaite au retour ne descend "qu'à" 46% en cas de nul à l'aller et 42% en cas de victoire à l'aller à domicile. Une victoire au match aller à domicile n'est pas une assurance de résultat positif au match retour, cependant si une équipe prend au moins un point à l'aller, elle a plus de chance de prendre au moins un point au retour. En effet, en cas de nul à l'aller, il y a 54% de chance de ramener au moins un point au match retour, et en cas de victoire à l'aller, ce taux monte à 58%.
+
+<div id="away-percentages" class="graph"></div>
+
+Explication match retour
+
+--> Importance du match à domicile, mais le niveau des équipes joue quand même...
+
+## Projection des matchs retour
 
 <style>
 
 svg {
-  display: block;
+  /*display: block;*/
   margin: auto;
 }
+
+.graph {
+  text-align: center;
+}
+
+/** Bars **/
 
 .bar {
   fill: steelblue;
@@ -46,110 +66,74 @@ svg {
   display: none;
 }
 
-</style>
-<script>
-
-var margin = {top: 50, right: 30, bottom: 50, left: 30},
-    width = 700 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
-
-var colors = d3.scale.category20();
-
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .3, 1.2);
-
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(6);
-
-var svg = d3.select("div.post").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-var data = [
-    {"name": "Dom 0 point",  "value": 0.9, "color": 1}, 
-    {"name": "Dom 1 point",  "value": 1,  "color": 1}, 
-    {"name": "Dom 3 points", "value": 1.14, "color": 1},
-    {"name": "Ext 0 point",  "value": 1.16, "color" :5},
-    {"name": "Ext 1 point",  "value": 1.67, "color" :5},
-    {"name": "Ext 3 points", "value": 1.81, "color" :5}
-];
-  x.domain(data.map(function(d) { return d.name; }));
-  y.domain([0, d3.max(data, function(d) { return d.value; })]);
-
-  svg.append("text")
-      .attr("class", "title")
-      .attr("x", x(data[0].name) + 40)
-      .attr("y", -26)
-      .text("Points moyens marqués après les points pris à l'aller");
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .selectAll(".tick text")
-      .call(wrap, x.rangeBand());
-
-  var bar = svg.selectAll(".bar")
-      .data(data)
-    .enter()
-      .append("g");
-
-    bar.append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.name); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
-      .style("fill", function(d) { return colors(d.color); })
-      .on("mouseover", function(d) {
-        d3.select(this).style("fill", colors(10));
-      })
-      .on("mouseout", function(d) {
-        d3.select(this).style("fill", function(d) { return colors(d.color); });
-      });
-      // Text
-      bar.append("text")
-      .classed('data', true)
-      .attr("x", function(d) { return x(d.name) + 28; })
-      .attr("y", function(d) { return y(d.value) + 20; })
-      .attr("fill","#000")
-      .style({"font-size":"12px","z-index":"999999999"})
-      .style("text-anchor", "middle")
-      .text(function(d) { return d.value;});
-
-function wrap(text, width) {
-  text.each(function() {
-    var text = d3.select(this),
-        words = text.text().split(/\s+/).reverse(),
-        word,
-        line = [],
-        lineNumber = 0,
-        lineHeight = 1.1, // ems
-        y = text.attr("y"),
-        dy = parseFloat(text.attr("dy")),
-        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-    while (word = words.pop()) {
-      line.push(word);
-      tspan.text(line.join(" "));
-      if (tspan.node().getComputedTextLength() > width) {
-        line.pop();
-        tspan.text(line.join(" "));
-        line = [word];
-        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-      }
-    }
-  });
+/** Arcs **/
+path {
+  fill: #ccc;
+  transition: fill 250ms linear;
+  transition-delay: 150ms;
 }
 
+path:hover {
+  fill: #999;
+  transition-delay: 0;
+}
+
+</style>
+<script type="text/javascript" src="/js/posts/2014-12-30-match-retour.js"></script>
+<script type="text/javascript">
+    
+    var dataHome = { "details": [
+                    {"name": "0 pts dom", 
+                     "values": [
+                                   {"name": "0 pts", "value": 51},
+                                   {"name": "1 pts", "value": 28}, 
+                                   {"name": "3 pts", "value": 21}
+                               ]
+                    }, 
+                    {"name": "1 pts dom", 
+                     "values": [
+                                   {"name": "0 pts", "value": 46},
+                                   {"name": "1 pts", "value": 29}, 
+                                   {"name": "3 pts", "value": 25}
+                               ]
+                    }, 
+                    {"name": "3 pts dom", 
+                     "values": [
+                                   {"name": "0 pts", "value": 42},
+                                   {"name": "1 pts", "value": 30}, 
+                                   {"name": "3 pts", "value": 28}
+                               ]
+                    }
+    ]};
+
+    var dataAway = { "details": [
+                    {"name": "0 pts ext", 
+                     "values": [
+                                   {"name": "0 pts", "value": 28},
+                                   {"name": "1 pts", "value": 30}, 
+                                   {"name": "3 pts", "value": 42}
+                               ]
+                    }, 
+                    {"name": "1 pts ext", 
+                     "values": [
+                                   {"name": "0 pts", "value": 25},
+                                   {"name": "1 pts", "value": 29}, 
+                                   {"name": "3 pts", "value": 46}
+                               ]
+                    }, 
+                    {"name": "3 pts ext", 
+                     "values": [
+                                   {"name": "0 pts", "value": 21},
+                                   {"name": "1 pts", "value": 28}, 
+                                   {"name": "3 pts", "value": 51}
+                               ]
+                    }
+    ]};
+
+   secondLegPointsPercentage("#home-percentages", dataHome, "fig. 1 - Répartition des points marqués au retour après le résultat aller à domicile");
+   secondLegPointsPercentage("#away-percentages", dataAway, "fig. 2 - Répartition des points marqués au retour après le résultat aller à l'extérieur");
+</script>
+
+<script type="text/javascript">
+    secondLegPointsHist();
 </script>
