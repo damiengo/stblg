@@ -20,9 +20,9 @@ Dans un cas sur deux, perdre le match aller à domicile implique une défaite à
 
 <div id="away-percentages" class="graph"></div>
 
-Explication match retour
+Ce second graphique (fig. 2) montre la répartition des points obtenus en fonction du résultat du match aller à l'extérieur. Ce graphique présente donc les chiffres opposés au premier graphique (fig. 1).
 
---> Importance du match à domicile, mais le niveau des équipes joue quand même...
+Ces deux graphiques mettent en évidence l'avantage du match à domicile, puisqu'au retour il y a au maximum **28%** de chance de ne pas prendre au moins 1 point en jouant à domicile. Il en est de même au match aller, l'équipe recevant perd dans **24%** des cas, pour 30% de matchs nuls et 46% de victoire.
 
 ## Projection des matchs retour
 
