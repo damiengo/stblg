@@ -1,7 +1,10 @@
 /**
  * Histogram displaying second leg points mean after first leg results.
+ *
+ * @param element
+ * @param title
  */
-function secondLegPointsHist() {
+function secondLegPointsHist(element, title) {
   var margin = {top: 50, right: 30, bottom: 50, left: 30},
       width = 700 - margin.left - margin.right,
       height = 300 - margin.top - margin.bottom;
@@ -23,7 +26,7 @@ function secondLegPointsHist() {
       .orient("left")
       .ticks(6);
 
-  var svg = d3.select("div.post").append("svg")
+  var svg = d3.select(element).append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -44,7 +47,7 @@ function secondLegPointsHist() {
       .attr("class", "title")
       .attr("x", x(data[0].name) + 40)
       .attr("y", -26)
-      .text("Points moyens marqués au retour après les points pris à l'aller");
+      .text(title);
 
   svg.append("g")
       .attr("class", "x axis")
