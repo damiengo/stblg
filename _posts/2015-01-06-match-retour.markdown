@@ -143,5 +143,5 @@ path:hover {
 
    secondLegPointsPercentage("#home-percentages", dataHome, "fig. 1 - Répartition des points marqués au retour après le résultat aller à domicile");
    secondLegPointsPercentage("#away-percentages", dataAway, "fig. 2 - Répartition des points marqués au retour après le résultat aller à l'extérieur");
-    secondLegPointsHist("#hist-points", "fig. 3 - Points moyens marqués au retour après les points pris à l'aller");
+   secondLegPointsHist("#hist-points", "fig. 3 - Points moyens marqués au retour après les points pris à l'aller");
 </script>
