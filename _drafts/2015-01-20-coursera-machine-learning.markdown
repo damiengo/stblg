@@ -21,3 +21,5 @@ Le *Unsupervised Learning* est une seconde sorte d'appliquer le Machine Learning
 La fonction permettant d'estimer y en fonction de x est l'appelée l'*hypothèse* (the hypothesis). Une régression linéaire à une seule variable est également appelée *univariate linear regression*.
 
 La *Cost function* est la minimisation de la somme de la différence entre les prédictions et les valeurs réelles au carré, également appelée *Squarred error function*. La courbe représentant cette fonction permet de visualiser facilement la valeur minimale. Les *contour plots* ou *contour figures* permettent de visualer les différentes valeurs de *θ0* et *θ1* provoquant le même minimum pour la *COst function*.
+
+Le *Gradient descent algorithm* permet de minimiser la valeur de la *Cost function*. Cet algorithme utilise la dérivée en un point x d'une courbe et la multiplie par le pas. Puis cette dérivée en un point est soustraite à ce point x et affectée à la valeur de x. Petit à petit, cet algorithme arrive à une valeur de dérivée à 0 qui immobilise la valeur de x.
