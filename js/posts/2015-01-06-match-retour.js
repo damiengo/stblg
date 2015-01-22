@@ -33,8 +33,8 @@ function secondLegPointsHist(element, title) {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   var data = [
-      {"name": "Dom 0 point",  "value": 0.9, "color": 1}, 
-      {"name": "Dom 1 point",  "value": 1,  "color": 1}, 
+      {"name": "Dom 0 point",  "value": 0.9,  "color": 1}, 
+      {"name": "Dom 1 point",  "value": 1,    "color": 1}, 
       {"name": "Dom 3 points", "value": 1.14, "color": 1},
       {"name": "Ext 0 point",  "value": 1.16, "color" :5},
       {"name": "Ext 1 point",  "value": 1.67, "color" :5},
