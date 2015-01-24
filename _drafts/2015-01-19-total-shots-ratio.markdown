@@ -10,22 +10,54 @@ Le **Total Shots Ratio**, souvent abrégé *TSR*, permet de comparer le taux de 
 
 <div id="ranking"></div>
 
+Liste des TSR durant la saison
+
+<div id="tsr_graph"></div>
+
 <style>
 
+    /** Ranking table **/
     table {
         font-size: 12px;
         border-collapse: collapse;
+        table-layout: fixed;
+        margin: 0 auto;
     }
     
     th {
         padding: 5px;
         text-transform: uppercase;
+        text-align: left;
         border-top: 2px solid #333;
         border-bottom: 2px solid #333;
     }
     
     tr {
         border-bottom: 1px solid #CDCDCD;
+    }
+    
+    /** TSR chart **/
+    .line {
+      fill: none;
+      stroke: #666;
+      stroke-width: 1.5px;
+    }
+    
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
     }
 
 </style>
@@ -34,7 +66,7 @@ Le **Total Shots Ratio**, souvent abrégé *TSR*, permet de comparer le taux de 
 
 <script type="text/javascript">
 
-   var tsr_2014 = [
+    var tsr_2014 = [
       {
         "start":2014,
         "id":142,
@@ -316,6 +348,7 @@ Le **Total Shots Ratio**, souvent abrégé *TSR*, permet de comparer le taux de 
         "points_against":34
       }
     ];
-
-   ranking_hist("#ranking", "fig. 1 - Classement par TSR", tsr_2014);
+    
+    ranking_hist("#ranking", "fig. 1 - Classement par TSR", tsr_2014);
+    tsr_graph("#tsr_graph", "fig. 2 - Evolution des TSR par équipe", "tsr_games_2013.json");
 </script>
