@@ -4,9 +4,64 @@ title:  "Total Shots Ratio"
 date:   2015-01-19 20:08:00
 ---
 
-**Total Shots Ratio**, ou *ratio du nombre total de tirs*. Dans le domaine des statistiques adaptées aux sports, les pays anglo-saxons sont indéniablement en avance, ce qui signifie que les analystes à l'origine des métriques les ont nommées dans leur langue maternelle. Pour ne pas dénaturer leur sens et faciliter la lecture de ces métriques, j'ai choisi de les nommer en anglais.
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
-Le **Total Shots Ratio**, souvent abrégé *TSR*, permet de comparer le taux de tirs entre les deux équipes d'un match de football.
+<script type="text/javascript" src="/js/posts/2015-01-19-total-shots-ratio.js"></script>
+
+<script type="text/javascript">
+    MathJax.Hub.Config({
+      "HTML-CSS": {
+        preferredFont: "STIX"
+      }
+    });
+</script>
+
+**Total Shots Ratio**, ou *ratio du nombre total de tirs*. Dans le domaine des statistiques adaptées aux sports, les pays anglo-saxons sont indéniablement en avance, ce qui signifie que les analystes à l'origine des métriques les ont nommées dans leur langue maternelle. Pour ne pas dénaturer leur sens et faciliter la lecture de ces métriques, j'ai choisi de garder leurs noms en anglais.
+
+Le **Total Shots Ratio**, souvent abrégé *TSR*, permet de comparer le taux de tirs entre les deux équipes d'un match de football. Ainsi, pour chacune des deux équipes, le TSR sera le ratio du nombre de tir de l'équipe divisé par le nombre total de tirs durant le match:
+
+<math display='block'>
+    <mrow>
+        <msub>
+            <mi>TSR</mi>
+            <mn>equipeA</mn>
+        </msub>
+        <mo>=</mo>
+        <mfrac>
+            <mrow>
+                <msub>
+                    <mi>Tirs</mi>
+                    <mn>equipeA</mn>
+                </msub>
+            </mrow>
+            <mrow>
+                <msub>
+                    <mi>Tirs</mi>
+                    <mn>equipeA</mn>
+                </msub>
+                <mo>+</mo>
+                <msub>
+                    <mi>Tirs</mi>
+                    <mn>equipeB</mn>
+                </msub>
+            </mrow>
+        </mfrac>
+    </mrow>
+</math>
+
+## Avantages
+
+Cette formule est intéressante à plusieurs points de vues. Tout d'abord elle est fortement liée au nombre de points gagnés durant la saison. Ainsi sur les saisons de Ligue 1 2012/2013 et 2013/2014, la corrélation entre le *TSR* et le nombre de points marqués était de 60%, ce qui permet d'utiliser ce chiffre pour situer le niveau des équipes.
+
+Le second avantage du *TSR* est sa répétabilité, chose qui est souvent recherchée lorsque l'on souhaite prédire les résultats de matchs. N'ayant pas de données suffisantes, je n'ai pas pu calculer la corrélation entre le *TSR* d'une année N et le *TSR* d'une année N+1.
+
+[James Grayson](https://jameswgrayson.wordpress.com/2013/11/01/how-repeatable-are-total-shots/ "How repeatable are total shots?") a calculé cette corrélation durant 12 saisons de **Premier League** à partir de 2000/2001, et a trouvé un lien de 74% de répétabilité entre deux saisons consécutives. Il va plus loin en affirmant que le *TSR* est expliqué à 86% par les capacités de l'équipe, contre 14% de chance.
+
+## Le PSG dominateur
+
+Le tableau ci-dessous illustre le *TSR* des équipes de **Ligue 1** après la 22ème de la saisons 2014/2015. Le **PSG**, bien que 3ème au classement, possède bien le meilleur *TSR* devant **Marseille** et **Lyon**. Ceci est lié évidemment à la capacité des parisiens de se créer des occasions, mais également à la façon de jouer des adversaires qui optent souvent pour une stratégie défensive qui malgré tout permet au **PSG** de se créer des occasions.
 
 <div id="ranking"></div>
 
@@ -36,13 +91,16 @@ Liste des TSR durant la saison
         border-bottom: 1px solid #CDCDCD;
     }
     
-    /** TSR chart **/
-    .line {
-      fill: none;
-      stroke: #666;
-      stroke-width: 1.5px;
+    ul {
+        display: block;
+        list-style-type: none;
     }
     
+    li {
+        float: left;
+    }
+    
+    /** TSR chart **/
     .axis path,
     .axis line {
       fill: none;
@@ -50,8 +108,10 @@ Liste des TSR durant la saison
       shape-rendering: crispEdges;
     }
 
-    .x.axis path {
-      display: none;
+    .grid {
+      stroke: #777;
+      stroke-dasharray: 2,2;
+      shape-rendering: crispEdges;
     }
 
     .line {
@@ -61,8 +121,6 @@ Liste des TSR durant la saison
     }
 
 </style>
-
-<script type="text/javascript" src="/js/posts/2015-01-19-total-shots-ratio.js"></script>
 
 <script type="text/javascript">
 
