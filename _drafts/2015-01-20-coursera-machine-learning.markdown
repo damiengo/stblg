@@ -35,3 +35,21 @@ La mutliplication d'une matrice par un vecteur est possible uniquement si le nom
 La multiplication de deux matrices reprend la multiplication d'une matrice et d'un vecteur, en multipliant chaque colonne du second vecteur par les lignes de la première matrice. La matrice en résultat possèdera en nombre de lignes le nombre de lignes de la première matrice, et en nombre de colonnes le nombre de colonnes de la seconde matrice. La multiplication de matrices n'est pas commutative (on ne peut pas changer l'ordre des matrices) mais associative (on peut commencer par n'importe quelle multiplication dans le cas d'une opération avec plus de 2 matrices). La matrice d'identité est carrée et contient uniquement des 0, hormis sur la plus grande diagonale qui possède des 1.
 
 L'inverse d'une matrice est une nouvelle matrice qui si on la multiplie avec la matrice d'origine retourne la matrice identité. Il est difficile de la calculer manuellement. La transposition d'une matrice est la "rotation" d'une matrice vers la droite selon une droite diagonale passant au milieu de la matrice. Ainsi A(ij) = B(ji).
+
+## Semaine 2
+
+### Linear Regression with Multiple Variables
+
+Ce chapitre présente les régressions linéaires à plusieurs variables, permettant de pondérer l'impact de chacunes de variables sur le résultat final. L'algorithme *gradient descent* est utilisé pour calculer la régression linéaire. Il s'agit du même algorithme que celui utilisé pour la régression linéaire simple, on multiplie simplement la partie sommée par X(i)j.
+
+Le *feature scaling* permet d'accélérer l'algorithme *gradient descent* en enlevant la moyenne des valeurs à la valeur calcuclée, et en divisant ce résultat par l'écart entre les bornes supérieure et inférieure du jeu de données.
+
+Le *learning rate* peut être difficile à ajuster pour obtenir un résultat rapide et concluant. Un taux trop petit ralenti la recherche alors qu'un taux trop grand peut rater la recherche de la valeur idéale. Il est important d'afficher la courbe de J(θ).
+
+Les régressions polynomiales permettent de modéliser une régression à l'aide de fonctions différentes d'une simple équation linéaire, en utilisant des racines carrées, mise au carré, cube, etc.
+
+L'utilisation de l'équation normale est une autre possibilité pour calculer une régression linéaire, en utilisant la transposition et l'inversion de matrices. Jusqu'à un nombre de *features* inférieur à 10000, cette méthode est avantageuse, au dessus de cette valeur, le *gradient descent* sera plus rapide car l'ivnersion et la transposition de matrice prennent du temps. S'il n'est pas possible d'inverser une matrice, il faut tenter de supprimer les *features* redondantes, ou de supprimer des *features* car il y en a trop par rapport au jeu de données utilisé.
+ 
+### Octave Tutorial
+ 
+Cette section permet d'apprendre les fonctions de base d'octave pour manipuler les nombres, les matrices, les graphiques.
