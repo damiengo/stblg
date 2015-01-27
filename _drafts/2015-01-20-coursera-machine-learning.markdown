@@ -52,4 +52,4 @@ L'utilisation de l'équation normale est une autre possibilité pour calculer un
  
 ### Octave Tutorial
  
-Cette section permet d'apprendre les fonctions de base d'octave pour manipuler les nombres, les matrices, les graphiques.
+Cette section permet d'apprendre les fonctions de base d'octave pour manipuler les nombres, les matrices, les graphiques, les vecteurs de calcul.
