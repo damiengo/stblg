@@ -3,77 +3,97 @@
  *
  * @param element
  * @param title
- * @param datas
  */
-function ranking_hist(element, title, datas) {
+function ranking_hist(element, title) {
     
-    // Sort by points
-    datas.sort(function(a, b){ return d3.descending(a["points_for"], b["points_for"]); });
+    // Title
+    var elemTitle = d3.select(element)
+        .append("p")
+        .attr("class", "title")
+        .style({
+            "font-weight":   "bold",
+            "text-align":    "center", 
+            "margin-bottom": "20px"
+        })
+        .text(title);
     
-    var width = 400, 
-        height = 22;
+    // Datas
+    d3.tsv("/data/tsr_teams_2014.csv", function(error, datas) {
     
-    var colors = d3.scale.category20();
-    
-    var x = d3.scale.linear()
-            .domain([0, d3.max(datas, function(d) { return d.tsr_for; })+0.1])
-            .range([0, width]);
+        // Sort by points
+        datas.sort(function(a, b){ return d3.descending(a["points_for"], b["points_for"]); });
 
-    var table = d3.select(element)
-               .append("table");
-    var thead = table.append("thead");
-    var tbody = table.append("tbody");
+        var width = 400, 
+            height = 22;
 
-    // append the header row
-    thead.append("tr")
-        .selectAll("th")
-        .data(["Equipe", "Points", "TSR", ""])
-        .enter()
-        .append("th")
-            .text(function(column) { return column; });
+        var colors = d3.scale.category20();
+        
+        var x = d3.scale.linear()
+                .domain([0, parseFloat(d3.max(datas, function(d) { return d.tsr_for; }))+0.1])
+                .range([0, width]);
 
-    // create a row for each object in the data
-    var rows = tbody.selectAll("tr")
-        .data(datas)
-        .enter()
-        .append("tr");
+        var table = d3.select(element)
+                   .append("table");
+        var thead = table.append("thead");
+        var tbody = table.append("tbody");
 
-    // Team name
-    var cells = rows
-        .append("td")
-        .style({"width": "150px"})
-            .html(function(d) { return d.short_name; });
-    
-    // Points
-    rows.append("td")
-        .style({"width": "100px"})
-        .html(function(d) { return d.points_for; });
-    
-    // Team TSR
-    rows.append("td")
-        .style({"font-weight": "bold", "width": "100px"})
-        .html(function(d) { return d.tsr_for; });
-    
-    // Graph TSR
-    rows.append("td")
-          .append("svg")
-          .attr("height", height)
-          .attr("width", width)
-            .append("g")
-              .append("rect")
-              .attr("x", 10)
-              .attr("y", 4)
-              .attr("width", function(d) { return x(d.tsr_for); })
-              .attr("height", height - 1)
-              .style("fill", colors(1))
-              .on("mouseover", function(d) {
-                d3.select(this).style("fill", colors(20));
-              })
-              .on("mouseout", function(d) {
-                d3.select(this).style("fill", function(d) { return colors(1); });
-              });
-    
-    return table;
+        // append the header row
+        thead.append("tr")
+            .selectAll("th")
+            .data(["Place", "Equipe", "Points", "TSR", ""])
+            .enter()
+            .append("th")
+                .text(function(column) { return column; });
+
+        // create a row for each object in the data
+        var rows = tbody.selectAll("tr")
+            .data(datas)
+            .enter()
+            .append("tr");
+
+        // Team rank
+        var cells = rows
+            .append("td")
+            .style({"font-weight": "bold", "width": "150px"})
+                .html(function(d, i) { return i+1; });
+
+        // Team name
+        var cells = rows
+            .append("td")
+            .style({"width": "150px"})
+                .html(function(d) { return d.short_name; });
+
+        // Points
+        rows.append("td")
+            .style({"width": "100px"})
+            .html(function(d) { return d.points_for; });
+
+        // Team TSR
+        rows.append("td")
+            .style({"font-weight": "bold", "width": "100px"})
+            .html(function(d) { return d.tsr_for; });
+
+        // Graph TSR
+        rows.append("td")
+              .append("svg")
+              .attr("height", height)
+              .attr("width", width)
+                .append("g")
+                  .append("rect")
+                  .attr("x", 10)
+                  .attr("y", 4)
+                  .attr("width", function(d) { return x(d.tsr_for); })
+                  .attr("height", height - 1)
+                  .style("fill", colors(1))
+                  .on("mouseover", function(d) {
+                    d3.select(this).style("fill", colors(20));
+                  })
+                  .on("mouseout", function(d) {
+                    d3.select(this).style("fill", function(d) { return colors(1); });
+                  });
+
+        return table;
+    });
 }
 
 /**
@@ -83,6 +103,17 @@ function ranking_hist(element, title, datas) {
  * @param title
  */
 function tsr_graph(element, title) {
+    
+    // Title
+    var elemTitle = d3.select(element)
+        .append("p")
+        .attr("class", "title")
+        .style({
+            "font-weight":   "bold",
+            "text-align":    "center", 
+            "margin-bottom": "20px"
+        })
+        .text(title);
     
     // Datas
     d3.tsv("/data/tsr_games_2014.csv", function(error, data) {
@@ -192,9 +223,11 @@ function tsr_graph(element, title) {
            .data(data)
            .enter()
            .append("li")
-               .append("a")
-               .attr("href", "#")
-               .style({ "border-left": function(d) { return "4px solid "+color(d.name); }, "padding": "0 8px 0 4px"})
+               .style({ "border-left": function(d) { return "4px solid "+color(d.name); }, 
+                        "padding": "0 8px 0 4px", 
+                        "color":   "steelblue", 
+                        "cursor":  "default"
+                      })
                .html(function(d) { return d.name; })
                .on("mouseover", function(d) {
                    pathes.filter(function(t) { return d.name == t.name }).style("stroke-width", "4.5px");
