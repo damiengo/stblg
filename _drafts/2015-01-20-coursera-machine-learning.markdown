@@ -53,3 +53,15 @@ L'utilisation de l'équation normale est une autre possibilité pour calculer un
 ### Octave Tutorial
  
 Cette section permet d'apprendre les fonctions de base d'octave pour manipuler les nombres, les matrices, les graphiques, les vecteurs de calcul.
+
+## Semaine 3
+
+### Logistic Regression
+
+La *logistic regression* est un algorithme similaire à la *linear regression*, mais pour des valeurs discrètes. La *sigmoid function* ou *logistic function* est de type 1/x, et son résultat est obligatoirement compris entre 0 et 1.
+
+Le *decision boundary* permet de séparer les données où y=0 et y=1. Il n'est pas forcément linéaire et est représenté par une équation polynomiale. La *cost function* va permettre de déterminer les paramètres *θ* de l'équation. L'algorithme de minimisation de la *cost function* pour une *logistic regression* est le même que pour la *linear regression*, au détail prêt que la fonction h(x) est différente.
+
+Le *gradient descent* n'est pas le seul algorithme utilisable pour calculer une régression, des algorithmes plus performant et plus complexes existent. Il faut utiliser les librairies à disposition et ne pas les développer soi-même vu leur complexité.
+
+La régression *un contre tous* permet de considérer plus de 2 éléments de régression, et à pour objectif d'effectuer une régression en isolant chacun des élements contre les k-1 autres.
