@@ -65,3 +65,7 @@ Le *decision boundary* permet de séparer les données où y=0 et y=1. Il n'est 
 Le *gradient descent* n'est pas le seul algorithme utilisable pour calculer une régression, des algorithmes plus performant et plus complexes existent. Il faut utiliser les librairies à disposition et ne pas les développer soi-même vu leur complexité.
 
 La régression *un contre tous* permet de considérer plus de 2 éléments de régression, et à pour objectif d'effectuer une régression en isolant chacun des élements contre les k-1 autres.
+
+### Regularization
+
+L'*overfitting* décrit une régression où il y a trop de *features* qui donnent une équation correcte vis à vis des éléments de l'échantillon, mais ne permettent pas de prédire de nouveaux éléments (souvent une équaion polynomiale avec trop de paramètres). La *regularization* permet d'ajuster un *overfitting* en ajoutant un paramètre lambda à la *cost function*.
