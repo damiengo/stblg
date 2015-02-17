@@ -70,6 +70,10 @@ La régression *un contre tous* permet de considérer plus de 2 éléments de r�
 
 L'*overfitting* décrit une régression où il y a trop de *features* qui donnent une équation correcte vis à vis des éléments de l'échantillon, mais ne permettent pas de prédire de nouveaux éléments (souvent une équaion polynomiale avec trop de paramètres). La *regularization* permet d'ajuster un *overfitting* en ajoutant un paramètre lambda à la *cost function*.
 
-La *regularization* d'une régression linéaire ou une équation normale reprend la fonction J(θ), en y ajoutant l'élément de régularisation avec lambda. La *regularization* d'une *logistic regression*
- consiste à soustraire lambda/m * θj à l'équation de base.
- 
+La *regularization* d'une régression linéaire ou une équation normale reprend la fonction J(θ), en y ajoutant l'élément de régularisation avec lambda. La *regularization* d'une *logistic regression* consiste à soustraire lambda/m * θj à l'équation de base.
+
+## Semaine 4
+
+### Neural Networks: Representation
+
+Dans le domaine du *machine learning*, le *Neural Network* a été utilisé depuis les années 80, ayant pour but de simuler la capacité d'apprentissage du cerveau. L'implémentation vectorisée est aussi appelée *Forward propagation*.
