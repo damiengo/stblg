@@ -77,3 +77,8 @@ La *regularization* d'une régression linéaire ou une équation normale reprend
 ### Neural Networks: Representation
 
 Dans le domaine du *machine learning*, le *Neural Network* a été utilisé depuis les années 80, ayant pour but de simuler la capacité d'apprentissage du cerveau. L'implémentation vectorisée est aussi appelée *Forward propagation*.
+
+## Semaine 5
+
+### Neural Network: Learning
+
