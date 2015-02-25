@@ -82,3 +82,4 @@ Dans le domaine du *machine learning*, le *Neural Network* a été utilisé depu
 
 ### Neural Network: Learning
 
+Le *Backpropagation algorithm* permet de détecter les erreurs des noeuds à chaque couche (sauf pour la première couche). Ce chapitre explique la transformation de matrice en vecteur et inversement, à l'aide de *reshape*. Le *numerical gradient computation* doit donner le même résultat que le *Backpropagation algorithm*, mais il est plus lent. Il sert uniquement de validation pour le premier algorithme. La *Random initialisation* permet de casser la symétrie.
