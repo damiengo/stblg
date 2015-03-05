@@ -83,3 +83,18 @@ Dans le domaine du *machine learning*, le *Neural Network* a été utilisé depu
 ### Neural Network: Learning
 
 Le *Backpropagation algorithm* permet de détecter les erreurs des noeuds à chaque couche (sauf pour la première couche). Ce chapitre explique la transformation de matrice en vecteur et inversement, à l'aide de *reshape*. Le *numerical gradient computation* doit donner le même résultat que le *Backpropagation algorithm*, mais il est plus lent. Il sert uniquement de validation pour le premier algorithme. La *Random initialisation* permet de casser la symétrie.
+
+## Semaine 6
+
+### Advice for Applying Machine Learning
+
+Ce chapitre est uile pour gagner du temps dans le debugging et l'amélioration des algorithmes de *Machine Learning*. Le *Diagnostic* est un test qui permet de savoir ce qui fonctionne ou pas dans l'algorithme, et permet de l'améliorer. Il peut prendre du temps à implémenter, mais le gain de temps final est tout de même important. Le test peut s'effectuer sur une sous-partie des données, en extrayant 30% de celles-ci au hasard.
+
+La comparaison des courbes de *training error* et *cross validation error* permettent de définir si c'est un problème de *bias* ou de *variance*.
+
+| Fix high variance        | Fix high bias               |
+|--------------------------|-----------------------------|
+| More training examples   | Getting aditionnal features |
+| Smaller sets of features | Adding polynomial features  |
+| Increasing lambda        | Decreasing lambda           |
+
