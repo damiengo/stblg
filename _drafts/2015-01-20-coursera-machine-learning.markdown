@@ -98,3 +98,6 @@ La comparaison des courbes de *training error* et *cross validation error* perme
 | Smaller sets of features | Adding polynomial features  |
 | Increasing lambda        | Decreasing lambda           |
 
+### Machine Learning System Design
+
+Plusieurs possibilités sont réalisables pour créer un algorithme de *Machine Learning*, il faut les analyser avant de se lancer dans l'implémentation d'un algorithme. La première version de l'algorithme doit être développée très rapidement pour ensuite pour faire une analyse d'erreur et savoir quels sont les points à améliorer par la suite.
