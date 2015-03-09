@@ -101,3 +101,5 @@ La comparaison des courbes de *training error* et *cross validation error* perme
 ### Machine Learning System Design
 
 Plusieurs possibilités sont réalisables pour créer un algorithme de *Machine Learning*, il faut les analyser avant de se lancer dans l'implémentation d'un algorithme. La première version de l'algorithme doit être développée très rapidement pour ensuite pour faire une analyse d'erreur et savoir quels sont les points à améliorer par la suite.
+
+Les vrai positifs, faux positifs, faux négatifs et vrai négatifs permettent de calculer la précision et le *recall*. Ces indicateurs permettent de classer différents algorithmes, e le *F score* permet d'avoir un chiffre unique de comparaison, il est égal à: 2x(P*R)/(P+R).
