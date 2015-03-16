@@ -102,4 +102,10 @@ La comparaison des courbes de *training error* et *cross validation error* perme
 
 Plusieurs possibilités sont réalisables pour créer un algorithme de *Machine Learning*, il faut les analyser avant de se lancer dans l'implémentation d'un algorithme. La première version de l'algorithme doit être développée très rapidement pour ensuite pour faire une analyse d'erreur et savoir quels sont les points à améliorer par la suite.
 
-Les vrai positifs, faux positifs, faux négatifs et vrai négatifs permettent de calculer la précision et le *recall*. Ces indicateurs permettent de classer différents algorithmes, e le *F score* permet d'avoir un chiffre unique de comparaison, il est égal à: 2x(P*R)/(P+R).
+Les vrai positifs, faux positifs, faux négatifs et vrai négatifs permettent de calculer la précision et le *recall*. Ces indicateurs permettent de classer différents algorithmes, et le *F score* permet d'avoir un chiffre unique de comparaison, il est égal à: 2x(P*R)/(P+R).
+
+## Semaine 7
+
+### Support Vector Machine
+
+Le *Support Vector Machine* est un autre algorithme de *Machine Learning*. Le *Large Margin Classifier* permet de séparer les données de façon linéaire et de bien répondre à la problématique des *outliers*. La technique des *kernel* est présentée pour mettre en oeuvre le *SVM*. Le *SVM* est a utiliser avec des packages déjà développés, dans lesquels il faudra fournir la fonction faisant office de *kernel*.
