@@ -109,3 +109,9 @@ Les vrai positifs, faux positifs, faux négatifs et vrai négatifs permettent de
 ### Support Vector Machine
 
 Le *Support Vector Machine* est un autre algorithme de *Machine Learning*. Le *Large Margin Classifier* permet de séparer les données de façon linéaire et de bien répondre à la problématique des *outliers*. La technique des *kernel* est présentée pour mettre en oeuvre le *SVM*. Le *SVM* est a utiliser avec des packages déjà développés, dans lesquels il faudra fournir la fonction faisant office de *kernel*.
+
+## Semaine 8
+
+### Clustering
+
+Le *clustering* est un algorithme d'apprentissage non-supervisé. Le *k-means* permet de séparer des données en plusieurs clusters en utilisant la moyenne des différents groupes de données.
