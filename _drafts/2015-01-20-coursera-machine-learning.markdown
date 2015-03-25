@@ -115,3 +115,13 @@ Le *Support Vector Machine* est un autre algorithme de *Machine Learning*. Le *L
 ### Clustering
 
 Le *clustering* est un algorithme d'apprentissage non-supervisé. Le *k-means* permet de séparer des données en plusieurs clusters en utilisant la moyenne des différents groupes de données.
+
+### Dimensionality Reduction
+
+La réduction de données consiste à passer de 2D vers 1D, 3D vers 2D (ou 1000D vers 100D par exemple). L'algorithme *PCA* (*Principal COmponent Analysis*), est une projection orthogonale des points sur une droite ou un plan.
+
+## Semaine 9
+
+### Anomaly Detection
+
+La détection d'anomalie permet de tracer des comportements suspects (en cas de fraude), ou encore de monitorer des serveurs et prévoir les possibles pannes. La *Gaussian distribution* est une distribution normale centrée sur *mu* et d'écart type *sigma*. Si une distribution n'est pas de type *Gaussienne*, il faut essayer de la rendre normale en utilisant la racine carrée, cubique ou encore le log, par exemple.
