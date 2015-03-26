@@ -125,3 +125,7 @@ La réduction de données consiste à passer de 2D vers 1D, 3D vers 2D (ou 1000D
 ### Anomaly Detection
 
 La détection d'anomalie permet de tracer des comportements suspects (en cas de fraude), ou encore de monitorer des serveurs et prévoir les possibles pannes. La *Gaussian distribution* est une distribution normale centrée sur *mu* et d'écart type *sigma*. Si une distribution n'est pas de type *Gaussienne*, il faut essayer de la rendre normale en utilisant la racine carrée, cubique ou encore le log, par exemple.
+
+### Recommender Systems
+
+Les systèmes de recommendations se basent sur les régressions linéaires, en se basant sur les recommendations précédentes.
