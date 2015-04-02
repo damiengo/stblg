@@ -129,3 +129,13 @@ La détection d'anomalie permet de tracer des comportements suspects (en cas de 
 ### Recommender Systems
 
 Les systèmes de recommendations se basent sur les régressions linéaires, en se basant sur les recommendations précédentes.
+
+## Semaine 10
+
+### Large Scale Machine Learning
+
+Le *Machine Learning* à grande échelle permet d'optimiser les algorithmes pour le traitement de données de type *Big Data*. Le *Stochastic Gradient Descent* permet d'accélérer l'algorithme de *Gradient Descent*.
+
+Le *Gradient Descent* va utiliser tous les éléments, le *Stochastic* va utiliser un seul élément, alors que le *Mini-batch* va utiliser *b* éléments, souvent la taille du jeu de données avec un pas de 10.
+
+Le *Map Reduce* permet de paralléliser les algorithmes précédents sur plusieurs serveurs, ou sur un seul serveur ayant un processeur multi-coeurs.
