@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Shots on target"
-date:   2015-03-15 19:57:08
+date:   2015-04-07 22:47:08
 ---
 
 <style>
@@ -37,7 +37,7 @@ date:   2015-03-15 19:57:08
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
-<script type="text/javascript" src="/js/posts/2015-03-15-shots-on-target.js"></script>
+<script type="text/javascript" src="/js/posts/2015-04-07-shots-on-target.js"></script>
 
 <script type="text/javascript">
     MathJax.Hub.Config({
@@ -47,7 +47,7 @@ date:   2015-03-15 19:57:08
     });
 </script>
 
-Les **tirs cadrés**, ou *shots on target (SoT)* en anglais, est l'une des données statistique les plus présentes dans les analyses ou présentations de matchs de football. Le nombre de tirs cadrés est un indicateur intéressant pour savoir si une équipe est dangeureuse, car sans intervention efficace de l'équipe adverse, le tir se termine en but.
+Les **tirs cadrés**, ou *shots on target (SoT)* en anglais, sont l'une des données statistique les plus présentes dans les analyses ou présentations de matchs de football. Le nombre de tirs cadrés est un indicateur intéressant pour savoir si une équipe est dangeureuse, car sans intervention efficace de l'équipe adverse, le tir se termine en but.
 
 Cette statistique s'applique généralement à une équipe mais également aux joueurs. En utilisant ce chiffre en ratio avec une autre mesure, il est possible d'obtenir des mesures intéressantes pour comparer les équipes ou les joueurs.
 
@@ -83,7 +83,7 @@ Un tir cadré est un tir que l'on peut qualifier de qualité, car le tireur a pu
 
 <div id="sot_teams"></div>
 
-Le graphique ci-dessus (fig. 1) présente le pourcentage de tirs cadrés par équipe à la 30ème journée de Ligue 1 2014/2015. Le classement du pourcentage de tirs cadrés n'est pas identique au classement par points. Il représente tout de même la place globale au classement par points, **Guingamp** et **Bastia** étant plus haut que leur place par points avec une présence dans le top 5. Le **PSG** domine clairement le classement, la dernière place de **Toulouse** représente bien les maux de l'équipe, l'arrivée de *Dominique Arribagé* aux commandes de l'équipe va peut être modifier la donne.
+Le graphique ci-dessus (fig. 1) présente le pourcentage de tirs cadrés par équipe à la 31ème journée de Ligue 1 2014/2015. Le classement du pourcentage de tirs cadrés n'est pas identique au classement par points. Il représente tout de même la place globale au classement par points, **Guingamp** et **Bastia** étant plus haut que leur place par points avec une présence dans le top 5. Le **PSG** domine clairement le classement, la dernière place de **Toulouse** représente bien les maux de l'équipe, l'arrivée de *Dominique Arribagé* aux commandes de l'équipe va peut être modifier la donne.
 
 ## Pourcentage du nombre de but
 
@@ -92,6 +92,10 @@ Ce ratio est également intéressant car il illustre la capacité des joueurs d'
 Cependant, le pourcentage de tirs cadrés pour un joueur est un élément intéressant pour déterminer ses aptitudes techniques. En couplant ce chiffre avec le nombre de buts marqués, on obtient un graphique intéressant présentant l'efficacité d'un joueur devant le but.
 
 <div id="sot_players"></div>
+
+Le graphique ci-dessus (fig. 2) illsutre bien le lien entre le taux de tirs cadrés et le nombre de buts. **André-Pierre Gignac** semble avoir un taux de tirs assez bas compte tenu du nombre de buts marqués, ayant cadré 44% de ses tirs pour 18 buts inscrits. Il est le seul joueur de Ligue 1 à plus de 100 tirs cette saison, avec 118 tirs, le second étant **Ibrahimovic** avec 85 tirs au but.
+
+Le joueur le plus précis cette saison est **Christophe Mandanne** avec un taux de 63% de tirs cadrés (9 buts). Avec **Claudio Beauvue** ayant 50% de tirs cadrés pour 12 buts, les deux joueurs sont l'illustration du bon classement général de **Guignamp** au nombre de tirs cadrés.
 
 <script type="text/javascript">
     sotByTeams("#sot_teams");

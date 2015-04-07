@@ -17,7 +17,7 @@ function sotByTeams(element) {
         })
         .text("fig. 1 - % Tirs cadrés par équipe");
 
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var margin = {top: 20, right: 20, bottom: 40, left: 40},
     width = 800 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -42,7 +42,7 @@ function sotByTeams(element) {
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.tsv("/data/sot_teams_d30_2015.tsv", type, function(error, data) {
+    d3.tsv("/data/sot_teams_d31_2015.tsv", type, function(error, data) {
       x.domain(data.map(function(d) { return d.short_name; }));
       y.domain([d3.min(data, function(d) { return d.percentage; }) - 0.01, 
                 d3.max(data, function(d) { return d.percentage; })
@@ -58,11 +58,19 @@ function sotByTeams(element) {
           .call(yAxis)
         .append("text")
           .attr("transform", "rotate(-90)")
-          .attr("y", -30)
-          .attr("x", 20)
+          .attr("y", -35)
+          .attr("x", -2)
           .attr("dy", ".71em")
           .style("text-anchor", "end")
           .text("Tirs cadrés");
+        
+      svg.selectAll(".x.axis text")
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", function(d) {
+              return "rotate(-30)";
+        });
 
       var bar = svg.selectAll(".bar")
           .data(data)
@@ -109,7 +117,7 @@ function sotByPlayers(element) {
             "text-align":    "center", 
             "margin-bottom": "20px"
         })
-        .text("fig. 2 - Tirs cadrés et buts des joueurs de L1 avec plus de 30 tirs");
+        .text("fig. 2 - Tirs cadrés et buts des joueurs de L1 2014/2015 avec plus de 30 tirs");
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = 800 - margin.left - margin.right,
@@ -136,28 +144,28 @@ function sotByPlayers(element) {
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
-    // Grids
-    svg.append("g")         
-    .attr("class", "grid")
-    .attr("transform", "translate(0," + height + ")")
-    .call(make_x_axis()
-        .tickSize(-height, 0, 0)
-        .tickFormat("")
-    );
-
-    svg.append("g")         
-    .attr("class", "grid")
-    .call(make_y_axis()
-        .tickSize(-width, 0, 0)
-        .tickFormat("")
-    );
 
     // Each datas
-    d3.tsv("/data/sot_players_d30_2015.tsv", function(error, data) {
+    d3.tsv("/data/sot_players_d31_2015.tsv", function(error, data) {
 
       x.domain(d3.extent(data, function(d) { return parseInt(d.goals); })).nice();
       y.domain(d3.extent(data, function(d) { return parseFloat(d.sot_ratio); })).nice();
+    
+        // Grids
+        svg.append("g")         
+        .attr("class", "grid")
+        .attr("transform", "translate(0," + height + ")")
+        .call(make_x_axis()
+            .tickSize(-height, 0, 0)
+            .tickFormat("")
+        );
+
+        svg.append("g")         
+        .attr("class", "grid")
+        .call(make_y_axis()
+            .tickSize(-width, 0, 0)
+            .tickFormat("")
+        );
 
       svg.append("g")
           .attr("class", "x axis")
@@ -255,7 +263,7 @@ function sotByPlayers(element) {
         return d3.svg.axis()
             .scale(x)
              .orient("bottom")
-             .ticks(16);
+             .ticks(12);
     };
 
     /**
