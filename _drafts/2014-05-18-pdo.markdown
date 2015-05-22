@@ -4,9 +4,40 @@ title:  "PDO"
 date:   2015-05-18 22:06:08
 ---
 
+<style>
+
+    .bar {
+      fill: steelblue;
+    }
+
+    .bar:hover {
+      fill: brown;
+    }
+
+    .axis {
+      font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #666;
+      shape-rendering: crispEdges;
+    }
+
+    .grid {
+      stroke: #AAA;
+      stroke-dasharray: 2,2;
+      shape-rendering: crispEdges;
+    }
+
+</style>
+
 <script type="text/javascript"
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
+
+<script type="text/javascript" src="/js/posts/2015-05-22-pdo.js"></script>
 
 <script type="text/javascript">
     MathJax.Hub.Config({
@@ -41,7 +72,7 @@ Le *PDO* a été [inventé par des statisticiens](http://vansunsportsblogs.com/2
             </mrow>
             <mrow>
                 <msub>
-                    <mi>Tirs cadrés</mi>
+                    <mi>Tirs</mi>
                     <mn>equipeA</mn>
                 </msub>
             </mrow>
@@ -56,7 +87,7 @@ Le *PDO* a été [inventé par des statisticiens](http://vansunsportsblogs.com/2
             </mrow>
             <mrow>
                 <msub>
-                    <mi>Tirs cadrés</mi>
+                    <mi>Tirs</mi>
                     <mn>equipeB</mn>
                 </msub>
             </mrow>
@@ -64,7 +95,9 @@ Le *PDO* a été [inventé par des statisticiens](http://vansunsportsblogs.com/2
     </mrow>
 </math>
 
-Ainsi, plus une équipe est efficace en attaque et possède un gardien performant, plus son PDO sera élevé. 
+Ainsi, plus une équipe est efficace en attaque et possède un gardien performant, plus son PDO sera élevé. Il est intéressant de noter qu'un PDO élevé n'est pas une siuation durable, de même qu'un PDO trop bas remontera pour arriver autour du [niveau moyen de l'équipe](http://www.arcticicehockey.com/2012/1/3/2675600/pdo-streaks-and-season-long-performance-spreads "PDO à long terme en NHL").
+
+<div id="pdo_teams"></div>
 
 Football: distinguer les qualités de la chance (http://11tegen11.net/2012/05/04/winning-matches-is-it-luck-or-skill/)
 
@@ -72,3 +105,6 @@ Régression à la moyenne, quel est le PDO normal (http://11tegen11.net/2013/01/
 
 Inventeur du PDO en NHL (http://vansunsportsblogs.com/2011/11/04/drance-numbers-an-interview-with-brian-king-inventor-of-pdo/)
 
+<script type="text/javascript">
+    pdoByTeams("#pdo_teams");
+</script>
