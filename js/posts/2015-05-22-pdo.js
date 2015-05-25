@@ -117,7 +117,7 @@ function pdoByDays(element) {
         .text("fig. 2 - PDO par journées pour chaque équipe");
     
     // Datas
-    d3.tsv("/data/tsr_games_2014.csv", function(error, data) {
+    d3.tsv("/data/pdo_by_days_2014.tsv", function(error, data) {
         // Grouping by team name
         data = d3.nest()
                    .key(function(d) { return d.short_name; })
@@ -126,27 +126,10 @@ function pdoByDays(element) {
                        return {
                            'name': d.key, 
                            'values': d.values.map(function(d, i, a) {
-                                return d.tsr_for;
+                                return d.pdo;
                            })
                         }; 
                    });
-        
-        // TSR addition by days
-        data = data.map(function(dat, ind) {
-            return {
-               'name'  : dat.name, 
-               'values': dat.values.map(function(d, i, a) {
-                    if(i == 0) {
-                        return d;
-                    }                   
-                    var tsr_for = 0;
-                    for(var j=0 ; j<i ; j++) {
-                        tsr_for = tsr_for + parseFloat(data[ind].values[j]);
-                    }
-                    return tsr_for + parseFloat(d);
-               })
-            }; 
-        });
 
         var margin = {top: 20, right: 80, bottom: 30, left: 50},
         width = 800 - margin.left - margin.right,
@@ -157,8 +140,7 @@ function pdoByDays(element) {
             .range([0, width]);
 
         var y = d3.scale.linear()
-            .domain([d3.min(data, function(d) { return d3.min(d.values); }),
-                     d3.max(data, function(d) { return d3.max(d.values); })])
+            .domain([700, 1400])
             .range([height, 0]);
 
         var color = d3.scale.category20()

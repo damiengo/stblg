@@ -31,6 +31,16 @@ date:   2015-05-18 22:06:08
       shape-rendering: crispEdges;
     }
     
+    ul {
+        display: block;
+        list-style-type: none;
+        overflow: hidden;
+    }
+    
+    li {
+        float: left;
+    }
+    
     /** TSR chart **/
     .axis path,
     .axis line {
@@ -128,6 +138,8 @@ Le graphique ci-dessus (fig. 1), présente le *PDO* des différents clubs de Lig
 Le *PDO* est très intéressant car ce chiffre se rapproche de la moyenne au bout d'un certains nombre de matchs. Dans un [article de l'excellent site 11tegen11](http://11tegen11.net/2013/01/06/what-is-a-normal-pdo/ "What is a normal PDO"), l'auteur explique que sur le très long terme (3 saisons), le *PDO* moyen des équipes est compris entre 980 et 1020. Il est même possible d'affiner cet intervalle en ragardant le *PDO* de chacuns des quatre quarts des équipes selon leur classement.
 
 <div id="pdo_days"></div>
+
+Le graphique du *PDO* suivant les journées de championnat illustre le retour à la moyenne de cette valeur. Au bout de 38 match, on constate que la valeur est comprise entre 900 et 1100, ce qui est un bon indicateur pour savoir si une équipe devrait remonter ou descendre autour de la moyenne.
 
 <script type="text/javascript">
     pdoByTeams("#pdo_teams");
