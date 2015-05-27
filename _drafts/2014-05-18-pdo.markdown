@@ -84,7 +84,7 @@ Une statistique, nommée **PDO**, permet d'avoir un indice sur la chance ou la m
 
 ## Tirs et arrêts
 
-Le *PDO* a été [inventé par des statisticiens](http://vansunsportsblogs.com/2011/11/04/drance-numbers-an-interview-with-brian-king-inventor-of-pdo/ "Inventeur du PDO") intéressés par la NHL. L'idée est d'additionner le taux de réussite au tir et le taux d'arrêt du gardien, et de multiplier ce résultat par 1000 pour obtenir un chiffre parlant:
+Le *PDO* a été [inventé par des statisticiens](http://vansunsportsblogs.com/2011/11/04/drance-numbers-an-interview-with-brian-king-inventor-of-pdo/ "Inventeur du PDO") intéressés par la NHL. L'idée est d'additionner le taux de réussite au tir et le taux de tirs sauvés par la défense, et de multiplier ce résultat par 1000 pour obtenir un chiffre parlant:
 
 <math display='block'>
     <mrow>
@@ -93,6 +93,8 @@ Le *PDO* a été [inventé par des statisticiens](http://vansunsportsblogs.com/2
             <mn>equipeA</mn>
         </msub>
         <mo>=</mo>
+        <mo>1000</mo>
+        <mo>*</mo>
         <mfrac>
             <mrow>
                 <msub>
@@ -125,21 +127,23 @@ Le *PDO* a été [inventé par des statisticiens](http://vansunsportsblogs.com/2
     </mrow>
 </math>
 
-Ainsi, plus une équipe est efficace en attaque et possède un gardien performant, plus son PDO sera élevé. Il est intéressant de noter qu'un PDO élevé n'est pas une siuation durable, de même qu'un PDO trop bas remontera pour arriver autour du [niveau moyen de l'équipe](http://www.arcticicehockey.com/2012/1/3/2675600/pdo-streaks-and-season-long-performance-spreads "PDO à long terme en NHL").
+Ainsi, plus une équipe est efficace en attaque et possède une défense performante, plus son PDO sera élevé. Il est intéressant de noter qu'un PDO élevé n'est pas une siuation durable, de même qu'un PDO trop bas remontera pour arriver autour du [niveau moyen de l'équipe](http://www.arcticicehockey.com/2012/1/3/2675600/pdo-streaks-and-season-long-performance-spreads "PDO à long terme en NHL").
 
 ## PDO en Ligue 1
 
 <div id="pdo_teams"></div>
 
-Le graphique ci-dessus (fig. 1), présente le *PDO* des différents clubs de Ligue 1 à la fin de la saison 2014/2015. Après 38 journées, le *PDO* des équipes s'approche de sa moyenne, et est donc un bon indicateur de la qualité de celles-ci.
+Le graphique ci-dessus (fig. 1), présente le *PDO* des différents clubs de Ligue 1 à la fin de la saison 2014/2015.
 
 ## Retour à la moyenne
 
-Le *PDO* est très intéressant car ce chiffre se rapproche de la moyenne au bout d'un certains nombre de matchs. Dans un [article de l'excellent site 11tegen11](http://11tegen11.net/2013/01/06/what-is-a-normal-pdo/ "What is a normal PDO"), l'auteur explique que sur le très long terme (3 saisons), le *PDO* moyen des équipes est compris entre 980 et 1020. Il est même possible d'affiner cet intervalle en ragardant le *PDO* de chacuns des quatre quarts des équipes selon leur classement.
+Le *PDO* est très intéressant car ce chiffre se rapproche de la moyenne au bout d'un certain nombre de matchs. Dans un [article de l'excellent site 11tegen11](http://11tegen11.net/2013/01/06/what-is-a-normal-pdo/ "What is a normal PDO"), l'auteur explique que sur le très long terme (3 saisons), le *PDO* moyen des équipes est compris entre 980 et 1020. Il est même possible d'affiner cet intervalle en ragardant le *PDO* de chacuns des quatre quarts des équipes selon leur classement.
 
 <div id="pdo_days"></div>
 
-Le graphique du *PDO* suivant les journées de championnat illustre le retour à la moyenne de cette valeur. Au bout de 38 match, on constate que la valeur est comprise entre 900 et 1100, ce qui est un bon indicateur pour savoir si une équipe devrait remonter ou descendre autour de la moyenne.
+Le graphique du *PDO* en fonction des journées de championnat illustre le retour à la moyenne de cette valeur. Au bout de 38 matchs, on constate que la valeur est comprise entre 900 et 1100, ce qui est un bon indicateur pour savoir si une équipe devrait remonter ou descendre autour de cet intervale.
+
+Ainsi, une équipe ayant un PDO sous la barre des 900 aura sûrement eu peu de chance lors de ses matchs, et retrouvera sur le long terme un PDO plus élevé. Il en va de même pour une équipe chanceuse sur une période donnée, avec un PDO supérieur à 1100. Celui-ci retombera sous cette valeur au fil des matchs.
 
 <script type="text/javascript">
     pdoByTeams("#pdo_teams");

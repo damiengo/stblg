@@ -169,7 +169,7 @@ function pdoByDays(element) {
 
           svg.append("g")
               .attr("class", "x axis")
-              .attr("transform", "translate(0," + y(0) + ")")
+              .attr("transform", "translate(0," + y(700) + ")")
               .call(xAxis);
 
           svg.append("g")
@@ -183,7 +183,7 @@ function pdoByDays(element) {
           svg.selectAll(".x line")
               .attr('class', 'grid')
               .attr("y2", height)
-              .attr("transform", "translate(0," + (-y(0)) + ")");
+              .attr("transform", "translate(0," + (-y(700)) + ")");
 
           svg.selectAll(".x text")
               .attr("transform", "translate(-5, -4)"); 
