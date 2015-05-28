@@ -114,7 +114,7 @@ function pdoByDays(element) {
             "text-align":    "center", 
             "margin-bottom": "20px"
         })
-        .text("fig. 2 - PDO par journées pour chaque équipe");
+        .text("fig. 2 - PDO après N journées par équipe en L1");
     
     // Datas
     d3.tsv("/data/pdo_by_days_2014.tsv", function(error, data) {
@@ -170,11 +170,24 @@ function pdoByDays(element) {
           svg.append("g")
               .attr("class", "x axis")
               .attr("transform", "translate(0," + y(700) + ")")
-              .call(xAxis);
+              .call(xAxis)
+            .append("text")
+              .attr("class", "label")
+              .attr("x", width)
+              .attr("y", -2)
+              .style("text-anchor", "end")
+              .text("Journée");
 
           svg.append("g")
               .attr("class", "y axis")
-              .call(yAxis);
+              .call(yAxis)
+            .append("text")
+              .attr("class", "label")
+              .attr("transform", "rotate(-90)")
+              .attr("x", -30)
+              .attr("y", -15)
+              .attr("dy", ".71em")
+              .text("PDO");
 
           svg.selectAll(".y line")
               .attr('class', 'grid')
