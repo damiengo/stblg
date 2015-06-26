@@ -10,6 +10,7 @@ Tous les tirs au but n'ont pas la même valeur lorsqu'il s'agit de comparer les 
 
 <div id="expg_field"></div>
 
+http://peterbeshai.com/buckets/app/#/leagueView/2014
 
 <script type="text/javascript">
     expgField("#expg_field");
