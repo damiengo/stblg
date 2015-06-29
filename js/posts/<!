@@ -84,9 +84,7 @@ function expgField(element) {
          .range(colours);
 
       // dynamic bit...
-      var c = d3.scale.linear()
-                      .domain([d3.min(data, function(d) { return d.mean }), d3.max(data, function(d) { return d.mean })])
-                      .range([0,1]);
+      var c = d3.scale.linear().domain(d3.extent(data)).range([0,1]);
 
       x.domain(d3.extent(data, function(d) { return d.x; })).nice();
       y.domain(d3.extent(data, function(d) { return d.y; })).nice();
