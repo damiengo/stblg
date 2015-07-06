@@ -5,21 +5,21 @@
  * @param element
  */
 function expgField(element) {
-    
+
     // Title
     var elemTitle = d3.select(element)
         .append("p")
         .attr("class", "title")
         .style({
             "font-weight":   "bold",
-            "text-align":    "center", 
+            "text-align":    "center",
             "margin-bottom": "20px"
         })
         .text("fig. 1 - ExpG selon la position du tir");
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 600 - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
         .range([0, width]);
@@ -42,18 +42,25 @@ function expgField(element) {
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    
+
+        var rectangle = svg.append("rect")
+                              .attr("x",   0)
+                                .attr("y", 0)
+                                .attr("width", width)
+                                .attr("height", height)
+                                .attr("fill", "green");
+
     d3.tsv("/data/exp_goals.tsv", function(error, data) {
       if (error) throw error;
 
       var grData = d3.nest()
           .key(function(d) { return Math.floor(d.x); })
           .key(function(d) { return Math.floor(d.y); })
-          .rollup(function(l){ 
+          .rollup(function(l){
               return {
-                  "length" : l.length, 
+                  "length" : l.length,
                   "mean"   : d3.mean(l, function(d) {return d.predict;})
-              } 
+              }
           })
           .entries(data)
           .map(function(d) {
@@ -61,9 +68,9 @@ function expgField(element) {
               var values = d.values.map(function(e) {
                   var y = e.key;
                   var ret = {
-                      "x":      x, 
-                      "y":      y, 
-                      "length": e.values.length, 
+                      "x":      x,
+                      "y":      y,
+                      "length": e.values.length,
                       "mean":   e.values.mean
                   };
                   return ret;
@@ -88,8 +95,8 @@ function expgField(element) {
                       .domain([d3.min(data, function(d) { return d.mean }), d3.max(data, function(d) { return d.mean })])
                       .range([0,1]);
 
-      x.domain(d3.extent(data, function(d) { return d.x; })).nice();
-      y.domain(d3.extent(data, function(d) { return d.y; })).nice();
+      x.domain([d3.min(data, function(d) { return d.x; }), d3.max(data, function(d) { return d.x; })]).nice();
+      y.domain([50, d3.max(data, function(d) { return d.y; })]).nice();
 
       svg.selectAll(".dot")
           .data(data)
@@ -101,5 +108,5 @@ function expgField(element) {
           .style("fill", function(d) { return heatmapColour(c(d.mean)); });
 
     });
-    
+
 }
