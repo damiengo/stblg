@@ -148,6 +148,10 @@ function expgField(element) {
              .style("fill-opacity", 0)
              .style("stroke", "#FFF");
 
+    var hexbin = d3.hexbin()
+      .size([width, height])
+      .radius(20);
+
     d3.tsv("/data/exp_goals.tsv", function(error, data) {
       if (error) throw error;
 
@@ -180,6 +184,10 @@ function expgField(element) {
           return prev.concat(curr);
       }, []);
 
+      var radius = d3.scale.sqrt()
+        .domain([d3.min(data, function(d) { return d.mean }), d3.max(data, function(d) { return d.mean })])
+        .range([0, 0.7]);
+
       var colours = colorbrewer.Purples[8];
 
       var heatmapColour = d3.scale.linear()
@@ -199,7 +207,7 @@ function expgField(element) {
       x.domain([d3.min(data, function(d) { return d.x; }), d3.max(data, function(d) { return d.x; })]).nice();
       y.domain([50, d3.max(data, function(d) { return d.y; })]).nice();
 
-      svg.selectAll(".dot")
+      /*svg.selectAll(".dot")
           .data(data)
         .enter().append("rect")
           .attr("class", "dot")
@@ -209,7 +217,27 @@ function expgField(element) {
           .attr("height", function(d) { return (lengthes(d.length) > maxLen)? maxLen : lengthes(d.length); })
           .attr("x", function(d) { return x(d.y); })
           .attr("y", function(d) { return fieldStartY+y(d.x); })
+          .style("fill", function(d) { return heatmapColour(c(d.mean)); });*/
+
+      svg.append("clipPath")
+        .attr("id", "clip")
+      .append("rect")
+        .attr("class", "mesh")
+        .attr("width", width)
+        .attr("height", height);
+
+      svg.append("g")
+      .attr("clip-path", "url(#clip)")
+      .selectAll(".hexagon")
+      .data(data)
+        .enter().append("path")
+          .attr("class", "hexagon")
+          .attr("d", function(d) { return hexbin.hexagon(radius(d.length)); })
+          .attr("transform", function(d) { return "translate(" + x(d.y) + "," + (fieldStartY+y(d.x)) + ")"; })
           .style("fill", function(d) { return heatmapColour(c(d.mean)); });
+
+      // http://bl.ocks.org/mbostock/4248145
+      // http://bl.ocks.org/mbostock/4248146
 
     });
 

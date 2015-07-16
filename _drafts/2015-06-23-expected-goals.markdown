@@ -4,6 +4,14 @@ title:  "Expected Goals"
 date:   2015-06-23 22:27:08
 ---
 
+<style>
+  .hexagon {
+    fill: none;
+    stroke: #000;
+    stroke-width: .2px;
+  }
+</style>
+
 <script type="text/javascript" src="/js/posts/2015-06-23-expected-goals.js"></script>
 
 Tous les tirs au but n'ont pas la même valeur lorsqu'il s'agit de comparer les tirs de plusieurs équipes.
