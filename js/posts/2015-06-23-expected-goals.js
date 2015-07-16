@@ -65,7 +65,7 @@ function expgField(element) {
                      {"x": fieldStartX+193, "y": fieldStartY},
                      {"x": fieldStartX+193, "y": fieldStartY+183},
                      {"x": fieldStartX+727, "y": fieldStartY+183},
-                     {"x": fieldStartX+727, "y": fieldStartY}, 
+                     {"x": fieldStartX+727, "y": fieldStartY},
                      // Goalkeeper area
                      {"x": fieldStartX+339,     "y": fieldStartY},
                      {"x": fieldStartX+339,     "y": fieldStartY+63},
@@ -86,7 +86,7 @@ function expgField(element) {
                         .attr("stroke-width", 2)
                         .attr("fill", "none");
 
-    // The centetr circle arc
+    // The center circle arc
     svg.append("path")
                   .attr("d", "M "+(fieldStartX+(fieldWidth/2)-92.5)+","+(fieldStartY+fieldHeight)+
                             " A 1,1 0 0,1"+
@@ -116,6 +116,37 @@ function expgField(element) {
                   .style("stroke-width", 2)
                   .style("fill-opacity", 0)
                   .style("stroke", "#FFF");
+
+    // The penalty point
+    var circleSelection = svg.append("circle")
+                         .attr("cx", fieldStartX+(fieldWidth/2))
+                         .attr("cy", fieldStartY+125)
+                         .attr("r", 2)
+                         .style("stroke-opacity", 1)
+                         .style("stroke-width", 2)
+                         .style("fill-opacity", 1)
+                         .style("fill", "#FFF")
+                         .style("stroke", "#FFF");
+
+     // The corner 1 arc
+     svg.append("path")
+                   .attr("d", "M "+(fieldStartX+5)+","+(fieldStartY)+
+                             " A 5,5 0 0,1"+
+                               " "+(fieldStartX)+","+(fieldStartY+5))
+                   .style("stroke-opacity", 1)
+                   .style("stroke-width", 2)
+                   .style("fill-opacity", 0)
+                   .style("stroke", "#FFF");
+
+      // The corner 2 arc
+      svg.append("path")
+             .attr("d", "M "+(fieldStartX+fieldWidth-5)+","+(fieldStartY)+
+                       " A 5,5 0 0,0"+
+                         " "+(fieldStartX+fieldWidth)+","+(fieldStartY+5))
+             .style("stroke-opacity", 1)
+             .style("stroke-width", 2)
+             .style("fill-opacity", 0)
+             .style("stroke", "#FFF");
 
     d3.tsv("/data/exp_goals.tsv", function(error, data) {
       if (error) throw error;
@@ -149,7 +180,7 @@ function expgField(element) {
           return prev.concat(curr);
       }, []);
 
-      var colours = colorbrewer.RdYlBu[6].reverse();
+      var colours = colorbrewer.Purples[8];
 
       var heatmapColour = d3.scale.linear()
          .domain(d3.range(0, 1, 1.0 / (colours.length - 1)))
@@ -160,7 +191,7 @@ function expgField(element) {
                       .domain([d3.min(data, function(d) { return d.mean }), d3.max(data, function(d) { return d.mean })])
                       .range([0,1]);
 
-      var maxLen = 30;
+      var maxLen = 10;
       var lengthes = d3.scale.linear()
                       .domain([d3.min(data, function(d) { return d.length }), d3.max(data, function(d) { return d.length })])
                       .range([0, 30]);
