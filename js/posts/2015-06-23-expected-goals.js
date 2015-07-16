@@ -61,10 +61,21 @@ function expgField(element) {
                      {"x": fieldStartX+fieldWidth, "y": fieldStartY+fieldHeight},
                      {"x": fieldStartX, "y": fieldStartY+fieldHeight},
                      {"x": fieldStartX, "y": fieldStartY},
+                     // Penalty area
                      {"x": fieldStartX+193, "y": fieldStartY},
                      {"x": fieldStartX+193, "y": fieldStartY+183},
                      {"x": fieldStartX+727, "y": fieldStartY+183},
-                     {"x": fieldStartX+727, "y": fieldStartY}];
+                     {"x": fieldStartX+727, "y": fieldStartY}, 
+                     // Goalkeeper area
+                     {"x": fieldStartX+339,     "y": fieldStartY},
+                     {"x": fieldStartX+339,     "y": fieldStartY+63},
+                     {"x": fieldStartX+581,     "y": fieldStartY+63},
+                     {"x": fieldStartX+581,     "y": fieldStartY},
+                     // Goal
+                     {"x": fieldStartX+405,     "y": fieldStartY},
+                     {"x": fieldStartX+405,     "y": fieldStartY-5},
+                     {"x": fieldStartX+515,     "y": fieldStartY-5},
+                     {"x": fieldStartX+515,     "y": fieldStartY}];
     var lineFunction = d3.svg.line()
                              .x(function(d) { return d.x; })
                              .y(function(d) { return d.y; })
@@ -75,24 +86,25 @@ function expgField(element) {
                         .attr("stroke-width", 2)
                         .attr("fill", "none");
 
-    // The center circle
-    /*var circleSelection = svg.append("circle")
-                         .attr("cx", fieldStartX+(fieldWidth/2))
-                         .attr("cy", fieldStartY+fieldHeight)
-                         .attr("r", 92.5)
-                         .style("stroke-opacity", 1)
-                         .style("stroke-width", 2)
-                         .style("fill-opacity", "0")
-                         .style("stroke", "#FFF");*/
-
-    // The penalty area circle arc
+    // The centetr circle arc
     svg.append("path")
                   .attr("d", "M "+(fieldStartX+(fieldWidth/2)-92.5)+","+(fieldStartY+fieldHeight)+
                             " A 1,1 0 0,1"+
                               " "+(fieldStartX+(fieldWidth/2)+92.5)+","+(fieldStartY+fieldHeight))
                   .style("stroke-opacity", 1)
                   .style("stroke-width", 2)
-                  .style("fill-opacity", "0")
+                  .style("fill-opacity", 0)
+                  .style("stroke", "#FFF");
+
+    // The engaging point
+    svg.append("path")
+                  .attr("d", "M "+(fieldStartX+(fieldWidth/2)-3)+","+(fieldStartY+fieldHeight)+
+                            " A 1,1 0 0,1"+
+                              " "+(fieldStartX+(fieldWidth/2)+3)+","+(fieldStartY+fieldHeight))
+                  .style("stroke-opacity", 1)
+                  .style("stroke-width", 2)
+                  .style("fill-opacity", 1)
+                  .style("fill", "#FFF")
                   .style("stroke", "#FFF");
 
     // The penalty area circle arc
@@ -102,7 +114,7 @@ function expgField(element) {
                               " "+(fieldStartX+556)+","+(fieldStartY+183))
                   .style("stroke-opacity", 1)
                   .style("stroke-width", 2)
-                  .style("fill-opacity", "0")
+                  .style("fill-opacity", 0)
                   .style("stroke", "#FFF");
 
     d3.tsv("/data/exp_goals.tsv", function(error, data) {
@@ -184,24 +196,24 @@ Field path:
 7: L 92.16000000000001,86.47399999999999 (angle 1)
 8: L 92.16000000000001,279.526 (angle 2)
 9: L 16,279.526 (ligne but)
-10: M 16,138.912
-11: L 41.984,138.912
-12: L 41.984,227.08800000000002
-13: L 16,227.08800000000002
+10: M 16,138.912 (6m 1)
+11: L 41.984,138.912 (6m 1)
+12: L 41.984,227.08800000000002 (6m 1)
+13: L 16,227.08800000000002 (6m 1)
 14: M 92.16000000000001,147.7296
 15: C 110.08000000000001,164.4296
       110.08000000000001,201.5704
       92.16000000000001,218.27040000000002
-M 240.00000000000003,16
-V 350
-M 464.00000000000006,86.47399999999999
-L 387.84000000000003,86.47399999999999
-L 387.84000000000003,279.526
-L 464.00000000000006,279.526
-M 464.00000000000006,138.912
-L 438.0160000000001,138.912
-L 438.0160000000001,227.08800000000002
-L 464.00000000000006,227.08800000000002
+    M 240.00000000000003,16
+    V 350 (ligne médiane)
+    M 464.00000000000006,86.47399999999999
+    L 387.84000000000003,86.47399999999999 (surf 2)
+    L 387.84000000000003,279.526 (surf 2)
+    L 464.00000000000006,279.526 (surf 2)
+    M 464.00000000000006,138.912 (6m 2)
+    L 438.0160000000001,138.912 (6m 2)
+    L 438.0160000000001,227.08800000000002 (6m 2)
+    L 464.00000000000006,227.08800000000002 (6m 2)
 M 387.84000000000003,147.7296
 C 369.92,164.4296
   369.92,201.5704
