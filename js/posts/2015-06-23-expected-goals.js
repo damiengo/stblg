@@ -27,7 +27,10 @@ function expgField(element) {
     var y = d3.scale.linear()
         .range([height, 0]);
 
-    var color = d3.scale.category10();
+    var color = d3.scale.linear()
+                        .domain([0, 0.1])
+                        .range(["white", "steelblue"])
+                        .interpolate(d3.interpolateLab);
 
     var xAxis = d3.svg.axis()
         .scale(x)
@@ -149,15 +152,17 @@ function expgField(element) {
              .style("stroke", "#FFF");
 
     var hexbin = d3.hexbin()
-      .size([width, height])
-      .radius(20);
+      .size([fieldWidth, fieldHeight])
+      .radius(0.8);
 
     d3.tsv("/data/exp_goals.tsv", function(error, data) {
       if (error) throw error;
 
-      var grData = d3.nest()
-          .key(function(d) { return Math.floor(d.x); })
-          .key(function(d) { return Math.floor(d.y); })
+      /*var grData = d3.nest()
+          //.key(function(d) { return Math.floor(d.x); })
+          //.key(function(d) { return Math.floor(d.y); })
+          .key(function(d) { return d.x; })
+          .key(function(d) { return d.y; })
          .rollup(function(l){
               return {
                   "length" : l.length,
@@ -182,11 +187,14 @@ function expgField(element) {
 
       data = grData.reduce(function(prev, curr, index, arr) {
           return prev.concat(curr);
-      }, []);
+      }, []);*/
+
+      data = data.map(function(d) { return [d.x, d.y, {predict: d.predict}];  });
+      data = hexbin(data);
 
       var radius = d3.scale.sqrt()
-        .domain([d3.min(data, function(d) { return d.mean }), d3.max(data, function(d) { return d.mean })])
-        .range([0, 0.7]);
+        .domain([0, 40])
+        .range([0, 10]);
 
       var colours = colorbrewer.Purples[8];
 
@@ -233,8 +241,12 @@ function expgField(element) {
         .enter().append("path")
           .attr("class", "hexagon")
           .attr("d", function(d) { return hexbin.hexagon(radius(d.length)); })
-          .attr("transform", function(d) { return "translate(" + x(d.y) + "," + (fieldStartY+y(d.x)) + ")"; })
-          .style("fill", function(d) { return heatmapColour(c(d.mean)); });
+          .attr("transform", function(d) { return "translate(" + (x(d.y)) + "," + (fieldStartY+y(d.x)) + ")"; })
+          .style("fill", function(d) { 
+              return color(d3.mean(d.map(function(e) { 
+                             return e[2].predict;  
+                          })));
+          });
 
       // http://bl.ocks.org/mbostock/4248145
       // http://bl.ocks.org/mbostock/4248146
