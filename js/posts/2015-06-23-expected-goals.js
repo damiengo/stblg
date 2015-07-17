@@ -28,8 +28,8 @@ function expgField(element) {
         .range([height, 0]);
 
     var color = d3.scale.linear()
-                        .domain([0, 0.1])
-                        .range(["white", "steelblue"])
+                        .domain([0, 0.13])
+                        .range(["orange", "midnightblue"])
                         .interpolate(d3.interpolateLab);
 
     var xAxis = d3.svg.axis()
@@ -153,79 +153,20 @@ function expgField(element) {
 
     var hexbin = d3.hexbin()
       .size([fieldWidth, fieldHeight])
-      .radius(0.8);
+      .radius(10);
 
     d3.tsv("/data/exp_goals.tsv", function(error, data) {
       if (error) throw error;
 
-      /*var grData = d3.nest()
-          //.key(function(d) { return Math.floor(d.x); })
-          //.key(function(d) { return Math.floor(d.y); })
-          .key(function(d) { return d.x; })
-          .key(function(d) { return d.y; })
-         .rollup(function(l){
-              return {
-                  "length" : l.length,
-                  "mean"   : d3.mean(l, function(d) {return d.predict;})
-              }
-          })
-          .entries(data)
-          .map(function(d) {
-              var x = d.key;
-              var values = d.values.map(function(e) {
-                  var y = e.key;
-                  var ret = {
-                      "x":      x,
-                      "y":      y,
-                      "length": e.values.length,
-                      "mean":   e.values.mean
-                  };
-                  return ret;
-              });
-              return values;
-          });
-
-      data = grData.reduce(function(prev, curr, index, arr) {
-          return prev.concat(curr);
-      }, []);*/
-
-      data = data.map(function(d) { return [d.x, d.y, {predict: d.predict}];  });
-      data = hexbin(data);
-
-      var radius = d3.scale.sqrt()
-        .domain([0, 40])
-        .range([0, 10]);
-
-      var colours = colorbrewer.Purples[8];
-
-      var heatmapColour = d3.scale.linear()
-         .domain(d3.range(0, 1, 1.0 / (colours.length - 1)))
-         .range(colours);
-
-      // dynamic bit...
-      var c = d3.scale.linear()
-                      .domain([d3.min(data, function(d) { return d.mean }), d3.max(data, function(d) { return d.mean })])
-                      .range([0,1]);
-
-      var maxLen = 10;
-      var lengthes = d3.scale.linear()
-                      .domain([d3.min(data, function(d) { return d.length }), d3.max(data, function(d) { return d.length })])
-                      .range([0, 30]);
-
       x.domain([d3.min(data, function(d) { return d.x; }), d3.max(data, function(d) { return d.x; })]).nice();
       y.domain([50, d3.max(data, function(d) { return d.y; })]).nice();
 
-      /*svg.selectAll(".dot")
-          .data(data)
-        .enter().append("rect")
-          .attr("class", "dot")
-          .attr("rx", 5)
-          .attr("ry", 5)
-          .attr("width", function(d) { return (lengthes(d.length) > maxLen)? maxLen : lengthes(d.length); })
-          .attr("height", function(d) { return (lengthes(d.length) > maxLen)? maxLen : lengthes(d.length); })
-          .attr("x", function(d) { return x(d.y); })
-          .attr("y", function(d) { return fieldStartY+y(d.x); })
-          .style("fill", function(d) { return heatmapColour(c(d.mean)); });*/
+      data = data.map(function(d) { return [x(d.y), y(d.x), {predict: d.predict}];  });
+      data = hexbin(data);
+
+      var radius = d3.scale.sqrt()
+        .domain([0, 65])
+        .range([0, 15]);
 
       svg.append("clipPath")
         .attr("id", "clip")
@@ -241,15 +182,52 @@ function expgField(element) {
         .enter().append("path")
           .attr("class", "hexagon")
           .attr("d", function(d) { return hexbin.hexagon(radius(d.length)); })
-          .attr("transform", function(d) { return "translate(" + (x(d.y)) + "," + (fieldStartY+y(d.x)) + ")"; })
-          .style("fill", function(d) { 
-              return color(d3.mean(d.map(function(e) { 
-                             return e[2].predict;  
+          .attr("transform", function(d) { return "translate(" + d.x + "," + (fieldStartY+d.y) + ")"; })
+          .style("fill", function(d) {
+              return color(d3.mean(d.map(function(e) {
+                             return e[2].predict;
                           })));
+          })
+          .on("mouseover", function(d) {
+              // Border color
+              d3.select(this).style("stroke-width", "0.8px")
+                             .style("stroke", "#FFF");
+              // Legend
+              legend.style("visibility", "visible");
+              legend.select("rect").attr("x", d.x+15)
+                                   .attr("y", d.y+5)
+                                   .attr("fill", "#FFF")
+                                   .attr("stroke", "#000")
+                                   .attr("stroke-width", "0.3px");
+              legend.select("text").attr("x", d.x+25)
+                                   .attr("y", d.y+25)
+                                   .text(Math.floor(d3.mean(d.map(function(e) {
+                                                  return e[2].predict;
+                                               }))*10000)/100+"% ExpG / "+d.length+" tirs")
+                                   .style("color", "#000");
+          })
+          .on("mouseout", function(d) {
+              // Border color
+              d3.select(this).style("stroke-width", "0.2px")
+                             .style("stroke", "#000");
+              // Legend
+              legend.style("visibility", "hidden");
           });
 
-      // http://bl.ocks.org/mbostock/4248145
-      // http://bl.ocks.org/mbostock/4248146
+          // Legend
+          var legend = svg
+                .append("g")
+                .style("visibility", "hidden");
+
+          // Legend background
+          legend.append("rect")
+              .attr("width", "200")
+              .attr("height", "30")
+              .attr("rx", 5)
+              .attr("ry", 5);
+
+          // Legend text
+          legend.append("text");
 
     });
 
