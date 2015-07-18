@@ -155,81 +155,130 @@ function expgField(element) {
       .size([fieldWidth, fieldHeight])
       .radius(10);
 
-    d3.tsv("/data/exp_goals.tsv", function(error, data) {
-      if (error) throw error;
+    var headed = 0;
 
-      x.domain([d3.min(data, function(d) { return d.x; }), d3.max(data, function(d) { return d.x; })]).nice();
-      y.domain([50, d3.max(data, function(d) { return d.y; })]).nice();
+    var headBox = svg.append("g")
+                     .on("click", function(d) {
+                         if(headed == 0) {
+                             d3.select(this).select("rect")
+                                            .style("fill", "steelblue");
+                             headed = 1;
+                         }
+                         else {
+                             d3.select(this).select("rect")
+                                            .style("fill", "transparent");
+                             headed = 0;
+                         }
+                         loadData(headed);
+                     });
 
-      data = data.map(function(d) { return [x(d.y), y(d.x), {predict: d.predict}];  });
-      data = hexbin(data);
+    // Caption headed
+    headBox.append("rect")
+       .attr("width",  "15")
+       .attr("height", "15")
+       .attr("x", fieldStartX+fieldWidth-70)
+       .attr("y", fieldStartY+fieldHeight-20)
+       .attr("rx", 3)
+       .attr("ry", 3)
+       .style("fill", "transparent")
+       .style("stroke", "steelblue")
+       .style("stroke-width", "2px");
 
-      var radius = d3.scale.sqrt()
-        .domain([0, 65])
-        .range([0, 15]);
+    headBox.append("text")
+           .attr("x", fieldStartX+fieldWidth-50)
+           .attr("y", fieldStartY+fieldHeight-7)
+           .text("Tête")
 
-      svg.append("clipPath")
-        .attr("id", "clip")
-      .append("rect")
-        .attr("class", "mesh")
-        .attr("width", width)
-        .attr("height", height);
+    loadData(headed);
 
-      svg.append("g")
-      .attr("clip-path", "url(#clip)")
-      .selectAll(".hexagon")
-      .data(data)
-        .enter().append("path")
-          .attr("class", "hexagon")
-          .attr("d", function(d) { return hexbin.hexagon(radius(d.length)); })
-          .attr("transform", function(d) { return "translate(" + d.x + "," + (fieldStartY+d.y) + ")"; })
-          .style("fill", function(d) {
-              return color(d3.mean(d.map(function(e) {
-                             return e[2].predict;
-                          })));
-          })
-          .on("mouseover", function(d) {
-              // Border color
-              d3.select(this).style("stroke-width", "0.8px")
-                             .style("stroke", "#FFF");
-              // Legend
-              legend.style("visibility", "visible");
-              legend.select("rect").attr("x", d.x+15)
-                                   .attr("y", d.y+5)
-                                   .attr("fill", "#FFF")
-                                   .attr("stroke", "#000")
-                                   .attr("stroke-width", "0.3px");
-              legend.select("text").attr("x", d.x+25)
-                                   .attr("y", d.y+25)
-                                   .text(Math.floor(d3.mean(d.map(function(e) {
-                                                  return e[2].predict;
-                                               }))*10000)/100+"% ExpG / "+d.length+" tirs")
-                                   .style("color", "#000");
-          })
-          .on("mouseout", function(d) {
-              // Border color
-              d3.select(this).style("stroke-width", "0.2px")
-                             .style("stroke", "#000");
-              // Legend
-              legend.style("visibility", "hidden");
-          });
+    // Loading data
+    function loadData(headed) {
+      d3.tsv("/data/exp_goals.tsv", function(error, data) {
+        if (error) throw error;
 
-          // Legend
-          var legend = svg
-                .append("g")
-                .style("visibility", "hidden");
+        x.domain([d3.min(data, function(d) { return d.x; }), d3.max(data, function(d) { return d.x; })]).nice();
+        y.domain([50, d3.max(data, function(d) { return d.y; })]).nice();
 
-          // Legend background
-          legend.append("rect")
-              .attr("width", "200")
-              .attr("height", "30")
-              .attr("rx", 5)
-              .attr("ry", 5);
+        data = data
+        .filter(function(d) {
+            return d.head == headed;
+        })
+        .map(function(d) {
+            return [x(d.y), y(d.x), {predict: d.predict, head: d.head}];
+        });
+        data = hexbin(data);
 
-          // Legend text
-          legend.append("text");
+        var radius = d3.scale.sqrt()
+          .domain([0, 65])
+          .range([0, 13]);
 
-    });
+        // Suppression des éléments
+        svg.selectAll(".hexagon").remove();
+
+        svg.append("clipPath")
+          .attr("id", "clip")
+        .append("rect")
+          .attr("class", "mesh")
+          .attr("width", width)
+          .attr("height", height);
+
+        // Ajout des éléments
+        svg.append("g")
+        .attr("clip-path", "url(#clip)")
+        .selectAll(".hexagon")
+        .data(data)
+          .enter().append("path")
+            .attr("class", "hexagon")
+            .attr("d", function(d) { return hexbin.hexagon(radius(d.length)); })
+            .attr("transform", function(d) { return "translate(" + d.x + "," + (fieldStartY+d.y) + ")"; })
+            .style("fill", function(d) {
+                return color(d3.mean(d.map(function(e) {
+                               return e[2].predict;
+                            })));
+            })
+            .on("mouseover", function(d) {
+                // Border color
+                d3.select(this).style("stroke-width", "0.8px")
+                               .style("stroke", "#FFF");
+                // Legend
+                legend.style("visibility", "visible");
+                legend.select("rect").attr("x", d.x+15)
+                                     .attr("y", d.y+5)
+                                     .attr("fill", "#FFF")
+                                     .attr("stroke", "#000")
+                                     .attr("stroke-width", "0.3px");
+                legend.select("text").attr("x", d.x+25)
+                                     .attr("y", d.y+25)
+                                     .text(Math.floor(d3.mean(d.map(function(e) {
+                                                    return e[2].predict;
+                                                 }))*10000)/100+"% ExpG / "+d.length+" tirs")
+                                     .style("color", "#000");
+            })
+            .on("mouseout", function(d) {
+                // Border color
+                d3.select(this).style("stroke-width", "0.2px")
+                               .style("stroke", "#000");
+                // Legend
+                legend.style("visibility", "hidden");
+            });
+
+            // Legend
+            var legend = svg
+                  .append("g")
+                  .style("visibility", "hidden");
+
+            // Legend background
+            legend.append("rect")
+                .attr("width", "200")
+                .attr("height", "30")
+                .attr("rx", 5)
+                .attr("ry", 5);
+
+            // Legend text
+            legend.append("text");
+
+      });
+  };
 
 }
 
