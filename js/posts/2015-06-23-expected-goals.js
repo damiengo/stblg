@@ -282,38 +282,188 @@ function expgField(element) {
 
 }
 
-/*
-Field path:
------------
-1: M 16,350
-2: H 464.00000000000006
-3: V 16
-4: H 16
-5: V 350
-6: M 16,86.47399999999999 (ligne but)
-7: L 92.16000000000001,86.47399999999999 (angle 1)
-8: L 92.16000000000001,279.526 (angle 2)
-9: L 16,279.526 (ligne but)
-10: M 16,138.912 (6m 1)
-11: L 41.984,138.912 (6m 1)
-12: L 41.984,227.08800000000002 (6m 1)
-13: L 16,227.08800000000002 (6m 1)
-14: M 92.16000000000001,147.7296
-15: C 110.08000000000001,164.4296
-      110.08000000000001,201.5704
-      92.16000000000001,218.27040000000002
-    M 240.00000000000003,16
-    V 350 (ligne médiane)
-    M 464.00000000000006,86.47399999999999
-    L 387.84000000000003,86.47399999999999 (surf 2)
-    L 387.84000000000003,279.526 (surf 2)
-    L 464.00000000000006,279.526 (surf 2)
-    M 464.00000000000006,138.912 (6m 2)
-    L 438.0160000000001,138.912 (6m 2)
-    L 438.0160000000001,227.08800000000002 (6m 2)
-    L 464.00000000000006,227.08800000000002 (6m 2)
-M 387.84000000000003,147.7296
-C 369.92,164.4296
-  369.92,201.5704
-  387.84000000000003,218.27040000000002
-*/
+
+
+/**
+ * Expected goals by teams.
+ *
+ * @param element
+ */
+function expgByTeams(element) {
+
+    // Title
+    var elemTitle = d3.select(element)
+        .append("p")
+        .attr("class", "title")
+        .style({
+            "font-weight":   "bold",
+            "text-align":    "center",
+            "margin-bottom": "20px"
+        })
+        .text("fig. 2 - Tirs cadrés et buts des joueurs de L1 2014/2015 avec plus de 30 tirs");
+
+    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 800 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var x = d3.scale.linear()
+        .range([0, width]);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var color = d3.scale.category20();
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+    var svg = d3.select(element).append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Each datas
+    d3.tsv("/data/exp_goals_teams_2012_2014.tsv", function(error, data) {
+
+      x.domain(d3.extent(data, function(d) { return parseInt(d.goal); })).nice();
+      y.domain(d3.extent(data, function(d) { return parseFloat(d.predict); })).nice();
+
+    svg.append("line")
+          .style("stroke", "black")
+          .attr("x1", x(37))
+          .attr("y1", y(25.8))
+          .attr("x2", x(40))
+          .attr("y2", y(42));
+
+        // Grids
+        svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(0," + height + ")")
+        .call(make_x_axis()
+            .tickSize(-height, 0, 0)
+            .tickFormat("")
+        );
+
+        svg.append("g")
+        .attr("class", "grid")
+        .call(make_y_axis()
+            .tickSize(-width, 0, 0)
+            .tickFormat("")
+        );
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", width)
+          .attr("y", -6)
+          .style("text-anchor", "end")
+          .text("Nombre de buts");
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("ExpG");
+
+      var dots = svg.selectAll(".dot")
+          .data(data)
+        .enter().append("g");
+
+      // Circles
+      var circles = dots.append("circle")
+          .attr("class", "dot")
+          .attr("r",  6)
+          .attr("cx", function(d) { return x(d.goal); })
+          .attr("cy", function(d) { return y(d.predict); })
+          .style("fill", function(d) { return color(d.start); });
+
+      dots
+        .on("mouseover", function(d) {
+          var rect = legend.select("rect");
+          var txt  = legend.select("text");
+          rect.attr("fill", color(d.start));
+          txt.attr("x", x(d.goal) + 20)
+             .attr("y", y(d.predict) + 5)
+             .text(d.start+" / "+d.short_name);
+          adjustRect(rect[0][0], txt[0][0]);
+          d3.select(this).select("circle").attr("r", 8);
+          legend.style("visibility", "visible");
+        })
+        .on("mouseout", function(d) {
+          d3.select(this).select("circle").attr("r", 6);
+          legend.style("visibility", "hidden");
+        });
+
+      // Legend
+      var legend = svg
+            .append("g")
+            .style("visibility", "hidden");
+
+      // Legend background
+      legend.append("rect")
+          .attr("width", "100")
+          .attr("height", "100")
+          .attr("rx", 5)
+          .attr("ry", 5);
+
+      // Legend text
+      legend.append("text");
+
+    });
+
+    /**
+     * Adjust rect from text.
+     *
+     * @param rect
+     * @param text
+     */
+    function adjustRect(rect, text) {
+      var padding = 5;
+      var bbox = text.getBBox();
+      var rectX = bbox.x;
+      // If far to the right
+      if((bbox.x + bbox.width) > 750) {
+        rectX = bbox.x - bbox.width - 40;
+        text.setAttribute("x", rectX);
+      }
+      rect.setAttribute("x",rectX - padding)
+      rect.setAttribute("y",bbox.y - padding )
+      rect.setAttribute("width",bbox.width + 2*padding)
+      rect.setAttribute("height",bbox.height + 2*padding)
+    };
+
+    /**
+     * Creates X axis.
+     */
+    function make_x_axis() {
+        return d3.svg.axis()
+            .scale(x)
+             .orient("bottom")
+             .ticks(12);
+    };
+
+    /**
+     * Creates Y axis.
+     */
+    function make_y_axis() {
+        return d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .ticks(7);
+    };
+
+}

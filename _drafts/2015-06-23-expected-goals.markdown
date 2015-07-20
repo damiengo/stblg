@@ -10,6 +10,23 @@ date:   2015-06-23 22:27:08
     stroke: #000;
     stroke-width: .2px;
   }
+
+  .axis {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #666;
+    shape-rendering: crispEdges;
+  }
+
+  .grid {
+    stroke: #AAA;
+    stroke-dasharray: 2,2;
+    shape-rendering: crispEdges;
+  }
 </style>
 
 <script type="text/javascript" src="/js/posts/2015-06-23-expected-goals.js"></script>
@@ -33,7 +50,7 @@ L'expected goal à l'avantage de tenir compte de la qualité du tir, en comparai
 Ainsi, il est possible d'établir un lien entre l'ExpG d'une équipe et son nombre de buts réellement marqués. En additionnant l'ExpG de chaque tir d'une équipe et en le comparant
 avec le nombre de buts marqués, voici le graphique obtenu (fig. 2):
 
-
+<div id="expg_by_teams"></div>
 
 ## Utilisation
 
@@ -43,4 +60,5 @@ http://peterbeshai.com/buckets/app/#/leagueView/2014
 
 <script type="text/javascript">
     expgField("#expg_field");
+    expgByTeams("#expg_by_teams");
 </script>
