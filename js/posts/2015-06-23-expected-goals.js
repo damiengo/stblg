@@ -334,12 +334,15 @@ function expgByTeams(element) {
       x.domain(d3.extent(data, function(d) { return parseInt(d.goal); })).nice();
       y.domain(d3.extent(data, function(d) { return parseFloat(d.predict); })).nice();
 
-    svg.append("line")
+      // Equation
+      // y=0.35x+28
+      svg.append("line")
+          .attr("x1", x(20))
+          .attr("y1", y(35))
+          .attr("x2", x(80))
+          .attr("y2", y(56))
           .style("stroke", "black")
-          .attr("x1", x(37))
-          .attr("y1", y(25.8))
-          .attr("x2", x(40))
-          .attr("y2", y(42));
+          .style("stroke-width", "1.5px");
 
         // Grids
         svg.append("g")
