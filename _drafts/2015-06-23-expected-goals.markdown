@@ -48,9 +48,15 @@ La méthode de génération de ces valeurs a consisté en une régression logiqu
 
 L'expected goal à l'avantage de tenir compte de la qualité du tir, en comparaison au nombre de tirs ou nombre de tirs cadrés, pour lesquels seuls comptent le nombre de tirs.
 Ainsi, il est possible d'établir un lien entre l'ExpG d'une équipe et son nombre de buts réellement marqués. En additionnant l'ExpG de chaque tir d'une équipe et en le comparant
-avec le nombre de buts marqués, voici le graphique obtenu (fig. 2):
+avec le nombre de buts marqués, on obtient le graphique suivant (fig. 2).
 
 <div id="expg_by_teams"></div>
+
+Le coefficient de détermination (R²) de ce graphique est égal à 0.65, ce qui signifie que le lien entre l'ExpG et les buts marqués n'est pas significatif.
+
+## Amélioration
+
+D'autres paramètres peuvent être utilisés pour calculer un ExpG plus précis. En s'inspirant de la [description de l'expected goals](http://cartilagefreecaptain.sbnation.com/2014/9/11/6131661/premier-league-projections-2014#methoderology "Expected Goals by Michael Caley") réalisée par [Michael Caley](https://twitter.com/MC_of_A "@MC_of_A")
 
 ## Utilisation
 

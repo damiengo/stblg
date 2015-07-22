@@ -18,7 +18,7 @@ function expgField(element) {
         .text("fig. 1 - ExpG selon la position du tir");
 
     var margin = {top: 0, right: 0, bottom: 0, left: 0},
-    width = 960 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
@@ -59,26 +59,26 @@ function expgField(element) {
     var fieldHeight = height - fieldStartY * 2;
 
     // The field lines
-    var lineData = [ {"x": fieldStartX,       "y": fieldStartY},
+    var lineData = [ {"x": fieldStartX,            "y": fieldStartY},
                      {"x": fieldStartX+fieldWidth, "y": fieldStartY},
                      {"x": fieldStartX+fieldWidth, "y": fieldStartY+fieldHeight},
-                     {"x": fieldStartX, "y": fieldStartY+fieldHeight},
-                     {"x": fieldStartX, "y": fieldStartY},
+                     {"x": fieldStartX,            "y": fieldStartY+fieldHeight},
+                     {"x": fieldStartX,            "y": fieldStartY},
                      // Penalty area
-                     {"x": fieldStartX+193, "y": fieldStartY},
-                     {"x": fieldStartX+193, "y": fieldStartY+183},
-                     {"x": fieldStartX+727, "y": fieldStartY+183},
-                     {"x": fieldStartX+727, "y": fieldStartY},
+                     {"x": fieldStartX+(fieldWidth/4.77), "y": fieldStartY},
+                     {"x": fieldStartX+(fieldWidth/4.77), "y": fieldStartY+(fieldHeight/3.06)},
+                     {"x": fieldStartX+(fieldWidth/1.26), "y": fieldStartY+(fieldHeight/3.06)},
+                     {"x": fieldStartX+(fieldWidth/1.26), "y": fieldStartY},
                      // Goalkeeper area
-                     {"x": fieldStartX+339,     "y": fieldStartY},
-                     {"x": fieldStartX+339,     "y": fieldStartY+63},
-                     {"x": fieldStartX+581,     "y": fieldStartY+63},
-                     {"x": fieldStartX+581,     "y": fieldStartY},
+                     {"x": fieldStartX+(fieldWidth/2.71),     "y": fieldStartY},
+                     {"x": fieldStartX+(fieldWidth/2.71),     "y": fieldStartY+(fieldHeight/8.89)},
+                     {"x": fieldStartX+(fieldWidth/1.58),     "y": fieldStartY+(fieldHeight/8.89)},
+                     {"x": fieldStartX+(fieldWidth/1.58),     "y": fieldStartY},
                      // Goal
-                     {"x": fieldStartX+405,     "y": fieldStartY},
-                     {"x": fieldStartX+405,     "y": fieldStartY-5},
-                     {"x": fieldStartX+515,     "y": fieldStartY-5},
-                     {"x": fieldStartX+515,     "y": fieldStartY}];
+                     {"x": fieldStartX+(fieldWidth/2.27),     "y": fieldStartY},
+                     {"x": fieldStartX+(fieldWidth/2.27),     "y": fieldStartY-(fieldHeight/112)},
+                     {"x": fieldStartX+(fieldWidth/1.79),     "y": fieldStartY-(fieldHeight/112)},
+                     {"x": fieldStartX+(fieldWidth/1.79),     "y": fieldStartY}];
     var lineFunction = d3.svg.line()
                              .x(function(d) { return d.x; })
                              .y(function(d) { return d.y; })
@@ -91,9 +91,9 @@ function expgField(element) {
 
     // The center circle arc
     svg.append("path")
-                  .attr("d", "M "+(fieldStartX+(fieldWidth/2)-92.5)+","+(fieldStartY+fieldHeight)+
+                  .attr("d", "M "+(fieldStartX+(fieldWidth/2)-(fieldWidth/10))+","+(fieldStartY+fieldHeight)+
                             " A 1,1 0 0,1"+
-                              " "+(fieldStartX+(fieldWidth/2)+92.5)+","+(fieldStartY+fieldHeight))
+                              " "+(fieldStartX+(fieldWidth/2)+(fieldWidth/10))+","+(fieldStartY+fieldHeight))
                   .style("stroke-opacity", 1)
                   .style("stroke-width", 2)
                   .style("fill-opacity", 0)
@@ -112,9 +112,9 @@ function expgField(element) {
 
     // The penalty area circle arc
     svg.append("path")
-                  .attr("d", "M "+(fieldStartX+364)+","+(fieldStartY+183)+
+                  .attr("d", "M "+(fieldStartX+(fieldWidth/2.53))+","+(fieldStartY+183)+
                             " A 120,120 0 0,0"+
-                              " "+(fieldStartX+556)+","+(fieldStartY+183))
+                              " "+(fieldStartX+(fieldWidth/1.65))+","+(fieldStartY+183))
                   .style("stroke-opacity", 1)
                   .style("stroke-width", 2)
                   .style("fill-opacity", 0)
@@ -209,8 +209,8 @@ function expgField(element) {
         data = hexbin(data);
 
         var radius = d3.scale.sqrt()
-          .domain([0, 65])
-          .range([0, 13]);
+          .domain([0, 70])
+          .range([0, 12]);
 
         // Suppression des éléments
         svg.selectAll(".hexagon").remove();
