@@ -282,14 +282,15 @@ function expgField(element) {
 
 }
 
-
-
 /**
  * Expected goals by teams.
  *
  * @param element
+ * @param file
+ * @param title
+ * @param linear
  */
-function expgByTeams(element) {
+function expgByTeams(element, file, title, linear) {
 
     // Title
     var elemTitle = d3.select(element)
@@ -300,7 +301,7 @@ function expgByTeams(element) {
             "text-align":    "center",
             "margin-bottom": "20px"
         })
-        .text("fig. 2 - Tirs cadrés et buts des joueurs de L1 2014/2015 avec plus de 30 tirs");
+        .text(title);
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = 800 - margin.left - margin.right,
@@ -329,7 +330,7 @@ function expgByTeams(element) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // Each datas
-    d3.tsv("/data/exp_goals_teams_2012_2014.tsv", function(error, data) {
+    d3.tsv(file, function(error, data) {
 
       x.domain(d3.extent(data, function(d) { return parseInt(d.goal); })).nice();
       y.domain(d3.extent(data, function(d) { return parseFloat(d.predict); })).nice();
@@ -337,10 +338,10 @@ function expgByTeams(element) {
       // Equation
       // y=0.35x+28
       svg.append("line")
-          .attr("x1", x(20))
-          .attr("y1", y(35))
-          .attr("x2", x(80))
-          .attr("y2", y(56))
+          .attr("x1", x(linear.x1))
+          .attr("y1", y(linear.y1))
+          .attr("x2", x(linear.x2))
+          .attr("y2", y(linear.y2))
           .style("stroke", "black")
           .style("stroke-width", "1.5px");
 
@@ -397,12 +398,22 @@ function expgByTeams(element) {
       dots
         .on("mouseover", function(d) {
           var rect = legend.select("rect");
-          var txt  = legend.select("text");
+          var team  = legend.select("text .team");
+          var expg  = legend.select("text .expg");
+          var goals  = legend.select("text .goals");
           rect.attr("fill", color(d.start));
-          txt.attr("x", x(d.goal) + 20)
-             .attr("y", y(d.predict) + 5)
-             .text(d.start+" / "+d.short_name);
-          adjustRect(rect[0][0], txt[0][0]);
+          team.text(d.short_name+" "+d.start)
+              .attr("x", x(d.goal) + 20)
+              .attr("y", y(d.predict) + 5);
+          expg.text("ExpG: "+Math.floor(d.predict))
+              .attr("x", x(d.goal) + 20)
+              .attr("y", y(d.predict) + 20);
+          goals.text("Buts: "+d.goal)
+              .attr("x", x(d.goal) + 20)
+              .attr("y", y(d.predict) + 35);
+          adjustRect(rect[0][0], team[0][0]);
+          adjustRect(rect[0][0], expg[0][0]);
+          adjustRect(rect[0][0], goals[0][0]);
           d3.select(this).select("circle").attr("r", 8);
           legend.style("visibility", "visible");
         })
@@ -424,7 +435,10 @@ function expgByTeams(element) {
           .attr("ry", 5);
 
       // Legend text
-      legend.append("text");
+      var legendText = legend.append("text");
+      legendText.append("tspan").attr("class", "team");
+      legendText.append("tspan").attr("class", "expg");
+      legendText.append("tspan").attr("class", "goals");
 
     });
 

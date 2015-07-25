@@ -58,6 +58,8 @@ Le coefficient de détermination (R²) de ce graphique est égal à 0.65, ce qui
 
 D'autres paramètres peuvent être utilisés pour calculer un ExpG plus précis. En s'inspirant de la [description de l'expected goals](http://cartilagefreecaptain.sbnation.com/2014/9/11/6131661/premier-league-projections-2014#methoderology "Expected Goals by Michael Caley") réalisée par [Michael Caley](https://twitter.com/MC_of_A "@MC_of_A")
 
+<div id="expg_v2_by_teams"></div>
+
 ## Utilisation
 
 Nous verrons dans un article suivant comment utiliser ce chiffre pour analyser le résultat des matchs en Ligue 1.
@@ -66,5 +68,6 @@ http://peterbeshai.com/buckets/app/#/leagueView/2014
 
 <script type="text/javascript">
     expgField("#expg_field");
-    expgByTeams("#expg_by_teams");
+    expgByTeams("#expg_by_teams", "/data/exp_goals_teams_2012_2014.tsv", "Expected Goals simple par équipe en 2013/2014 et 2014/2015", {"x1": 20, "y1": 35, "x2": 80, "y2": 56});
+    expgByTeams("#expg_v2_by_teams", "/data/exp_goals_v2_by_teams.tsv", "Expected Goals amélioré par équipe en 2013/2014 et 2014/2015", {"x1": 20, "y1": 35, "x2": 80, "y2": 56});
 </script>
