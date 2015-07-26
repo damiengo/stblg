@@ -28,8 +28,8 @@ function expgField(element) {
         .range([height, 0]);
 
     var color = d3.scale.linear()
-                        .domain([0, 0.13])
-                        .range(["orange", "midnightblue"])
+                        .domain([0.03, 0.17])
+                        .range(["midnightblue", "red"])
                         .interpolate(d3.interpolateLab);
 
     var xAxis = d3.svg.axis()
@@ -66,13 +66,13 @@ function expgField(element) {
                      {"x": fieldStartX,            "y": fieldStartY},
                      // Penalty area
                      {"x": fieldStartX+(fieldWidth/4.77), "y": fieldStartY},
-                     {"x": fieldStartX+(fieldWidth/4.77), "y": fieldStartY+(fieldHeight/3.06)},
-                     {"x": fieldStartX+(fieldWidth/1.26), "y": fieldStartY+(fieldHeight/3.06)},
+                     {"x": fieldStartX+(fieldWidth/4.77), "y": fieldStartY+(fieldHeight*0.34)},
+                     {"x": fieldStartX+(fieldWidth/1.26), "y": fieldStartY+(fieldHeight*0.34)},
                      {"x": fieldStartX+(fieldWidth/1.26), "y": fieldStartY},
                      // Goalkeeper area
                      {"x": fieldStartX+(fieldWidth/2.71),     "y": fieldStartY},
-                     {"x": fieldStartX+(fieldWidth/2.71),     "y": fieldStartY+(fieldHeight/8.89)},
-                     {"x": fieldStartX+(fieldWidth/1.58),     "y": fieldStartY+(fieldHeight/8.89)},
+                     {"x": fieldStartX+(fieldWidth/2.71),     "y": fieldStartY+(fieldHeight*0.11)},
+                     {"x": fieldStartX+(fieldWidth/1.58),     "y": fieldStartY+(fieldHeight*0.11)},
                      {"x": fieldStartX+(fieldWidth/1.58),     "y": fieldStartY},
                      // Goal
                      {"x": fieldStartX+(fieldWidth/2.27),     "y": fieldStartY},
@@ -112,9 +112,9 @@ function expgField(element) {
 
     // The penalty area circle arc
     svg.append("path")
-                  .attr("d", "M "+(fieldStartX+(fieldWidth/2.53))+","+(fieldStartY+183)+
+                  .attr("d", "M "+(fieldStartX+(fieldWidth/2.53))+","+(fieldStartY+(fieldHeight*0.34))+
                             " A 120,120 0 0,0"+
-                              " "+(fieldStartX+(fieldWidth/1.65))+","+(fieldStartY+183))
+                              " "+(fieldStartX+(fieldWidth/1.65))+","+(fieldStartY+(fieldHeight*0.34)))
                   .style("stroke-opacity", 1)
                   .style("stroke-width", 2)
                   .style("fill-opacity", 0)
@@ -182,11 +182,13 @@ function expgField(element) {
        .attr("ry", 3)
        .style("fill", "transparent")
        .style("stroke", "steelblue")
-       .style("stroke-width", "2px");
+       .style("stroke-width", "2px")
+       .style("cursor", "hand");
 
     headBox.append("text")
            .attr("x", fieldStartX+fieldWidth-50)
            .attr("y", fieldStartY+fieldHeight-7)
+           .style("cursor", "hand")
            .text("Tête")
 
     loadData(headed);
@@ -398,6 +400,7 @@ function expgByTeams(element, file, title, linear) {
       dots
         .on("mouseover", function(d) {
           var rect = legend.select("rect");
+          var text  = legend.select("text");
           var team  = legend.select("text .team");
           var expg  = legend.select("text .expg");
           var goals  = legend.select("text .goals");
@@ -411,9 +414,7 @@ function expgByTeams(element, file, title, linear) {
           goals.text("Buts: "+d.goal)
               .attr("x", x(d.goal) + 20)
               .attr("y", y(d.predict) + 35);
-          adjustRect(rect[0][0], team[0][0]);
-          adjustRect(rect[0][0], expg[0][0]);
-          adjustRect(rect[0][0], goals[0][0]);
+          adjustRect(legend);
           d3.select(this).select("circle").attr("r", 8);
           legend.style("visibility", "visible");
         })
@@ -445,22 +446,29 @@ function expgByTeams(element, file, title, linear) {
     /**
      * Adjust rect from text.
      *
-     * @param rect
-     * @param text
+     * @param legent
      */
-    function adjustRect(rect, text) {
+    function adjustRect(legend) {
+      var rect = legend.select("rect");
+      var text  = legend.select("text");
+      var team  = legend.select("text .team");
+      var expg  = legend.select("text .expg");
+      var goals  = legend.select("text .goals");
       var padding = 5;
-      var bbox = text.getBBox();
+      var bbox = text[0][0].getBBox();
       var rectX = bbox.x;
       // If far to the right
       if((bbox.x + bbox.width) > 750) {
         rectX = bbox.x - bbox.width - 40;
-        text.setAttribute("x", rectX);
+        text[0][0].setAttribute("x", rectX);
+        team[0][0].setAttribute("x", rectX);
+        expg[0][0].setAttribute("x", rectX);
+        goals[0][0].setAttribute("x", rectX);
       }
-      rect.setAttribute("x",rectX - padding)
-      rect.setAttribute("y",bbox.y - padding )
-      rect.setAttribute("width",bbox.width + 2*padding)
-      rect.setAttribute("height",bbox.height + 2*padding)
+      rect[0][0].setAttribute("x",rectX - padding)
+      rect[0][0].setAttribute("y",bbox.y - padding )
+      rect[0][0].setAttribute("width",bbox.width + 2*padding)
+      rect[0][0].setAttribute("height",bbox.height + 2*padding)
     };
 
     /**
