@@ -84,6 +84,6 @@ Enfin, l'expected goals permet de jauger la valeur d'un joueur, en comparant son
 
 <script type="text/javascript">
     expgField("#expg_field");
-    expgByTeams("#expg_by_teams", "/data/exp_goals_teams_2012_2014.tsv", "fig. 2 - Expected Goals simple par équipe en 2013/2014 et 2014/2015", {"x1": 20, "y1": 35, "x2": 80, "y2": 56});
+    expgByTeams("#expg_by_teams", "/data/exp_goals_by_teams.tsv", "fig. 2 - Expected Goals simple par équipe en 2013/2014 et 2014/2015", {"x1": 20, "y1": 35, "x2": 80, "y2": 56});
     expgByTeams("#expg_v2_by_teams", "/data/exp_goals_v2_by_teams.tsv", "fig. 3 - Expected Goals amélioré par équipe en 2013/2014 et 2014/2015", {"x1": 20, "y1": 33.9, "x2": 75, "y2": 61.4});
 </script>
