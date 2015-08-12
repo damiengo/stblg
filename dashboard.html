@@ -2,8 +2,42 @@
 layout: default
 ---
 
+<style>
+  .legend {
+    overflow: hidden;
+    list-style-type: none;
+    background: url('../img/score_back.png');
+    width: 600px;
+    color: #FFF;
+    font-size: 14px;
+  }
+
+  .legend li {
+    float: left;
+    width: 280px;
+    padding: 5px 10px;
+  }
+
+  .legend h3 {
+    text-transform: uppercase;
+    font-size: 15px;
+  }
+
+  .legend h3 strong {
+    font-size: 18px;
+  }
+</style>
+
+<script type="text/javascript" src="/js/dashboard.js"></script>
+
 <div class="home">
 
   <h1>Le tableau de bord de la ligue 1</h1>
 
+  <div id="field"></div>
+
 </div>
+
+<script type="text/javascript">
+  expg("#field");
+</script>
