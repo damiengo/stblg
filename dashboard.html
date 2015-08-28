@@ -26,6 +26,22 @@ layout: default
   .legend h3 strong {
     font-size: 18px;
   }
+
+  #ranking table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  #ranking th {
+    padding: 4px;
+    border-bottom: 2px solid #000;
+    text-transform: uppercase;
+  }
+
+  #ranking td {
+    padding: 4px;
+    font-size: 16px;
+  }
 </style>
 
 <script type="text/javascript" src="/js/dashboard.js"></script>
@@ -34,7 +50,30 @@ layout: default
 
   <h1>Le tableau de bord de la ligue 1</h1>
 
+  <!--
   <div id="field"></div>
+  -->
+
+  <div id="ranking">
+    <table>
+      <tr>
+        <th>Equipe</th>
+        <th>Points</th>
+        <th>Buts</th>
+        <th>PDO</th>
+        <th>TSR</th>
+        <th>SoT</th>
+      </tr>
+      <tr>
+        <td>Angers</td>
+        <td>7</td>
+        <td>3</td>
+        <td>1024</td>
+        <td>57,8%</td>
+        <td>61%</td>
+      </tr>
+    </table>
+  </div>
 
 </div>
 
