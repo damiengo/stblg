@@ -63,8 +63,8 @@ function expg(element) {
       //var awayTeamStroke = "#F00";
 
       // Monaco home
-      //var awayTeamFill   = "#F00";
-      //var awayTeamStroke = "#FFF";
+      var homeTeamFill   = "#F00";
+      var homeTeamStroke = "#FFF";
 
       // Lille home
       //var homeTeamFill   = "#F00";
@@ -75,16 +75,16 @@ function expg(element) {
       //var awayTeamStroke = "#00008B";
 
       // Nantes home
-      var awayTeamFill   = "#FF0";
-      var awayTeamStroke = "#0F0";
+      //var awayTeamFill   = "#FF0";
+      //var awayTeamStroke = "#0F0";
 
       // St Etienne home
       //var homeTeamFill   = "#339900";
       //var homeTeamStroke = "#FFF";
 
       // Bordeaux home
-      var homeTeamFill   = "#900090";
-      var homeTeamStroke = "#FFF";
+      //var homeTeamFill   = "#900090";
+      //var homeTeamStroke = "#FFF";
 
       // Guingamp home
       //var homeTeamFill   = "#F00";
@@ -99,8 +99,8 @@ function expg(element) {
       //var homeTeamStroke = "#FFF";
 
       // PSG home
-      //var homeTeamFill   = "#036";
-      //var homeTeamStroke = "#F00";
+      var awayTeamFill   = "#036";
+      var awayTeamStroke = "#F00";
 
       // PSG away
       //var awayTeamFill   = "#FFF";
@@ -440,4 +440,61 @@ function expg(element) {
               .style("stroke-width", "0.8px");
         });
     };
+}
+
+/**
+ * Ranking.
+ */
+function ranking(element) {
+  var table = d3.select(element).append("table");
+  d3.csv("/data/summary_l1.csv", function(error, data) {
+    if (error) throw error;
+
+    data.sort(function(a, b){
+      return d3.descending(parseInt(a["points_for"]), parseInt(b["points_for"]));
+    });
+
+    // Add ranking
+    data.forEach(function(d, i) {
+      d["rank"] = "#"+(i+1);
+    });
+
+    var thead = table.append("thead");
+    var tbody = table.append("tbody");
+
+    var columns = [{"name": "",       "data": "rank",       "width": 50},
+                   {"name": "Equipe", "data": "team",       "width": 180},
+                   {"name": "Points", "data": "points_for", "width": 100},
+                   {"name": "Buts",   "data": "goals_for",  "width": 100},
+                   {"name": "PDO",    "data": "pdo",        "width": 100},
+                   {"name": "TSR",    "data": "tsr_for",    "width": 100},
+                   {"name": "SOT",    "data": "percentage", "width": 100}];
+
+    // append the header row
+    thead.append("tr")
+        .selectAll("th")
+        .data(columns)
+        .enter()
+        .append("th")
+            .text(function(column) { return column.name; })
+            .style("width", function(column) { return column.width+"px"; });
+
+    // create a row for each object in the data
+    var rows = tbody.selectAll("tr")
+        .data(data)
+        .enter()
+        .append("tr");
+
+    // create a cell in each row for each column
+    var cells = rows.selectAll("td")
+        .data(function(row) {
+            return columns.map(function(column) {
+                return {column: column, value: row[column.data]};
+            });
+        })
+        .enter()
+        .append("td")
+        .attr("style", "font-family: Courier") // sets the font style
+            .html(function(d) { return d.value; });
+  });
 }
