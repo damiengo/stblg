@@ -459,16 +459,34 @@ function ranking(element) {
       d["rank"] = "#"+(i+1);
     });
 
+    // Color range
+    var colorRange = colorbrewer.Blues[6];
+    // Colors
+    var colors = {
+      "pdo": d3.scale.quantize()
+                     .domain(d3.extent(data, function(d) { return parseInt(d.pdo); }))
+                     .range(colorRange),
+       "tsr_for": d3.scale.quantize()
+                      .domain(d3.extent(data, function(d) { return parseFloat(d.tsr_for); }))
+                      .range(colorRange),
+      "percentage": d3.scale.quantize()
+                     .domain(d3.extent(data, function(d) { return parseFloat(d.percentage); }))
+                     .range(colorRange),
+      "goals_for": d3.scale.quantize()
+                     .domain(d3.extent(data, function(d) { return parseInt(d.goals_for); }))
+                     .range(colorRange)
+    };
+
     var thead = table.append("thead");
     var tbody = table.append("tbody");
 
     var columns = [{"name": "",       "data": "rank",       "width": 50},
-                   {"name": "Equipe", "data": "team",       "width": 180},
-                   {"name": "Points", "data": "points_for", "width": 100},
-                   {"name": "Buts",   "data": "goals_for",  "width": 100},
-                   {"name": "PDO",    "data": "pdo",        "width": 100},
-                   {"name": "TSR",    "data": "tsr_for",    "width": 100},
-                   {"name": "SOT",    "data": "percentage", "width": 100}];
+                   {"name": "Equipe", "data": "team",       "width": 180, "fontweight": "bold"},
+                   {"name": "Points", "data": "points_for", "width": 80},
+                   {"name": "Buts",   "data": "goals_for",  "width": 80},
+                   {"name": "PDO",    "data": "pdo",        "width": 80},
+                   {"name": "TSR",    "data": "tsr_for",    "width": 80},
+                   {"name": "SOT",    "data": "percentage", "width": 80}];
 
     // append the header row
     thead.append("tr")
@@ -494,7 +512,48 @@ function ranking(element) {
         })
         .enter()
         .append("td")
-        .attr("style", "font-family: Courier") // sets the font style
-            .html(function(d) { return d.value; });
+            .attr("style", "font-family: Courier") // sets the font style
+            .html(function(d) { return d.value; })
+            .style("background-color", function(d) {
+              var color = colors[d.column.data];
+              if(color) {
+                return color(d.value);
+              }
+            })
+            .style("color", function(d) {
+              var color = colors[d.column.data];
+              if(color) {
+                var rgb = hexToRgb(color(d.value));
+                if((rgb.r*0.299 + rgb.g*0.587 + rgb.b*0.114) > 186) {
+                  return "#000";
+                }
+                else {
+                  return "#FFF";
+                }
+              }
+              return "#000";
+            })
+            .style("font-weight", function(d) {
+              var fw = d.column.fontweight;
+              if(fw) {
+                return fw;
+              }
+            });
   });
+}
+
+/**
+ * Convert HEX color to RGB.
+ *
+ * @param hex
+ *
+ * @return Array
+ */
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }
