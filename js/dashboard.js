@@ -1,3 +1,100 @@
+// Teams colors
+var teamsColors = {
+  "Montpellier": {
+    "fill":   "#191970",
+    "stroke": "#FFA500"
+  }
+};
+
+
+// Montpellier home
+//var awayTeamFill   = "#191970";
+//var awayTeamStroke = "#FFA500";
+
+// Angers home
+//var homeTeamFill   = "#FFF";
+//var homeTeamStroke = "#000";
+
+// Reims home
+//var homeTeamFill   = "#F00";
+//var homeTeamStroke = "#FFF";
+
+// Marseille home
+//var homeTeamFill   = "#FFF";
+//var homeTeamStroke = "#00FFFF";
+
+// Caen home
+//var homeTeamFill   = "#191970";
+//var homeTeamStroke = "#FF0000";
+
+// Bastia home
+//var homeTeamStroke = "#FFF";
+//var homeTeamFill   = "#0000CD";
+
+// Lorient home
+//var homeTeamFill   = "#FFA500";
+//var homeTeamStroke = "#FFF";
+
+// Rennes home
+//var homeTeamFill   = "#FF0000";
+//var homeTeamStroke = "#000";
+
+// Nice home
+//var awayTeamFill   = "#000";
+//var awayTeamStroke = "#F00";
+
+// Monaco home
+//var awayTeamFill   = "#F00";
+//var awayTeamStroke = "#FFF";
+
+// Lille home
+//var awayTeamFill   = "#F00";
+//var awayTeamStroke = "#800080";
+
+// Lille away
+//var awayTeamFill   = "yellow";
+//var awayTeamStroke = "#00008B";
+
+// Nantes home
+//var homeTeamFill   = "#FF0";
+//var homeTeamStroke = "#0F0";
+
+// St Etienne home
+//var awayTeamFill   = "#339900";
+//var awayTeamStroke = "#FFF";
+
+// Bordeaux home
+//var awayTeamFill   = "#900090";
+//var awayTeamStroke = "#FFF";
+
+// Guingamp home
+var homeTeamFill   = "#F00";
+var homeTeamStroke = "#000";
+
+// Lyon home
+//var homeTeamFill   = "#FFF";
+//var homeTeamStroke = "#00F";
+
+// Troyes home
+//var awayTeamFill   = "#00F";
+//var awayTeamStroke = "#FFF";
+
+// PSG home
+//var awayTeamFill   = "#036";
+//var awayTeamStroke = "#F00";
+
+// PSG away
+//var awayTeamFill   = "#FFF";
+//var awayTeamStroke = "#00F";
+
+// GFC Ajaccio home
+var awayTeamFill   = "#F00";
+var awayTeamStroke = "#00F";
+
+// Toulouse home
+//var homeTeamFill   = "#800080";
+//var homeTeamStroke = "#FFF";
+
 
 /**
  * Calculate expg.
@@ -39,16 +136,16 @@ function expg(element) {
       //var homeTeamStroke = "#FFF";
 
       // Marseille home
-      //var awayTeamFill   = "#FFF";
-      //var awayTeamStroke = "#00FFFF";
+      var homeTeamFill   = "#FFF";
+      var homeTeamStroke = "#00FFFF";
 
       // Caen home
       //var homeTeamFill   = "#191970";
       //var homeTeamStroke = "#FF0000";
 
       // Bastia home
-      //var awayTeamFill   = "#0000CD";
-      //var awayTeamStroke = "#FFF";
+      //var homeTeamStroke = "#FFF";
+      //var homeTeamFill   = "#0000CD";
 
       // Lorient home
       //var awayTeamFill   = "#FFA500";
@@ -63,12 +160,12 @@ function expg(element) {
       //var awayTeamStroke = "#F00";
 
       // Monaco home
-      var homeTeamFill   = "#F00";
-      var homeTeamStroke = "#FFF";
+      //var homeTeamFill   = "#F00";
+      //var homeTeamStroke = "#FFF";
 
       // Lille home
-      //var homeTeamFill   = "#F00";
-      //var homeTeamStroke = "#800080";
+      //var awayTeamFill   = "#F00";
+      //var awayTeamStroke = "#800080";
 
       // Lille away
       //var awayTeamFill   = "yellow";
@@ -91,16 +188,16 @@ function expg(element) {
       //var homeTeamStroke = "#000";
 
       // Lyon home
-      //var awayTeamFill   = "#FFF";
-      //var awayTeamStroke = "#00F";
+      var awayTeamFill   = "#FFF";
+      var awayTeamStroke = "#00F";
 
       // Troyes home
-      //var homeTeamFill   = "#00F";
-      //var homeTeamStroke = "#FFF";
+      //var awayTeamFill   = "#00F";
+      //var awayTeamStroke = "#FFF";
 
       // PSG home
-      var awayTeamFill   = "#036";
-      var awayTeamStroke = "#F00";
+      //var awayTeamFill   = "#036";
+      //var awayTeamStroke = "#F00";
 
       // PSG away
       //var awayTeamFill   = "#FFF";
@@ -318,7 +415,7 @@ function expg(element) {
 
       // Loading data
       function loadData() {
-        d3.tsv("/data/exp_goals_days_J4.tsv", function(error, data) {
+        d3.tsv("/data/exp_goals_days_J6.tsv", function(error, data) {
           if (error) throw error;
 
           homeTeamId = data[0]["sqw_home_team_id"];
@@ -437,7 +534,12 @@ function expg(element) {
                 }
                 return awayTeamStroke;
               })
-              .style("stroke-width", "0.8px");
+              .style("stroke-width", function(d) {
+                if(d.goal == 1) {
+                  return "1.6px";
+                }
+                return "0.8px";
+              });
         });
     };
 }
@@ -456,7 +558,7 @@ function ranking(element) {
 
     // Add ranking
     data.forEach(function(d, i) {
-      d["rank"] = "#"+(i+1);
+      d["rank"] = (i+1);
     });
 
     // Color range
@@ -474,6 +576,12 @@ function ranking(element) {
                      .range(colorRange),
       "goals_for": d3.scale.quantize()
                      .domain(d3.extent(data, function(d) { return parseInt(d.goals_for); }))
+                     .range(colorRange),
+      "predict":   d3.scale.quantize()
+                     .domain(d3.extent(data, function(d) { return parseInt(d.predict); }))
+                     .range(colorRange),
+      "expg_ratio": d3.scale.quantize()
+                     .domain(d3.extent(data, function(d) { return parseFloat(d.expg_ratio); }))
                      .range(colorRange)
     };
 
@@ -486,7 +594,9 @@ function ranking(element) {
                    {"name": "Buts",   "data": "goals_for",  "width": 80},
                    {"name": "PDO",    "data": "pdo",        "width": 80},
                    {"name": "TSR",    "data": "tsr_for",    "width": 80},
-                   {"name": "SOT",    "data": "percentage", "width": 80}];
+                   {"name": "SOT",    "data": "percentage", "width": 80},
+                   {"name": "ExpG",   "data": "predict",    "width": 80},
+                   {"name": "ExpG/R", "data": "expg_ratio", "width": 80}];
 
     // append the header row
     thead.append("tr")
@@ -513,7 +623,13 @@ function ranking(element) {
         .enter()
         .append("td")
             .attr("style", "font-family: Courier") // sets the font style
-            .html(function(d) { return d.value; })
+            .html(function(d) {
+              var value = d.value;
+              if(parseFloat(value)) {
+                return Math.round(value * 100) / 100;
+              }
+              return value;
+            })
             .style("background-color", function(d) {
               var color = colors[d.column.data];
               if(color) {
@@ -523,6 +639,7 @@ function ranking(element) {
             .style("color", function(d) {
               var color = colors[d.column.data];
               if(color) {
+                // Set color from backgroud
                 var rgb = hexToRgb(color(d.value));
                 if((rgb.r*0.299 + rgb.g*0.587 + rgb.b*0.114) > 186) {
                   return "#000";
