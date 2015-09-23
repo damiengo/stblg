@@ -132,32 +132,32 @@ function expg(element) {
       //var homeTeamStroke = "#000";
 
       // Reims home
-      //var homeTeamFill   = "#F00";
-      //var homeTeamStroke = "#FFF";
-
-      // Marseille home
-      var homeTeamFill   = "#FFF";
-      var homeTeamStroke = "#00FFFF";
-
-      // Caen home
-      //var homeTeamFill   = "#191970";
-      //var homeTeamStroke = "#FF0000";
-
-      // Bastia home
-      //var homeTeamStroke = "#FFF";
-      //var homeTeamFill   = "#0000CD";
-
-      // Lorient home
-      //var awayTeamFill   = "#FFA500";
+      //var awayTeamFill   = "#F00";
       //var awayTeamStroke = "#FFF";
 
+      // Marseille home
+      var awayTeamFill   = "#FFF";
+      var awayTeamStroke = "#00FFFF";
+
+      // Caen home
+      //var awayTeamFill   = "#191970";
+      //var awayTeamStroke = "#FF0000";
+
+      // Bastia home
+      //var awayTeamStroke = "#FFF";
+      //var awayTeamFill   = "#0000CD";
+
+      // Lorient home
+      //var homeTeamFill   = "#FFA500";
+      //var homeTeamStroke = "#FFF";
+
       // Rennes home
-      //var homeTeamFill   = "#FF0000";
-      //var homeTeamStroke = "#000";
+      //var awayTeamFill   = "#FF0000";
+      //var awayTeamStroke = "#000";
 
       // Nice home
-      //var awayTeamFill   = "#000";
-      //var awayTeamStroke = "#F00";
+      //var homeTeamFill   = "#000";
+      //var homeTeamStroke = "#F00";
 
       // Monaco home
       //var homeTeamFill   = "#F00";
@@ -176,40 +176,40 @@ function expg(element) {
       //var awayTeamStroke = "#0F0";
 
       // St Etienne home
-      //var homeTeamFill   = "#339900";
-      //var homeTeamStroke = "#FFF";
-
-      // Bordeaux home
-      //var homeTeamFill   = "#900090";
-      //var homeTeamStroke = "#FFF";
-
-      // Guingamp home
-      //var homeTeamFill   = "#F00";
-      //var homeTeamStroke = "#000";
-
-      // Lyon home
-      var awayTeamFill   = "#FFF";
-      var awayTeamStroke = "#00F";
-
-      // Troyes home
-      //var awayTeamFill   = "#00F";
+      //var awayTeamFill   = "#339900";
       //var awayTeamStroke = "#FFF";
 
+      // Bordeaux home
+      //var awayTeamFill   = "#900090";
+      //var awayTeamStroke = "#FFF";
+
+      // Guingamp home
+      //var awayTeamFill   = "#F00";
+      //var awayTeamStroke = "#000";
+
+      // Lyon home
+      //var homeTeamFill   = "#FFF";
+      //var homeTeamStroke = "#00F";
+
+      // Troyes home
+      //var homeTeamFill   = "#00F";
+      //var homeTeamStroke = "#FFF";
+
       // PSG home
-      //var awayTeamFill   = "#036";
-      //var awayTeamStroke = "#F00";
+      //var homeTeamFill   = "#036";
+      //var homeTeamStroke = "#F00";
 
       // PSG away
       //var awayTeamFill   = "#FFF";
       //var awayTeamStroke = "#00F";
 
       // GFC Ajaccio home
-      //var awayTeamFill   = "#F00";
-      //var awayTeamStroke = "#00F";
+      //var homeTeamFill   = "#F00";
+      //var homeTeamStroke = "#00F";
 
       // Toulouse home
-      //var awayTeamFill   = "#800080";
-      //var awayTeamStroke = "#FFF";
+      var homeTeamFill   = "#800080";
+      var homeTeamStroke = "#FFF";
 
       var xAxis = d3.svg.axis()
           .scale(x)
@@ -415,7 +415,7 @@ function expg(element) {
 
       // Loading data
       function loadData() {
-        d3.tsv("/data/exp_goals_days_J6.tsv", function(error, data) {
+        d3.tsv("/data/exp_goals_days_J7.tsv", function(error, data) {
           if (error) throw error;
 
           homeTeamId = data[0]["sqw_home_team_id"];
