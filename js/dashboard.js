@@ -124,8 +124,8 @@ function expg(element) {
       /** Teams colors **/
 
       // Montpellier home
-      //var awayTeamFill   = "#191970";
-      //var awayTeamStroke = "#FFA500";
+      var homeTeamFill   = "#191970";
+      var homeTeamStroke = "#FFA500";
 
       // Angers home
       //var homeTeamFill   = "#FFF";
@@ -136,8 +136,8 @@ function expg(element) {
       //var awayTeamStroke = "#FFF";
 
       // Marseille home
-      var awayTeamFill   = "#FFF";
-      var awayTeamStroke = "#00FFFF";
+      //var awayTeamFill   = "#FFF";
+      //var awayTeamStroke = "#00FFFF";
 
       // Caen home
       //var awayTeamFill   = "#191970";
@@ -160,8 +160,8 @@ function expg(element) {
       //var homeTeamStroke = "#F00";
 
       // Monaco home
-      //var homeTeamFill   = "#F00";
-      //var homeTeamStroke = "#FFF";
+      var awayTeamFill   = "#F00";
+      var awayTeamStroke = "#FFF";
 
       // Lille home
       //var awayTeamFill   = "#F00";
@@ -208,8 +208,8 @@ function expg(element) {
       //var homeTeamStroke = "#00F";
 
       // Toulouse home
-      var homeTeamFill   = "#800080";
-      var homeTeamStroke = "#FFF";
+      //var homeTeamFill   = "#800080";
+      //var homeTeamStroke = "#FFF";
 
       var xAxis = d3.svg.axis()
           .scale(x)

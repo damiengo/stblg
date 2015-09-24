@@ -4,6 +4,29 @@ title:  "Classement ELO"
 date:   2015-09-22 21:59:08
 ---
 
+<style>
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  table th {
+    padding: 4px;
+    border-top: 1px solid #CCC;
+    border-bottom: 2px solid #000;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  table td {
+    padding: 4px 8px;
+    border-bottom: 1px solid #CCC;
+    font-size: 15px;
+  }
+</style>
+
+<script type="text/javascript" src="/js/posts/2015-09-22-classement-elo.js"></script>
+
 <script type="text/javascript"
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -100,6 +123,131 @@ exemples suivants.
 
 ## Exemple d'échange de points
 
+Un exemple sera sûrement plus parlant que la théorie. Prenons le cas du match **Marseille - Angers** disputé le 27 septembre 2015.
+Avant ce match, selon le site clubelo.com, Marseille a un classement Elo de **1686**, tandis qu'Angers est à **1526**. L'écart au
+classement Elo entre les deux équipes est donc de 160 en faveur de Marseille.
+
+Pour commencer, calculons la probabilité de gain pour **Marseille**:
+
+<math display='block'>
+    <mrow>
+        <msub>
+            <mi>p</mi>
+        </msub>
+        <mo>=</mo>
+        <mfrac>
+            <mrow>
+                <msub>
+                    <mi>1</mi>
+                </msub>
+            </mrow>
+            <mrow>
+                <msub>
+                    <mi>1</mi>
+                </msub>
+                <mo>+</mo>
+                <msup>
+                    <mi>10</mi>
+                    <mn>-160/400</mn>
+                </msup>
+            </mrow>
+        </mfrac>
+        <mo>=</mo>
+        <mi>0.715</mi>
+    </mrow>
+</math>
+
+Pour **Angers**, la probabilité est logiquement inverse, soit:
+
+<math display='block'>
+    <mrow>
+        <msub>
+            <mi>p</mi>
+        </msub>
+        <mo>=</mo>
+        <mfrac>
+            <mrow>
+                <msub>
+                    <mi>1</mi>
+                </msub>
+            </mrow>
+            <mrow>
+                <msub>
+                    <mi>1</mi>
+                </msub>
+                <mo>+</mo>
+                <msup>
+                    <mi>10</mi>
+                    <mn>160/400</mn>
+                </msup>
+            </mrow>
+        </mfrac>
+        <mo>=</mo>
+        <mi>0.285</mi>
+    </mrow>
+</math>
+
+A partir de ces valeurs, nous pouvons déterminer le gain de points Elo pour Marseille en cas de victoire:
+
+<math display='block'>
+    <mrow>
+        <msub>
+            <mi>&Delta;Elo</mi>
+        </msub>
+        <mo>=</mo>
+        <mrow>
+          <mi>(1 - 0.715)</mi>
+          <mo>*</mo>
+          <mi>20</mi>
+        </mrow>
+        <mo>=</mo>
+        <mi>5.7</mi>
+    </mrow>
+</math>
+
+Dans ce cas, Angers perdrait le nombre de points suivants:
+
+<math display='block'>
+    <mrow>
+        <msub>
+            <mi>&Delta;Elo</mi>
+        </msub>
+        <mo>=</mo>
+        <mrow>
+          <mi>(0 - 0.285)</mi>
+          <mo>*</mo>
+          <mi>20</mi>
+        </mrow>
+        <mo>=</mo>
+        <mi>-5.7</mi>
+    </mrow>
+</math>
+
+On constate que le nombre de points gagnés ou perdu est identique. En fait, le classement Elo est établi par un
+**transfert de points** d'une équipe vers une autre, ici *5.7* points en cas de victoire de l'OM.
+
+En cas de victoire angevine en terre phocéenne, Angers gagnerait *14.3* points que l'OM perdrait.
+
+Enfin, en cas de match nul, Marseille perdrait *4.3* points récupérés par Angers. Cet exemple illustre bien le gain
+de points en fonction de la **valeur de chaque équipe** avant le match. Un résultat logique provoque un **faible échange** de points,
+tandis qu'une contre-performance implique un échange d'un nombre plus **important de points**.
+
+## Classement Elo en Ligue 1
+
+Voici le classement Elo en Ligue 1 au 25 septembre 2015, avec dans la dernière colonne la différence entre le nombre de points
+au 25/09/2015 et le nombre de points avant le début de la saison 2015/2016 de Ligue 1:
+
+<div id="elo_ligue1"></div>
+
+On constate de façon marquante la sous-performance de Montpellier et de Monaco, ainsi que Troyes qui avait 1563 points Elo
+au début du championnat.
+
+Rennes, Reims et Angers sont les équipes ayant le plus progressé depuis le début de la saison.
+
 ## Plus gros exploits en Ligue 1
 
 ## Utilisation d'Elo pour la prédiction
+
+<script type="text/javascript">
+  elo_ligue1("#elo_ligue1");
+</script>
