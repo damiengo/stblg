@@ -872,9 +872,8 @@ function shootingSignature(element, player) {
 
   // y = Field Goal % in shooting signatures
   var y = d3.scale.linear()
-    .domain([0, 1])
-    .range([0, 1]);
-
+    .domain([0, 30])
+    .range([0, 30]);
 
   // scale for the width of the signature
   var minWidth = 1;
@@ -896,6 +895,15 @@ function shootingSignature(element, player) {
       return d3.ascending(parseInt(a["key"]), parseInt(b["key"]));
     });
 
-    console.log(data);
+    //console.log(data);
+
+    // Add the valueline path.
+    svg.append("path")
+        .attr("class", "line")
+        .attr("d", d3.svg.line()
+          .x(function(d) { console.log(d); return x(d.key); })
+          .y(function(d) { console.log(d); return y(d.key); })
+        );
   });
 }
+
