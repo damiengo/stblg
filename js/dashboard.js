@@ -124,48 +124,48 @@ function expg(element) {
       /** Teams colors **/
 
       // Montpellier home
-      var homeTeamFill   = "#191970";
-      var homeTeamStroke = "#FFA500";
+      //var awayTeamFill   = "#191970";
+      //var awayTeamStroke = "#FFA500";
 
       // Angers home
-      //var awayTeamFill   = "#FFF";
-      //var awayTeamStroke = "#000";
+      //var homeTeamFill   = "#FFF";
+      //var homeTeamStroke = "#000";
 
       // Reims home
-      //var homeTeamFill   = "#F00";
-      //var homeTeamStroke = "#FFF";
+      //var awayTeamFill   = "#F00";
+      //var awayTeamStroke = "#FFF";
 
       // Marseille home
-      //var homeTeamFill   = "#FFF";
-      //var homeTeamStroke = "#00FFFF";
+      var awayTeamFill   = "#FFF";
+      var awayTeamStroke = "#00FFFF";
 
       // Caen home
       //var homeTeamFill   = "#191970";
       //var homeTeamStroke = "#FF0000";
 
       // Bastia home
-      //var homeTeamStroke = "#FFF";
-      //var homeTeamFill   = "#0000CD";
+      //var awayTeamStroke = "#FFF";
+      //var awayTeamFill   = "#0000CD";
 
       // Lorient home
       //var awayTeamFill   = "#FFA500";
       //var awayTeamStroke = "#FFF";
 
       // Rennes home
-      //var homeTeamFill   = "#FF0000";
-      //var homeTeamStroke = "#000";
+      //var awayTeamFill   = "#FF0000";
+      //var awayTeamStroke = "#000";
 
       // Nice home
-      var awayTeamFill   = "#000";
-      var awayTeamStroke = "#F00";
+      //var awayTeamFill   = "#000";
+      //var awayTeamStroke = "#F00";
 
       // Monaco home
-      //var awayTeamFill   = "#F00";
-      //var awayTeamStroke = "#FFF";
+      //var homeTeamStroke = "#FFF";
+      //var homeTeamFill   = "#F00";
 
       // Lille home
-      //var awayTeamFill   = "#F00";
-      //var awayTeamStroke = "#800080";
+      //var homeTeamFill   = "#F00";
+      //var homeTeamStroke = "#800080";
 
       // Lille away
       //var awayTeamFill   = "yellow";
@@ -176,36 +176,36 @@ function expg(element) {
       //var homeTeamStroke = "#0F0";
 
       // St Etienne home
-      var homeTeamFill   = "#339900";
-      var homeTeamStroke = "#FFF";
+      //var awayTeamFill   = "#339900";
+      //var awayTeamStroke = "#FFF";
 
       // Bordeaux home
       //var homeTeamFill   = "#900090";
       //var homeTeamStroke = "#FFF";
 
       // Guingamp home
-      //var homeTeamFill   = "#F00";
-      //var homeTeamStroke = "#000";
+      //var awayTeamFill   = "#F00";
+      //var awayTeamStroke = "#000";
 
       // Lyon home
-      //var awayTeamFill   = "#FFF";
-      //var awayTeamStroke = "#00F";
+      //var homeTeamFill   = "#FFF";
+      //var homeTeamStroke = "#00F";
 
       // Troyes home
-      //var awayTeamFill   = "#00F";
-      //var awayTeamStroke = "#FFF";
+      //var homeTeamFill   = "#00F";
+      //var homeTeamStroke = "#FFF";
 
       // PSG home
-      //var awayTeamFill   = "#036";
-      //var awayTeamStroke = "#F00";
+      var homeTeamFill   = "#036";
+      var homeTeamStroke = "#F00";
 
       // PSG away
       //var awayTeamFill   = "#FFF";
       //var awayTeamStroke = "#00F";
 
       // GFC Ajaccio home
-      //var awayTeamFill   = "#F00";
-      //var awayTeamStroke = "#00F";
+      //var homeTeamFill   = "#F00";
+      //var homeTeamStroke = "#00F";
 
       // Toulouse home
       //var awayTeamFill   = "#800080";
@@ -415,7 +415,7 @@ function expg(element) {
 
       // Loading data
       function loadData() {
-        d3.tsv("/data/exp_goals_days_J8.tsv", function(error, data) {
+        d3.tsv("/data/exp_goals_days_J9.tsv", function(error, data) {
           if (error) throw error;
 
           homeTeamId = data[0]["sqw_home_team_id"];
@@ -460,7 +460,7 @@ function expg(element) {
                  })
                  .html( function(d) {
                    if(d.values.team_id == homeTeamId) {
-                     return d.key+" <strong>"+d.values.goals+"</strong>";
+                     return d.key+" <strong>"+d.values.goals+" (+2 SP)</strong>";
                    }
                    return "<strong>"+d.values.goals+"</strong> "+d.key;
                  })
@@ -852,40 +852,62 @@ function shotSignature(element, playerName) {
  * @param player
  */
 function shootingSignature(element, player) {
+  // Set the dimensions of the canvas / graph
+  var margin = {top: 30, right: 20, bottom: 30, left: 50},
+      width = 600 - margin.left - margin.right,
+      height = 270 - margin.top - margin.bottom;
 
-  // initialize SVG
-  var width = 600, height = 200;
-  var svg = d3.select(element).append("svg")
-    .attr("width", width)
-    .attr("height", height);
+  // Set the ranges
+  var x = d3.time.scale().range([0, width]);
+  var y = d3.scale.linear().range([height, 0]);
 
+  // Define the line
+  var baseLine = d3.svg.line()
+      .interpolate("basis")
+      .x(function(d) { return x(parseInt(d.key)); })
+      .y(function(d) { return y(parseInt(d.values.length)); });
 
-  // x = distance in shooting signatures
-  var x = d3.scale.linear()
-    .domain([0, 50])
-    .range([0, width]);
+  // On target line 1
+  var areaAbove = d3.svg.area()
+      .interpolate("basis")
+      .x(function(d) { return x(parseInt(d.key)); })
+      .y0(function(d) {
+        var onTarget = 0;
+        for(var i=0 ; i<d.values.length ; i++) {
+          if(d.values[i].on_target == 1) {
+            onTarget++;
+          }
+        }
+        return y(parseInt(parseInt(d.values.length) + onTarget));
+      })
+      .y1(function(d) { return Math.floor(y(parseInt(d.values.length))); });
 
-  // for gradient offset (needs % - so map x domain to 0-100%)
-  var offset = d3.scale.linear()
-    .domain(x.domain())
-    .range([0, 100]);
+  // On target line 2
+  var areaBelow = d3.svg.area()
+      .interpolate("basis")
+      .x(function(d) { return x(parseInt(d.key)); })
+      .y(function(d) {
+        var onTarget = 0;
+        for(var i=0 ; i<d.values.length ; i++) {
+          if(d.values[i].on_target == 1) {
+            onTarget++;
+          }
+        }
+        return y(parseInt(parseInt(d.values.length) - onTarget));
+      })
+      .y1(function(d) { return Math.ceil(y(parseInt(d.values.length))); });
 
-  // y = Field Goal % in shooting signatures
-  var y = d3.scale.linear()
-    .domain([0, 30])
-    .range([0, 30]);
+  // Adds the svg canvas
+  var svg = d3.select(element)
+      .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+          .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
 
-  // scale for the width of the signature
-  var minWidth = 1;
-  var maxWidth = height / 4;
-
-  var w = d3.scale.linear()
-    .domain([0, 250])
-    .range([minWidth, maxWidth]);
-
+  // Get the data
   d3.tsv("/data/shooting_signature/2014_lacazette.tsv", function(error, data) {
-    if (error) throw error;
-
     var data = d3.nest()
                  .key(function(d) {return Math.round(d.distance);})
                  .sortKeys(d3.ascending)
@@ -895,15 +917,28 @@ function shootingSignature(element, player) {
       return d3.ascending(parseInt(a["key"]), parseInt(b["key"]));
     });
 
-    //console.log(data);
+      // Scale the range of the data
+      x.domain(d3.extent(data, function(d) { return parseInt(d.key); }));
+      y.domain([0, d3.max(data, function(d) { return parseInt(d.values.length)+15; })]);
 
-    // Add the valueline path.
-    svg.append("path")
-        .attr("class", "line")
-        .attr("d", d3.svg.line()
-          .x(function(d) { console.log(d); return x(d.key); })
-          .y(function(d) { console.log(d); return y(d.key); })
-        );
+      // Base line
+      svg.append("path")
+          .attr("d", baseLine(data))
+          .style("stroke", "steelblue")
+          .style("stroke-width", 2)
+          .style("fill", "none");
+
+      // On target 1
+      svg.append("path")
+          .datum(data)
+          .attr("d", areaAbove)
+          .style("fill", "steelblue");
+
+      // On target 2
+      svg.append("path")
+          .datum(data)
+          .attr("d", areaBelow)
+          .style("fill", "steelblue");
+
   });
 }
-
