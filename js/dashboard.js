@@ -861,6 +861,11 @@ function shootingSignature(element, player) {
   var x = d3.time.scale().range([0, width]);
   var y = d3.scale.linear().range([height, 0]);
 
+  // For gradient offset (needs % - so map x domain to 0-100%)
+  var offset = d3.scale.linear()
+    .domain(x.domain())
+    .range([0, 100]);
+
   // Define the line
   var baseLine = d3.svg.line()
       .interpolate("basis")
@@ -906,39 +911,97 @@ function shootingSignature(element, player) {
           .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
 
-  // Get the data
-  d3.tsv("/data/shooting_signature/2014_lacazette.tsv", function(error, data) {
-    var data = d3.nest()
-                 .key(function(d) {return Math.round(d.distance);})
+  var groupArea = svg.append("g");
+
+  // Mean data
+  d3.tsv("/data/shooting_signature/all_shots_mean.tsv", function(errorMeans, dataMeans) {
+    var dataMeans = d3.nest()
+                 .key(function(d) {return +d.distance;})
                  .sortKeys(d3.ascending)
-                 .entries(data);
+                 .entries(dataMeans);
 
-    data.sort(function(a, b){
-      return d3.ascending(parseInt(a["key"]), parseInt(b["key"]));
+     dataMeans.sort(function(a, b){
+       return d3.ascending(parseInt(a["key"]), parseInt(b["key"]));
+     });
+
+    // Get the data
+    d3.tsv("/data/shooting_signature/2014_beauvue.tsv", function(error, data) {
+        var data = d3.nest()
+                   .key(function(d) {return Math.round(d.distance);})
+                   .sortKeys(d3.ascending)
+                   .entries(data);
+
+        data.sort(function(a, b){
+          return d3.ascending(parseInt(a["key"]), parseInt(b["key"]));
+        });
+
+        // Scale the range of the data
+        x.domain([0, 50]);
+        y.domain([0, d3.max(data, function(d) { return parseInt(d.values.length)+15; })]);
+
+        // Base line
+        groupArea.append("path")
+            .attr("d", baseLine(data))
+            .style("stroke", "steelblue")
+            .style("stroke-width", 2)
+            .style("fill", "none");
+
+        // On target 1
+        groupArea.append("path")
+            .datum(data)
+            .attr("d", areaAbove)
+            .style("fill", "url(#area-gradientz)");
+
+        // On target 2
+        groupArea.append("path")
+            .datum(data)
+            .attr("d", areaBelow)
+            .style("fill", "url(#area-gradientz)");
+
+        /** set-up colours **/
+        var colorSchemes = {
+          buckets: {
+            domain: [-0.15, 0.15],
+            range: ["#405A7C", "#7092C0", "#BDD9FF", "#FFA39E", "#F02C21", "#B80E05"]
+          },
+          goldsberry: {
+            domain: [-400, 0],
+            range: ["#5357A1", "#6389BA", "#F9DC96", "#F0825F", "#AE2A47"]
+          }
+        };
+        var activeColorScheme = colorSchemes.goldsberry;
+
+        // Note that the quantize scale does not interpolate between colours
+        var colorScale = d3.scale.quantize()
+          .domain(activeColorScheme.domain)
+          .range(activeColorScheme.range);
+
+        var gradientData = [];
+        data.forEach(function(d) {
+          dataMeans.forEach(function(dm) {
+            if(d.key == dm.key) {
+              console.log(d.values.length+" - "+dm.values.length+": "+(d.values.length - dm.values[0]["nb"]));
+              gradientData.push({
+                'offset': d.key+'%',
+                'color': colorScale(d.values.length - dm.values[0]["nb"])
+              });
+            }
+          });
+        });
+
+        // generate the linear gradient used by the signature
+        groupArea.append("linearGradient")
+          .attr("id", "area-gradientz")
+          .attr("gradientUnits", "userSpaceOnUse")
+          .attr("y1", 0)
+          .attr("y2", 0)
+          .selectAll("stop")
+                  .data(gradientData)
+          .enter().append("stop")
+            .attr("offset", function(d) { return d.offset; })
+            .attr("stop-color", function(d) { return d.color; });
+
     });
-
-      // Scale the range of the data
-      x.domain(d3.extent(data, function(d) { return parseInt(d.key); }));
-      y.domain([0, d3.max(data, function(d) { return parseInt(d.values.length)+15; })]);
-
-      // Base line
-      svg.append("path")
-          .attr("d", baseLine(data))
-          .style("stroke", "steelblue")
-          .style("stroke-width", 2)
-          .style("fill", "none");
-
-      // On target 1
-      svg.append("path")
-          .datum(data)
-          .attr("d", areaAbove)
-          .style("fill", "steelblue");
-
-      // On target 2
-      svg.append("path")
-          .datum(data)
-          .attr("d", areaBelow)
-          .style("fill", "steelblue");
 
   });
 }
