@@ -869,38 +869,26 @@ function shootingSignature(element, player) {
   // Define the line
   var baseLine = d3.svg.line()
       .interpolate("basis")
-      .x(function(d) { return x(parseInt(d.key)); })
-      .y(function(d) { return y(parseInt(d.values.length)); });
+      .x(function(d) { return x(parseInt(d.distance)); })
+      .y(function(d) { return y(parseFloat(d.on_target)/parseInt(d.nb)); });
 
   // On target line 1
   var areaAbove = d3.svg.area()
       .interpolate("basis")
-      .x(function(d) { return x(parseInt(d.key)); })
+      .x(function(d) { return x(parseInt(d.distance)); })
       .y0(function(d) {
-        var onTarget = 0;
-        for(var i=0 ; i<d.values.length ; i++) {
-          if(d.values[i].on_target == 1) {
-            onTarget++;
-          }
-        }
-        return y(parseInt(parseInt(d.values.length) + onTarget));
+        return y(parseFloat(d.on_target)/parseInt(d.nb) + d.nb/10);
       })
-      .y1(function(d) { return Math.floor(y(parseInt(d.values.length))); });
+      .y1(function(d) { return Math.floor(y(parseFloat(d.on_target)/parseInt(d.nb))); });
 
   // On target line 2
   var areaBelow = d3.svg.area()
       .interpolate("basis")
-      .x(function(d) { return x(parseInt(d.key)); })
+      .x(function(d) { return x(parseInt(d.distance)); })
       .y(function(d) {
-        var onTarget = 0;
-        for(var i=0 ; i<d.values.length ; i++) {
-          if(d.values[i].on_target == 1) {
-            onTarget++;
-          }
-        }
-        return y(parseInt(parseInt(d.values.length) - onTarget));
+        return y(parseFloat(d.on_target)/parseInt(d.nb) - d.nb/10);
       })
-      .y1(function(d) { return Math.ceil(y(parseInt(d.values.length))); });
+      .y1(function(d) { return Math.ceil(y(parseFloat(d.on_target)/parseInt(d.nb))); });
 
   // Adds the svg canvas
   var svg = d3.select(element)
@@ -915,36 +903,72 @@ function shootingSignature(element, player) {
 
   // Mean data
   d3.tsv("/data/shooting_signature/all_shots_mean.tsv", function(errorMeans, dataMeans) {
-    var dataMeans = d3.nest()
-                 .key(function(d) {return +d.distance;})
-                 .sortKeys(d3.ascending)
-                 .entries(dataMeans);
 
-     dataMeans.sort(function(a, b){
-       return d3.ascending(parseInt(a["key"]), parseInt(b["key"]));
-     });
+    // Add the first element
+    if(dataMeans[0].distance != "0.0") {
+      var firstElem = {
+        "distance":  "0.0",
+        "nb":        "1",
+        "headed":    "0",
+        "on_target": "1",
+        "goal":      "0"
+      };
+      dataMeans.unshift(firstElem);
+    }
+
+    // Add the last element
+    if(dataMeans[dataMeans.length-1].distance != "50.0") {
+      var lastElem = {
+        "distance":  "50.0",
+        "nb":        "1",
+        "headed":    "0",
+        "on_target": "1",
+        "goal":      "0"
+      };
+      dataMeans.push(lastElem);
+    }
+
+    //dataMeans = groupValues(dataMeans, 2);
 
     // Get the data
     d3.tsv("/data/shooting_signature/2014_beauvue.tsv", function(error, data) {
-        var data = d3.nest()
-                   .key(function(d) {return Math.round(d.distance);})
-                   .sortKeys(d3.ascending)
-                   .entries(data);
 
-        data.sort(function(a, b){
-          return d3.ascending(parseInt(a["key"]), parseInt(b["key"]));
-        });
+        // Add the first element
+        if(data[0].distance != "0.0") {
+          var firstElem = {
+            "distance":  "0.0",
+            "nb":        "1",
+            "headed":    "0",
+            "on_target": "0",
+            "goal":      "0"
+          };
+          data.unshift(firstElem);
+        }
+
+        // Add the last element
+        if(data[data.length-1].distance != "50.0") {
+          var lastElem = {
+            "distance":  "50.0",
+            "nb":        "1",
+            "headed":    "0",
+            "on_target": "0",
+            "goal":      "0"
+          };
+          data.push(lastElem);
+        }
+
+        //data = groupValues(data, 2);
 
         // Scale the range of the data
         x.domain([0, 50]);
-        y.domain([0, d3.max(data, function(d) { return parseInt(d.values.length)+15; })]);
+        y.domain([-3, 3]);
 
         // Base line
-        groupArea.append("path")
+        /*groupArea.append("path")
             .attr("d", baseLine(data))
-            .style("stroke", "steelblue")
+            .style("stroke", "white")
             .style("stroke-width", 2)
-            .style("fill", "none");
+            .style("fill", "none");*/
 
         // On target 1
         groupArea.append("path")
@@ -965,8 +989,9 @@ function shootingSignature(element, player) {
             range: ["#405A7C", "#7092C0", "#BDD9FF", "#FFA39E", "#F02C21", "#B80E05"]
           },
           goldsberry: {
-            domain: [-400, 0],
-            range: ["#5357A1", "#6389BA", "#F9DC96", "#F0825F", "#AE2A47"]
+            domain: [0, 5],
+            //range: ["#AE2A47", "#F0825F", "#F9DC96",  "#6389BA", "#5357A1"]
+            range: colorbrewer.PuOr[3]
           }
         };
         var activeColorScheme = colorSchemes.goldsberry;
@@ -979,11 +1004,10 @@ function shootingSignature(element, player) {
         var gradientData = [];
         data.forEach(function(d) {
           dataMeans.forEach(function(dm) {
-            if(d.key == dm.key) {
-              console.log(d.values.length+" - "+dm.values.length+": "+(d.values.length - dm.values[0]["nb"]));
+            if(d.distance == dm.distance) {
               gradientData.push({
-                'offset': d.key+'%',
-                'color': colorScale(d.values.length - dm.values[0]["nb"])
+                'offset': parseInt(d.distance)+'%',
+                'color': colorScale(parseFloat((d.on_target/d.nb)/(dm.on_target/dm.nb)))
               });
             }
           });
@@ -1004,4 +1028,29 @@ function shootingSignature(element, player) {
     });
 
   });
+
+  /**
+   * Groups a data by modulo.
+   *
+   * @param data
+   * @param modulo
+   */
+  function groupValues(data, modulo) {
+    var newData = [];
+    data.forEach(function(d, i) {
+      if(i % modulo == 0) {
+        if(data[i+1] != undefined) {
+          newData.push({
+            "distance":  d.distance,
+            "nb":        parseInt(d.nb)+parseInt(data[i+1].nb),
+            "headed":    parseInt(d.headed)+parseInt(data[i+1].headed),
+            "on_target": parseInt(d.on_target)+parseInt(data[i+1].on_target),
+            "goal":      parseInt(d.goal)+parseInt(data[i+1].goal)
+          });
+        }
+      }
+    });
+
+    return newData;
+  }
 }
