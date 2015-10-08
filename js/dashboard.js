@@ -928,10 +928,8 @@ function shootingSignature(element, player) {
       dataMeans.push(lastElem);
     }
 
-    //dataMeans = groupValues(dataMeans, 2);
-
     // Get the data
-    d3.tsv("/data/shooting_signature/2014_beauvue.tsv", function(error, data) {
+    d3.tsv("/data/shooting_signature/2014_lacazette.tsv", function(error, data) {
 
         // Add the first element
         if(data[0].distance != "0.0") {
@@ -957,10 +955,28 @@ function shootingSignature(element, player) {
           data.push(lastElem);
         }
 
-        //data = groupValues(data, 2);
+        // Grouping by modulus
+        var nested = d3.nest()
+          .key(function(d) {
+            var mod = 2;
+            if(d.distance % mod != 0) {
+              return d.distance-(d.distance % mod);
+            }
+            return d.distance;
+          })
+          .rollup(function(d) {
+            return {
+              nb: d3.sum(d, function(e) { return e.nb; }),
+              headed: d3.sum(d, function(e) { return e.headed; }),
+              on_target: d3.sum(d, function(e) { return e.on_target; }),
+              goal: d3.sum(d, function(e) { return e.goal; })
+            };
+          })
+          .entries(data);
+        console.log(nested);
 
         // Scale the range of the data
-        x.domain([0, 50]);
+        x.domain([0, 35]);
         y.domain([-3, 3]);
 
         // Base line
@@ -991,7 +1007,7 @@ function shootingSignature(element, player) {
           goldsberry: {
             domain: [0, 5],
             //range: ["#AE2A47", "#F0825F", "#F9DC96",  "#6389BA", "#5357A1"]
-            range: colorbrewer.PuOr[3]
+            range: colorbrewer.Reds[5]
           }
         };
         var activeColorScheme = colorSchemes.goldsberry;
