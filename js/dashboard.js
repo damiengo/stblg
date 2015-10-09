@@ -783,7 +783,7 @@ function shotSignature(element, playerName) {
     .style("fill", "url(#area-gradient)");
 
   // you can draw the line the signature is based around using the following code:
-  var line = d3.svg.line()
+  /*var line = d3.svg.line()
     .x(function(d) { return x(d.x); })
     .y(function(d) { return y(d.y); })
     .interpolate("basis");
@@ -792,7 +792,7 @@ function shotSignature(element, playerName) {
     .datum(data)
     .attr("d", line)
     .style("stroke", "#fff")
-    .style("fill", "none");
+    .style("fill", "none");*/
   // end
 
   // set-up colours
@@ -860,6 +860,7 @@ function shootingSignature(element, player) {
   // Set the ranges
   var x = d3.time.scale().range([0, width]);
   var y = d3.scale.linear().range([height, 0]);
+  var w = d3.scale.linear().range([1, height/2]);
 
   // For gradient offset (needs % - so map x domain to 0-100%)
   var offset = d3.scale.linear()
@@ -870,25 +871,50 @@ function shootingSignature(element, player) {
   var baseLine = d3.svg.line()
       .interpolate("basis")
       .x(function(d) { return x(parseInt(d.distance)); })
-      .y(function(d) { return y(parseFloat(d.on_target)/parseInt(d.nb)); });
+      .y(function(d) {
+        if(d.nb == 0) {
+          return y(0);
+        }
+        return y(parseFloat(d.on_target)/parseInt(d.nb));
+      });
 
   // On target line 1
   var areaAbove = d3.svg.area()
       .interpolate("basis")
       .x(function(d) { return x(parseInt(d.distance)); })
       .y0(function(d) {
-        return y(parseFloat(d.on_target)/parseInt(d.nb) + d.nb/10);
+        var on_target_ratio = 0;
+        if(d.nb > 0) {
+          on_target_ratio = parseInt(d.on_target)/parseInt(d.nb);
+        }
+        return y(on_target_ratio) + w(d.nb);
       })
-      .y1(function(d) { return Math.floor(y(parseFloat(d.on_target)/parseInt(d.nb))); });
+      .y1(function(d) {
+        if(d.nb == 0) {
+          return Math.ceil(y(0));
+        }
+        // 0.1 used to adjust line
+        return Math.ceil(y(parseFloat(d.on_target)/parseInt(d.nb) + 0.1));
+      });
 
   // On target line 2
   var areaBelow = d3.svg.area()
       .interpolate("basis")
       .x(function(d) { return x(parseInt(d.distance)); })
       .y(function(d) {
-        return y(parseFloat(d.on_target)/parseInt(d.nb) - d.nb/10);
+        var on_target_ratio = 0;
+        if(d.nb > 0) {
+          on_target_ratio = parseInt(d.on_target)/parseInt(d.nb);
+        }
+        return y(on_target_ratio) - w(d.nb);
       })
-      .y1(function(d) { return Math.ceil(y(parseFloat(d.on_target)/parseInt(d.nb))); });
+      .y1(function(d) {
+        if(d.nb == 0) {
+          return Math.floor(y(0));
+        }
+        // 0.1 used to adjust line
+        return Math.floor(y(parseFloat(d.on_target)/parseInt(d.nb) - 0.1));
+      });
 
   // Adds the svg canvas
   var svg = d3.select(element)
@@ -908,34 +934,25 @@ function shootingSignature(element, player) {
     if(dataMeans[0].distance != "0.0") {
       var firstElem = {
         "distance":  "0.0",
-        "nb":        "1",
+        "nb":        "0",
         "headed":    "0",
-        "on_target": "1",
+        "on_target": "0",
         "goal":      "0"
       };
       dataMeans.unshift(firstElem);
     }
 
-    // Add the last element
-    if(dataMeans[dataMeans.length-1].distance != "50.0") {
-      var lastElem = {
-        "distance":  "50.0",
-        "nb":        "1",
-        "headed":    "0",
-        "on_target": "1",
-        "goal":      "0"
-      };
-      dataMeans.push(lastElem);
-    }
+    // Grouping by modulus
+    dataMeans = groupValues(dataMeans, 2);
 
     // Get the data
-    d3.tsv("/data/shooting_signature/2014_lacazette.tsv", function(error, data) {
+    d3.tsv("/data/shooting_signature/2014_payet.tsv", function(error, data) {
 
         // Add the first element
         if(data[0].distance != "0.0") {
           var firstElem = {
             "distance":  "0.0",
-            "nb":        "1",
+            "nb":        "0",
             "headed":    "0",
             "on_target": "0",
             "goal":      "0"
@@ -947,7 +964,7 @@ function shootingSignature(element, player) {
         if(data[data.length-1].distance != "50.0") {
           var lastElem = {
             "distance":  "50.0",
-            "nb":        "1",
+            "nb":        "0",
             "headed":    "0",
             "on_target": "0",
             "goal":      "0"
@@ -956,28 +973,12 @@ function shootingSignature(element, player) {
         }
 
         // Grouping by modulus
-        var nested = d3.nest()
-          .key(function(d) {
-            var mod = 2;
-            if(d.distance % mod != 0) {
-              return d.distance-(d.distance % mod);
-            }
-            return d.distance;
-          })
-          .rollup(function(d) {
-            return {
-              nb: d3.sum(d, function(e) { return e.nb; }),
-              headed: d3.sum(d, function(e) { return e.headed; }),
-              on_target: d3.sum(d, function(e) { return e.on_target; }),
-              goal: d3.sum(d, function(e) { return e.goal; })
-            };
-          })
-          .entries(data);
-        console.log(nested);
+        data = groupValues(data, 2);
 
         // Scale the range of the data
         x.domain([0, 35]);
         y.domain([-3, 3]);
+        w.domain([0, 50]);
 
         // Base line
         /*groupArea.append("path")
@@ -1006,8 +1007,8 @@ function shootingSignature(element, player) {
           },
           goldsberry: {
             domain: [0, 5],
-            //range: ["#AE2A47", "#F0825F", "#F9DC96",  "#6389BA", "#5357A1"]
-            range: colorbrewer.Reds[5]
+            range: ["#AE2A47", "#F0825F", "#F9DC96",  "#6389BA", "#5357A1"]
+            //range: colorbrewer.Blues[7]
           }
         };
         var activeColorScheme = colorSchemes.goldsberry;
@@ -1021,9 +1022,13 @@ function shootingSignature(element, player) {
         data.forEach(function(d) {
           dataMeans.forEach(function(dm) {
             if(d.distance == dm.distance) {
+              var div = 0;
+              if(d.nb != 0 && dm.nb != 0) {
+                div = parseFloat((d.on_target/d.nb)/(dm.on_target/dm.nb));
+              }
               gradientData.push({
                 'offset': parseInt(d.distance)+'%',
-                'color': colorScale(parseFloat((d.on_target/d.nb)/(dm.on_target/dm.nb)))
+                'color': colorScale(div)
               });
             }
           });
@@ -1052,21 +1057,32 @@ function shootingSignature(element, player) {
    * @param modulo
    */
   function groupValues(data, modulo) {
-    var newData = [];
-    data.forEach(function(d, i) {
-      if(i % modulo == 0) {
-        if(data[i+1] != undefined) {
-          newData.push({
-            "distance":  d.distance,
-            "nb":        parseInt(d.nb)+parseInt(data[i+1].nb),
-            "headed":    parseInt(d.headed)+parseInt(data[i+1].headed),
-            "on_target": parseInt(d.on_target)+parseInt(data[i+1].on_target),
-            "goal":      parseInt(d.goal)+parseInt(data[i+1].goal)
-          });
+    var nested = d3.nest()
+      .key(function(d) {
+        if(d.distance % modulo != 0) {
+          return parseInt(d.distance)-(parseInt(d.distance) % modulo);
         }
-      }
-    });
+        return parseInt(d.distance);
+      })
+      .rollup(function(d) {
+        return {
+          nb:        d3.sum(d, function(e) { return e.nb; }),
+          headed:    d3.sum(d, function(e) { return e.headed; }),
+          on_target: d3.sum(d, function(e) { return e.on_target; }),
+          goal:      d3.sum(d, function(e) { return e.goal; })
+        };
+      })
+      .entries(data);
 
-    return newData;
+    // Re-arranging
+    return nested.map(function(d, i) {
+      return {
+        distance:  d.key,
+        nb:        d.values.nb,
+        headed:    d.values.headed,
+        on_target: d.values.on_target,
+        goal:      d.values.goal
+      };
+    });
   }
 }
