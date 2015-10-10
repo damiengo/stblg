@@ -64,8 +64,12 @@ layout: default
   <div id="field"></div>
   <div id="ranking"></div>
   <div id="signature"></div>
+
+  <div>
+    <select id="ss_players">
+    </select>
+  </div>
   <div id="shooting_signature"></div>
-  <div id="test"></div>
 
 </div>
 
@@ -73,5 +77,8 @@ layout: default
   expg("#field");
   ranking("#ranking");
   shotSignature("#signature", "Alexandre Lacazette");
-  shootingSignature("#shooting_signature", "Alexandre Lacazette");
+  setSsPlayers("#ss_players", function(player_name) {
+    shootingSignature("#shooting_signature", player_name);
+  });
+  //shootingSignature("#shooting_signature", "Alexandre Lacazette");
 </script>

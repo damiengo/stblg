@@ -849,17 +849,17 @@ function shotSignature(element, playerName) {
  * Real shooting signature function.
  *
  * @param element
- * @param player
+ * @param playerName
  */
-function shootingSignature(element, player) {
+function shootingSignature(element, playerName) {
   // Set the dimensions of the canvas / graph
-  var margin = {top: 30, right: 20, bottom: 30, left: 50},
-      width = 600 - margin.left - margin.right,
-      height = 270 - margin.top - margin.bottom;
+  var margin = {top: 0, right: 0, bottom: 0, left: 0},
+      width = 500 - margin.left - margin.right,
+      height = 200 - margin.top - margin.bottom;
 
   // Set the ranges
   var x = d3.time.scale().range([0, width]);
-  var y = d3.scale.linear().range([height, 0]);
+  var y = d3.scale.linear().range([height-100, 0]);
   var w = d3.scale.linear().range([1, height/2]);
 
   // For gradient offset (needs % - so map x domain to 0-100%)
@@ -916,6 +916,14 @@ function shootingSignature(element, player) {
         return Math.floor(y(parseFloat(d.on_target)/parseInt(d.nb) - 0.1));
       });
 
+  // Legend
+  d3.select(element)
+    .append("p")
+      .text(playerName)
+      .style("text-align", "center")
+      .style("font-weight", "bold")
+      .style("width", width+"px");
+
   // Adds the svg canvas
   var svg = d3.select(element)
       .append("svg")
@@ -946,7 +954,11 @@ function shootingSignature(element, player) {
     dataMeans = groupValues(dataMeans, 2);
 
     // Get the data
-    d3.tsv("/data/shooting_signature/2014_payet.tsv", function(error, data) {
+    d3.tsv("/data/shooting_signature/2014_all.tsv", function(error, data) {
+
+        data = data.filter(function(d) {
+          return d.player_name == playerName;
+        });
 
         // Add the first element
         if(data[0].distance != "0.0") {
@@ -980,13 +992,6 @@ function shootingSignature(element, player) {
         y.domain([-3, 3]);
         w.domain([0, 50]);
 
-        // Base line
-        /*groupArea.append("path")
-            .attr("d", baseLine(data))
-            .style("stroke", "white")
-            .style("stroke-width", 2)
-            .style("fill", "none");*/
-
         // On target 1
         groupArea.append("path")
             .datum(data)
@@ -1006,7 +1011,7 @@ function shootingSignature(element, player) {
             range: ["#405A7C", "#7092C0", "#BDD9FF", "#FFA39E", "#F02C21", "#B80E05"]
           },
           goldsberry: {
-            domain: [0, 5],
+            domain: [0.2, -0.2],
             range: ["#AE2A47", "#F0825F", "#F9DC96",  "#6389BA", "#5357A1"]
             //range: colorbrewer.Blues[7]
           }
@@ -1024,7 +1029,7 @@ function shootingSignature(element, player) {
             if(d.distance == dm.distance) {
               var div = 0;
               if(d.nb != 0 && dm.nb != 0) {
-                div = parseFloat((d.on_target/d.nb)/(dm.on_target/dm.nb));
+                div = parseFloat((d.on_target/d.nb) - (dm.on_target/dm.nb));
               }
               gradientData.push({
                 'offset': parseInt(d.distance)+'%',
@@ -1085,4 +1090,31 @@ function shootingSignature(element, player) {
       };
     });
   }
+}
+
+/**
+ * Set the combo for players shooting signature.
+ *
+ * @param element
+ * @param onChange
+ */
+function setSsPlayers(element, onChange) {
+  d3.tsv("/data/shooting_signature/2014_all.tsv", function(error, data) {
+    var grouped = d3.nest()
+        .key(function(d) { return d.player_name; })
+        .entries(data);
+
+    d3.select(element)
+        .selectAll("option")
+        .data(grouped)
+        .enter()
+        .append("option")
+            .attr("value", function(d) { return d.key; })
+            .text(function(d) { return d.key; });
+  });
+
+  d3.select(element)
+    .on("change", function() {
+      onChange(this.options[this.selectedIndex].value);
+    })
 }
