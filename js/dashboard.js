@@ -852,6 +852,9 @@ function shotSignature(element, playerName) {
  * @param playerName
  */
 function shootingSignature(element, playerName) {
+  // Displays field marks
+  mark = true;
+
   // Set the dimensions of the canvas / graph
   var margin = {top: 0, right: 0, bottom: 0, left: 0},
       width = 500 - margin.left - margin.right,
@@ -861,6 +864,11 @@ function shootingSignature(element, playerName) {
   var x = d3.time.scale().range([0, width]);
   var y = d3.scale.linear().range([height-100, 0]);
   var w = d3.scale.linear().range([1, height/2]);
+
+  // Scale the range of the data
+  x.domain([0, 28]);
+  y.domain([-3, 3]);
+  w.domain([0, 50]);
 
   // For gradient offset (needs % - so map x domain to 0-100%)
   var offset = d3.scale.linear()
@@ -916,6 +924,10 @@ function shootingSignature(element, playerName) {
         return Math.floor(y(parseFloat(d.on_target)/parseInt(d.nb) - 0.1));
       });
 
+  // Color
+  d3.select(element)
+    .style("background-color", "#FFF");
+
   // Legend
   d3.select(element)
     .append("p")
@@ -933,7 +945,30 @@ function shootingSignature(element, playerName) {
           .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
 
+  // Group
   var groupArea = svg.append("g");
+
+  if(mark) {
+    // Goalkeeper area
+    groupArea.append("line")
+             .attr("x1", x(5.5))
+             .attr("y1", y(-2))
+             .attr("x2", x(5.5))
+             .attr("y2", y(3))
+             .style("stroke-dasharray", ("3, 3"))
+             .attr("stroke-width", 0.5)
+             .attr("stroke", "#BBB");
+
+    // Penalty area
+    groupArea.append("line")
+             .attr("x1", x(17))
+             .attr("y1", y(-2))
+             .attr("x2", x(17))
+             .attr("y2", y(3))
+             .style("stroke-dasharray", ("3, 3"))
+             .attr("stroke-width", 0.5)
+             .attr("stroke", "#BBB");
+  }
 
   // Mean data
   d3.tsv("/data/shooting_signature/all_shots_mean.tsv", function(errorMeans, dataMeans) {
@@ -986,11 +1021,6 @@ function shootingSignature(element, playerName) {
 
         // Grouping by modulus
         data = groupValues(data, 2);
-
-        // Scale the range of the data
-        x.domain([0, 35]);
-        y.domain([-3, 3]);
-        w.domain([0, 50]);
 
         // On target 1
         groupArea.append("path")
