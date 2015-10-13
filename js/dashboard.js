@@ -866,7 +866,7 @@ function shootingSignature(element, playerName) {
   var w = d3.scale.linear().range([1, height/2]);
 
   // Scale the range of the data
-  x.domain([0, 28]);
+  x.domain([0, 50]);
   y.domain([-3, 3]);
   w.domain([0, 50]);
 
@@ -925,8 +925,8 @@ function shootingSignature(element, playerName) {
       });
 
   // Color
-  d3.select(element)
-    .style("background-color", "#FFF");
+  /*d3.select(element)
+    .style("background-color", "#FFF");*/
 
   // Legend
   d3.select(element)
@@ -1062,7 +1062,7 @@ function shootingSignature(element, playerName) {
                 div = parseFloat((d.on_target/d.nb) - (dm.on_target/dm.nb));
               }
               gradientData.push({
-                'offset': parseInt(d.distance)+'%',
+                'offset': (parseInt(d.distance)*2)+'%',
                 'color': colorScale(div)
               });
             }
