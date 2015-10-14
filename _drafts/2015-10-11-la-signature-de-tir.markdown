@@ -10,4 +10,18 @@ des joueurs offensifs.
 
 ## Eléments de comparaison
 
-![Signature de tir Gigna 2014](/img/posts/20151011_signature_de_tir/signature_dede_2014.png)
+![Signature de tir Lacazette 2014](/img/posts/20151011_signature_de_tir/signature_lacagette_2014.png)
+
+La partie horizontale de la signature de tir représente la distance entre le but et la position du tir.
+Sur l'exemple de la signature d'Alexandre Lacazette pendant la saison 2014/2015 de Ligue 1, nous
+visualisons donc tous ses tirs entre le but et la moitié du terrain adverse. Les deux lignes en
+pointillés représentent les 5,5 mètres (surface du gardien) et les 18 mètres (surface de réparation).
+
+Les variations verticales reprénsetent le taux de tirs cadrés. L'épaisseur de la signature illustre
+la quantité de tirs effectués. L'épaisseur présente entre les deux lignes pointillées représente
+certainement la quantité de tirs effectués autour du point de penalty, incluant les penalties eux-même.
+
+Pour terminer sur la partie la plus visuelle, la couleur représente le taux de tirs cadrés par rapport
+à la moyenne des tirs cadrés pour la Ligue 1 en 2014/2015. La couleur bleue représente un mauvais ratio
+de tirs cadrés par rapport à la moyenne du championnat, alors que la couleur rouge représente un bon taux
+de tirs cadrés.

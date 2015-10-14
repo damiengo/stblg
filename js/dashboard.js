@@ -952,22 +952,22 @@ function shootingSignature(element, playerName) {
     // Goalkeeper area
     groupArea.append("line")
              .attr("x1", x(5.5))
-             .attr("y1", y(-2))
+             .attr("y1", y(-1.5))
              .attr("x2", x(5.5))
-             .attr("y2", y(3))
+             .attr("y2", y(2.5))
              .style("stroke-dasharray", ("3, 3"))
              .attr("stroke-width", 0.5)
-             .attr("stroke", "#BBB");
+             .attr("stroke", "#AAA");
 
     // Penalty area
     groupArea.append("line")
-             .attr("x1", x(17))
-             .attr("y1", y(-2))
-             .attr("x2", x(17))
-             .attr("y2", y(3))
+             .attr("x1", x(18))
+             .attr("y1", y(-1.5))
+             .attr("x2", x(18))
+             .attr("y2", y(2.5))
              .style("stroke-dasharray", ("3, 3"))
              .attr("stroke-width", 0.5)
-             .attr("stroke", "#BBB");
+             .attr("stroke", "#AAA");
   }
 
   // Mean data
