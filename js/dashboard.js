@@ -857,12 +857,12 @@ function shootingSignature(element, playerName) {
 
   // Set the dimensions of the canvas / graph
   var margin = {top: 0, right: 0, bottom: 0, left: 0},
-      width = 500 - margin.left - margin.right,
-      height = 200 - margin.top - margin.bottom;
+      width = 400 - margin.left - margin.right,
+      height = 160 - margin.top - margin.bottom;
 
   // Set the ranges
   var x = d3.time.scale().range([0, width]);
-  var y = d3.scale.linear().range([height-100, 0]);
+  var y = d3.scale.linear().range([height, 0]);
   var w = d3.scale.linear().range([1, height/2]);
 
   // Scale the range of the data
@@ -928,8 +928,11 @@ function shootingSignature(element, playerName) {
   /*d3.select(element)
     .style("background-color", "#FFF");*/
 
+  var container = d3.select(element)
+    .append("div");
+
   // Legend
-  d3.select(element)
+  container
     .append("p")
       .text(playerName)
       .style("text-align", "center")
@@ -937,7 +940,7 @@ function shootingSignature(element, playerName) {
       .style("width", width+"px");
 
   // Adds the svg canvas
-  var svg = d3.select(element)
+  var svg = container
       .append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
@@ -952,9 +955,9 @@ function shootingSignature(element, playerName) {
     // Goalkeeper area
     groupArea.append("line")
              .attr("x1", x(5.5))
-             .attr("y1", y(-1.5))
+             .attr("y1", y(-1))
              .attr("x2", x(5.5))
-             .attr("y2", y(2.5))
+             .attr("y2", y(2))
              .style("stroke-dasharray", ("3, 3"))
              .attr("stroke-width", 0.5)
              .attr("stroke", "#AAA");
@@ -962,9 +965,9 @@ function shootingSignature(element, playerName) {
     // Penalty area
     groupArea.append("line")
              .attr("x1", x(18))
-             .attr("y1", y(-1.5))
+             .attr("y1", y(-1))
              .attr("x2", x(18))
-             .attr("y2", y(2.5))
+             .attr("y2", y(2))
              .style("stroke-dasharray", ("3, 3"))
              .attr("stroke-width", 0.5)
              .attr("stroke", "#AAA");
