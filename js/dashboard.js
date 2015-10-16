@@ -136,8 +136,8 @@ function expg(element) {
       //var awayTeamStroke = "#FFF";
 
       // Marseille home
-      var awayTeamFill   = "#FFF";
-      var awayTeamStroke = "#00FFFF";
+      //var awayTeamFill   = "#FFF";
+      //var awayTeamStroke = "#00FFFF";
 
       // Caen home
       //var homeTeamFill   = "#191970";
@@ -160,8 +160,8 @@ function expg(element) {
       //var awayTeamStroke = "#F00";
 
       // Monaco home
-      //var homeTeamStroke = "#FFF";
-      //var homeTeamFill   = "#F00";
+      var homeTeamStroke = "#FFF";
+      var homeTeamFill   = "#F00";
 
       // Lille home
       //var homeTeamFill   = "#F00";
@@ -188,16 +188,16 @@ function expg(element) {
       //var awayTeamStroke = "#000";
 
       // Lyon home
-      //var homeTeamFill   = "#FFF";
-      //var homeTeamStroke = "#00F";
+      var awayTeamFill   = "#FFF";
+      var awayTeamStroke = "#00F";
 
       // Troyes home
       //var homeTeamFill   = "#00F";
       //var homeTeamStroke = "#FFF";
 
       // PSG home
-      var homeTeamFill   = "#036";
-      var homeTeamStroke = "#F00";
+      //var homeTeamFill   = "#036";
+      //var homeTeamStroke = "#F00";
 
       // PSG away
       //var awayTeamFill   = "#FFF";
@@ -415,7 +415,7 @@ function expg(element) {
 
       // Loading data
       function loadData() {
-        d3.tsv("/data/exp_goals_days_J9.tsv", function(error, data) {
+        d3.tsv("/data/exp_goals_days_J10.tsv", function(error, data) {
           if (error) throw error;
 
           homeTeamId = data[0]["sqw_home_team_id"];
@@ -460,7 +460,7 @@ function expg(element) {
                  })
                  .html( function(d) {
                    if(d.values.team_id == homeTeamId) {
-                     return d.key+" <strong>"+d.values.goals+" (+2 SP)</strong>";
+                     return d.key+" <strong>"+d.values.goals+"</strong>";
                    }
                    return "<strong>"+d.values.goals+"</strong> "+d.key;
                  })
@@ -858,7 +858,7 @@ function shootingSignature(element, playerName) {
   // Set the dimensions of the canvas / graph
   var margin = {top: 0, right: 0, bottom: 0, left: 0},
       width = 400 - margin.left - margin.right,
-      height = 160 - margin.top - margin.bottom;
+      height = 120 - margin.top - margin.bottom;
 
   // Set the ranges
   var x = d3.time.scale().range([0, width]);
@@ -867,8 +867,8 @@ function shootingSignature(element, playerName) {
 
   // Scale the range of the data
   x.domain([0, 50]);
-  y.domain([-3, 3]);
-  w.domain([0, 50]);
+  y.domain([-0.5, 1.2]);
+  w.domain([0, 40]);
 
   // For gradient offset (needs % - so map x domain to 0-100%)
   var offset = d3.scale.linear()
@@ -955,9 +955,9 @@ function shootingSignature(element, playerName) {
     // Goalkeeper area
     groupArea.append("line")
              .attr("x1", x(5.5))
-             .attr("y1", y(-1))
+             .attr("y1", y(0))
              .attr("x2", x(5.5))
-             .attr("y2", y(2))
+             .attr("y2", y(1))
              .style("stroke-dasharray", ("3, 3"))
              .attr("stroke-width", 0.5)
              .attr("stroke", "#AAA");
@@ -965,9 +965,9 @@ function shootingSignature(element, playerName) {
     // Penalty area
     groupArea.append("line")
              .attr("x1", x(18))
-             .attr("y1", y(-1))
+             .attr("y1", y(0))
              .attr("x2", x(18))
-             .attr("y2", y(2))
+             .attr("y2", y(1))
              .style("stroke-dasharray", ("3, 3"))
              .attr("stroke-width", 0.5)
              .attr("stroke", "#AAA");

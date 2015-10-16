@@ -32,4 +32,4 @@ de tirs cadrés.
 
 ## Exemples de signatures
 
-![Signatures de tir Ligue 1 2014/2015](/img/posts/20151011_signature_de_tir/signatures.png)
+![Signatures de tir Ligue 1 2014/2015](/img/posts/20151011_signature_de_tir/signatures_new.png)
