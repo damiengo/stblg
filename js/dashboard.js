@@ -128,40 +128,40 @@ function expg(element) {
       //var awayTeamStroke = "#FFA500";
 
       // Angers home
-      //var homeTeamFill   = "#FFF";
-      //var homeTeamStroke = "#000";
+      var awayTeamFill   = "#FFF";
+      var awayTeamStroke = "#000";
 
       // Reims home
-      //var awayTeamFill   = "#F00";
-      //var awayTeamStroke = "#FFF";
+      //var homeTeamStroke = "#FFF";
+      //var homeTeamFill   = "#F00";
 
       // Marseille home
       //var awayTeamFill   = "#FFF";
       //var awayTeamStroke = "#00FFFF";
 
       // Caen home
-      //var homeTeamFill   = "#191970";
-      //var homeTeamStroke = "#FF0000";
+      //var awayTeamFill   = "#191970";
+      //var awayTeamStroke = "#FF0000";
 
       // Bastia home
-      //var awayTeamStroke = "#FFF";
-      //var awayTeamFill   = "#0000CD";
+      //var homeTeamStroke = "#FFF";
+      //var homeTeamFill   = "#0000CD";
 
       // Lorient home
       //var awayTeamFill   = "#FFA500";
       //var awayTeamStroke = "#FFF";
 
       // Rennes home
-      //var awayTeamFill   = "#FF0000";
-      //var awayTeamStroke = "#000";
+      var homeTeamFill   = "#FF0000";
+      var homeTeamStroke = "#000";
 
       // Nice home
-      //var awayTeamFill   = "#000";
-      //var awayTeamStroke = "#F00";
+      var awayTeamFill   = "#000";
+      var awayTeamStroke = "#F00";
 
       // Monaco home
-      var homeTeamStroke = "#FFF";
-      var homeTeamFill   = "#F00";
+      //var homeTeamStroke = "#FFF";
+      //var homeTeamFill   = "#F00";
 
       // Lille home
       //var homeTeamFill   = "#F00";
@@ -188,16 +188,16 @@ function expg(element) {
       //var awayTeamStroke = "#000";
 
       // Lyon home
-      var awayTeamFill   = "#FFF";
-      var awayTeamStroke = "#00F";
+      //var awayTeamFill   = "#FFF";
+      //var awayTeamStroke = "#00F";
 
       // Troyes home
       //var homeTeamFill   = "#00F";
       //var homeTeamStroke = "#FFF";
 
       // PSG home
-      //var homeTeamFill   = "#036";
-      //var homeTeamStroke = "#F00";
+      //var awayTeamFill   = "#036";
+      //var awayTeamStroke = "#F00";
 
       // PSG away
       //var awayTeamFill   = "#FFF";
@@ -208,8 +208,8 @@ function expg(element) {
       //var homeTeamStroke = "#00F";
 
       // Toulouse home
-      //var awayTeamFill   = "#800080";
-      //var awayTeamStroke = "#FFF";
+      //var homeTeamFill   = "#800080";
+      //var homeTeamStroke = "#FFF";
 
       var xAxis = d3.svg.axis()
           .scale(x)
