@@ -8,3 +8,6 @@ url: "10contre11.fr"
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+gems:
+  - jekyll-assets
