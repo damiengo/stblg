@@ -5,50 +5,96 @@
 var PlayerHeatmap = React.createClass({
 
     _g: undefined,
+    _width: 400,
+    _height: 300,
 
     // D3.js with React.js :
     componentDidMount: function() {
         var el = ReactDOM.findDOMNode(this);
         var svg = d3.select(el).append('svg')
                   .attr('class', 'd3')
-                  .attr('width', 300)
-                  .attr('height', 400);
+                  .attr('width', this._width)
+                  .attr('height', this._height);
         this._g = svg.append('g')
           .attr('class', 'd3-points');
 
+       // Blur filter
+       var blurLevel = 0; // int
+       var filter = svg.append("defs")
+                       .append("filter")
+                       .attr("id", "blur")
+                       .append("feGaussianBlur")
+                       .attr("stdDeviation", blurLevel);
+
         var rectangle = this._g.append("rect")
-                            .attr("x", 10)
-                            .attr("y", 10)
-                            .attr("width", 500)
-                            .attr("height", 200)
+                            .attr("x", 0)
+                            .attr("y", 0)
+                            .attr("width", this._width)
+                            .attr("height", this._height)
                             .style("fill", "#00FF99");
     },
 
     componentDidUpdate: function() {
         var data = this.props.data;
-        data = data.map(function(d) {
-            return {
-                start_x: Math.round(parseFloat(d.start_x)),
-                start_y: Math.round(parseFloat(d.start_y))
-            }
-        });
         var x = d3.scale.linear()
-            .range([0, 500]);
+            .domain([0, 100])
+            .range([0, this._width]);
 
         var y = d3.scale.linear()
-            .range([200, 0]);
+            .domain([0, 100])
+            .range([this._height, 0]);
 
-        this._g.selectAll("circle")
+        var color = d3.scale.ordinal()
+                            .domain(d3.extent(data, function(d) { return d.nb }))
+                            .range(["midnightblue", "#FFFF66", "#FF9933", "#FF3333"]);
+
+        var opacity = 1;
+
+        var g = this._g.selectAll("circle")
             .data(data)
-          .enter().append("circle")
-                               .attr("cx", function(d) { return d.start_x })
-                               .attr("cy", function(d) { return d.start_y })
-                               .attr("r", 2)
-                               .style("stroke-opacity", 1)
-                               .style("stroke-width", 2)
-                               .style("fill-opacity", 1)
-                               .style("fill", "#FFF")
-                               .style("stroke", "#FFF");
+          .enter().append("g");
+
+          g.append("rect")
+                   .attr("x", function(d) { return x(parseInt(d.x)) })
+                   .attr("y", function(d) { return y(parseInt(d.y)) })
+                   .attr("width",  8)
+                   .attr("height", 7)
+                   .style("fill-opacity", opacity)
+                   .style("fill", function(d) { return color(parseInt(d.nb)) })
+                   .attr("filter", "url(#blur)");
+/*
+           g.append("circle")
+                    .attr("cx", function(d) { return x(parseInt(d.x)+2) })
+                    .attr("cy", function(d) { return y(parseInt(d.y)+2) })
+                    .attr("r", 5)
+                    .style("fill-opacity", opacity)
+                    .style("fill", function(d) { return color(parseInt(d.nb)-4) })
+                    .attr("filter", "url(#blur)");
+
+            g.append("circle")
+                     .attr("cx", function(d) { return x(parseInt(d.x)+2) })
+                     .attr("cy", function(d) { return y(parseInt(d.y)-2) })
+                     .attr("r", 5)
+                     .style("fill-opacity", opacity)
+                     .style("fill", function(d) { return color(parseInt(d.nb)-4) })
+                     .attr("filter", "url(#blur)");
+
+             g.append("circle")
+                      .attr("cx", function(d) { return x(parseInt(d.x)-2) })
+                      .attr("cy", function(d) { return y(parseInt(d.y)+2) })
+                      .attr("r", 5)
+                      .style("fill-opacity", opacity)
+                      .style("fill", function(d) { return color(parseInt(d.nb)-4) })
+                      .attr("filter", "url(#blur)");
+
+              g.append("circle")
+                       .attr("cx", function(d) { return x(parseInt(d.x)-2) })
+                       .attr("cy", function(d) { return y(parseInt(d.y)-2) })
+                       .attr("r", 5)
+                       .style("fill-opacity", opacity)
+                       .style("fill", function(d) { return color(parseInt(d.nb)-4) })
+                       .attr("filter", "url(#blur)");
+*/
     },
 
     render: function() {

@@ -4,7 +4,7 @@ title:  "Prédictions de l'Euro 2016"
 date:   2016-06-14 22:22:22
 ---
 
-Dans le livre *Seccernomics*, les auteurs indiquent que la richesse, l'expérience et la taille de la
+Dans le livre *Soccernomics*, les auteurs indiquent que la richesse, l'expérience et la taille de la
 population sont des éléments importants pour déterminer la valeur d'une équipe nationale. A partir de
 ces informations et quelques autres, voyons dans quelle mesure les matchs de poules de l'Euro 2016
 peuvent être prédits, ou plutôt quels pourcentage de victoire, nul ou défaite peuvent y être associés.
