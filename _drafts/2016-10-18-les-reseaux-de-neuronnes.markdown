@@ -45,6 +45,8 @@ date:   2016-10-18 22:14:28
 
 ## [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/chap1.html)
 
+## [Topics in Computer Vision (CSC2523)](http://www.cs.utoronto.ca/~fidler/teaching/2015/CSC2523.html)
+
 * Livre sur les réseaux de neuronnes
 
 ## [A Neural Network in 11 lines of Python (Part 1)](http://iamtrask.github.io/2015/07/12/basic-python-network/) &#10003;
