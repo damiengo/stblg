@@ -43,6 +43,11 @@ date:   2016-10-18 22:14:28
 
 ## [CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/)
 
+### Classification
+
+ * Nearest Neighbor Classifier: 38.6% avec L1 distance, 35.4% avec L2 distance 
+ * k - Nearest Neighbor Classifier: 
+
 ## [Have fun with ML: dolphin recognition](https://github.com/humphd/have-fun-with-machine-learning)
 
 ## [Topics in Computer Vision (CSC2523)](http://www.cs.utoronto.ca/~fidler/teaching/2015/CSC2523.html)
