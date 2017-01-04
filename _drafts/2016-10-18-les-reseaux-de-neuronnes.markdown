@@ -43,6 +43,8 @@ date:   2016-10-18 22:14:28
 
 ## [CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/)
 
+## [Have fun with ML: dolphin recognition](https://github.com/humphd/have-fun-with-machine-learning)
+
 ## [Topics in Computer Vision (CSC2523)](http://www.cs.utoronto.ca/~fidler/teaching/2015/CSC2523.html)
 
 ## [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/chap1.html)
