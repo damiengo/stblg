@@ -46,7 +46,7 @@ date:   2016-10-18 22:14:28
 ### Classification
 
  * Nearest Neighbor Classifier: 38.6% avec L1 distance, 35.4% avec L2 distance 
- * k - Nearest Neighbor Classifier: 
+ * k - Nearest Neighbor Classifier: utiliser la moyenne des voisins pour déterminer la classe
 
 ## [Have fun with ML: dolphin recognition](https://github.com/humphd/have-fun-with-machine-learning)
 
