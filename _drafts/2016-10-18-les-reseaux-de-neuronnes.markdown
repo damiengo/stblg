@@ -58,9 +58,10 @@ date:   2016-10-18 22:14:28
  * Optimisation 1: ajout d'un paramètre alpha et optimisation de celui-ci
  * Optimisation 2: modifier la taille de la hidden layer
 
-## [Implementing a Neural Network from scratch](http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/)
+## [Implementing a Neural Network from scratch](http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/) &#10003;
 
  * ==> Tester le mini-batch
+ * [NN LeCun](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)
 
 ## [CS231N - Convolutional Neural Networks](https://youtu.be/yp9rwI_LZX8?list=PL16j5WbGpaM0_Tj8CRmurZ8Kk1gEBc7fg&t=455)
 

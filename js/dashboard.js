@@ -974,7 +974,7 @@ function shootingSignature(element, playerName) {
   }
 
   // Mean data
-  d3.tsv("/data/shooting_signature/all_shots_mean.tsv", function(errorMeans, dataMeans) {
+  d3.tsv("/data/shooting_signature/2015_all_shots_mean.tsv", function(errorMeans, dataMeans) {
 
     // Add the first element
     if(dataMeans[0].distance != "0.0") {
@@ -992,7 +992,7 @@ function shootingSignature(element, playerName) {
     dataMeans = groupValues(dataMeans, 2);
 
     // Get the data
-    d3.tsv("/data/shooting_signature/2014_all.tsv", function(error, data) {
+    d3.tsv("/data/shooting_signature/2015_all_shots.tsv", function(error, data) {
 
         data = data.filter(function(d) {
           return d.player_name == playerName;
@@ -1132,7 +1132,7 @@ function shootingSignature(element, playerName) {
  * @param onChange
  */
 function setSsPlayers(element, onChange) {
-  d3.tsv("/data/shooting_signature/2014_all.tsv", function(error, data) {
+  d3.tsv("/data/shooting_signature/2015_all_shots.tsv", function(error, data) {
     var grouped = d3.nest()
         .key(function(d) { return d.player_name; })
         .entries(data);
