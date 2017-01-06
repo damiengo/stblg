@@ -43,6 +43,19 @@ date:   2016-10-18 22:14:28
 
 ## [CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/)
 
+### [Image Classification](http://cs231n.github.io/classification/)
+
+ * Nearest Neighbor Classifier: 38.6% avec L1 distance, 35.4% avec L2 distance 
+ * k - Nearest Neighbor Classifier: utiliser la moyenne des voisins pour déterminer la classe
+ * Hyperparameter: quel nombre choisir pout k? Quel type type de fonction de distance choisir (L1, L2, etc)
+ * Séparer le jeu de test en 2: un jeu d'entrainement (98%) et un jeu de validation (2%) des hyperparameters
+ * Cross-validation: valider n fois avec n jeux d'entrainement et de validation différents
+ * [A Few Useful Things to Know about Machine Learning](http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf)
+
+## [Have fun with ML: dolphin recognition](https://github.com/humphd/have-fun-with-machine-learning)
+
+## [Topics in Computer Vision (CSC2523)](http://www.cs.utoronto.ca/~fidler/teaching/2015/CSC2523.html)
+
 ## [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/chap1.html)
 
 * Livre sur les réseaux de neuronnes

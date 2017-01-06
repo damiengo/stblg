@@ -29,7 +29,7 @@ Dans le football, les buts sont rares et deviennent de plus en plus rares. Le ni
 
 Les buts sont l'élément clé du football pour gagner les matchs, mais ils n'ont pas tous la même importance. Selon une étude, le **premier but** marqué rapporte 0.8 point, alors que le deuxième but rapporte un point (le troisième rapportant 0.6 point). Dans le même ordre d'idée, marquer un but donne 25% de chances de gagner un match, alors que marquer 2 buts donne **60% de chances** de victoire.
 
-##L'intelligence dans le football, et pourquoi moins peut être plus
+## L'intelligence dans le football, et pourquoi moins peut être plus
 
 L'objectif du football est de marquer des buts, mais faut-il attaquer ou défendre? Les chiffres montrent qu'en Premier League, marquer 10 buts de plus apporte **2.3 victoires supplémentaires**, alors qu'encaisser 10 buts de moins rapporte **2.1 victoires de plus**. Les défenseurs sont plus difficiles à évaluer que les attaquants, car on ne peut pas quantifier un bon placement ou une bonne anticipation. Il est intéréssant de remarquer que, dans le championnat anglais, marquer un but rapporte **1.5 points**, alors que ne pas encaisser de buts rapporte **2.5 points**.
 
@@ -37,7 +37,7 @@ Le football est un sport de possession de balle, mais surtout de perte de balle 
 
 Pour Stoke City, la possession du ballon est avérée lorsque le ballon **n'est pas en jeu**. C'est l'une des facette du jeu de Stoke: hacher le jeu, et garder le ballon loin des buts de leur gardien. L'équipe possède moins le ballon, mais propose moins d'occasions de marquer à son adversaire et se procure des occasions par le jeu long. Les tactiques de jeu différentes et les idées nouvelles peuvent être **difficile à faire accepter**: c'est le cas des chiffres dans le football.
 
-##Construire des équipes, gérer des clubs
+## Construire des équipes, gérer des clubs
 
 Le football est un sport où le **maillon faible** a une grande importance sur les résultats d'une équipe. Malgré tout, une équipe composée uniquement de très bons joueurs n'est rien sans une tactique adaptée. Selon une étude statistique, augmenter la qualité de son plus faible joueur de 10% rapporerait **9 points de plus** en fin de saison, alors qu'améliorer son meilleur joueur rapporterait 5 points. L'objectif de toute équipe est de faire le moins d'erreurs possible. Plusieurs possibilités sont présentées pour résoudre le problème du maillon faible de l'équipe:
 
@@ -49,7 +49,7 @@ Le football est un sport où le **maillon faible** a une grande importance sur l
 
 Comment comparer les entraîneurs pour trouver le meilleur? Une étude a montré que le salaire des joueurs composant les équipes professionnelles expliquait **59% de la place** au classement final. Les 41% restants sont expliqués par les choix de l'entraîneur et de son staff. Selon une étude, le niveau du footballeur qu'il était est important dans la réussite d'un entraîneur. Une analyse montre qu'un changement d'entraîneur en cours de saison **n'a pas d'effet** sur les résultats de l'équipe: les équipes tendent simplement vers leur niveau moyen.
 
-##Après le match est avant le match
+## Après le match est avant le match
 
 **David Sally** et **Chris Anderson** composent le dernier chapitre d'un ensemble de prédictions sur ce que seront les chiffres dans le football pour la prochaine décénie:
 
@@ -64,7 +64,7 @@ Comment comparer les entraîneurs pour trouver le meilleur? Une étude a montré
  * Les chiffres ne seront **pas la clé** du football du futur
  * La révolution des chiffres sera contestée, car **tout changement est difficile**
 
-##Que retenir?
+## Que retenir?
 
 Ce livre permet d'aborder le football via les chiffres et les statistiques, qui seront au coeur des décisions dans les années à venir. Dans tous les secteurs d'activités, de plus en plus de données sont captées et sont au coeur des décisions stratégique, le football n'échappe pas à cette tendance. Ce mouvement que l'on peut associer à la révolution de la **big data**, va permettre d'ouvrir de nouveaux horizons, la tâche la plus difficile sera d'analyser cette masse de données et de réussir à la faire parler.
 
