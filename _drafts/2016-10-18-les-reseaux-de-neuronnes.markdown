@@ -51,6 +51,10 @@ date:   2016-10-18 22:14:28
  * Séparer le jeu de test en 2: un jeu d'entrainement (98%) et un jeu de validation (2%) des hyperparameters
  * Cross-validation: valider n fois avec n jeux d'entrainement et de validation différents
  * [A Few Useful Things to Know about Machine Learning](http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf)
+ 
+### [Linear Classification](http://cs231n.github.io/linear-classify/)
+
+ * Multiclass Support Vector Machine: pour la loss function, on veut que les classes correctes soient supérieures aux classes incorrectes avec une marge delta
 
 ## [Have fun with ML: dolphin recognition](https://github.com/humphd/have-fun-with-machine-learning)
 
