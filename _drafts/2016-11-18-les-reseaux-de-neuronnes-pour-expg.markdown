@@ -35,5 +35,6 @@ transittant sur ces liens.
 
  * 1 - Réseau simple: erreur par différence, pas de scaling de features, sigmoid
  * 2 - Améliorations: erreur RMSE, scaling de features, tanh et softmax, nombre de neuronnes, biais, régularisation, mini-batch
+                      (Régression linéaire)[http://briandolhansky.com/blog/artificial-neural-networks-linear-regression-part-1]
 
  * Difficile d'avoir des résultats concluants avec RMSE
