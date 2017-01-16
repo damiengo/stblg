@@ -1,8 +1,17 @@
 ---
 layout: post
 title:  "Les réseaux de neuronnes pour calculer les expG"
-date:   2016-11-18 13:46:28
+date:   2017-01-16 17:15:28
 ---
+
+L'intelligence artificielle prend beaucoup d eplace aujourd'hui, et un outil de modélisation
+à le vent en poupe: les réseaux de neuronnes. Nommés *neural network* en anglais, ces réseaux
+permettent d'analyser des images, repérer du texte, ou encore comprendre le langage humain.
+
+Dans le même temps, la communauté d'analystes active sur *twitter* utilise depuis quelques
+années une mesure de la qualité des occasions créées appelé *expected goals*, ou *expg*, ou *xG*.
+
+Cet article décrit comment un réseau de neuronnes peut calculer les *expected goals*.
 
 ## Qu'est ce que les expG
 
