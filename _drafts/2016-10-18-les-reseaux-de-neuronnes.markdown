@@ -82,6 +82,8 @@ date:   2016-10-18 22:14:28
 
 ## [CS231N - Convolutional Neural Networks](https://youtu.be/yp9rwI_LZX8?list=PL16j5WbGpaM0_Tj8CRmurZ8Kk1gEBc7fg&t=455)
 
+## [Google ML Rules](http://martin.zinkevich.org/rules_of_ml/rules_of_ml.pdf)
+
 ## Se tenir informé
 
  * [WildML](http://www.wildml.com/)
