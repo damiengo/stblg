@@ -55,6 +55,7 @@ date:   2016-10-18 22:14:28
 ### [Linear Classification](http://cs231n.github.io/linear-classify/)
 
  * Multiclass Support Vector Machine: pour la loss function, on veut que les classes correctes soient supérieures aux classes incorrectes avec une marge delta
+ * regularization: le biais n'a pas besoin d'être régularisé, mais s'il est régularisé cela a peu d'impact
 
 ## [Have fun with ML: dolphin recognition](https://github.com/humphd/have-fun-with-machine-learning)
 
