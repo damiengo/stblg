@@ -85,6 +85,8 @@ date:   2016-10-18 22:14:28
 
 ## [Google ML Rules](http://martin.zinkevich.org/rules_of_ml/rules_of_ml.pdf)
 
+## [Tensor Flow in 3h](https://cloud.google.com/blog/big-data/2017/01/learn-tensorflow-and-deep-learning-without-a-phd)
+
 ## Se tenir informé
 
  * [WildML](http://www.wildml.com/)
