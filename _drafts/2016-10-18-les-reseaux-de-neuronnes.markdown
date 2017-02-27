@@ -85,11 +85,17 @@ date:   2016-10-18 22:14:28
 
 ## [Google ML Rules](http://martin.zinkevich.org/rules_of_ml/rules_of_ml.pdf)
 
-## [Tensor Flow in 3h (35:21)](https://cloud.google.com/blog/big-data/2017/01/learn-tensorflow-and-deep-learning-without-a-phd)
+## [Tensor Flow in 3h (1:07:33)](https://cloud.google.com/blog/big-data/2017/01/learn-tensorflow-and-deep-learning-without-a-phd)
 
  * Fonction d'activation: non linéraire
- * Classification: la fonction d'activation softmax convient bien
+ * Classification: la fonction d'activation softmax convient bien pour la dernière couche
  * CLassification: le calcul de l'erreur (= la distance) avec la cross-entropy convient bien
+ * Mini-batch: matrices plus grandes plus faciles à optimiser sur un GPU + permet d'avoir un résultat plus global (moins lié aux soécificités des images particulières)
+ * Activation: softmax pour la dernière couche, sigmoid pour les couches intermédiaires
+ * Fonction d'activation ReLu: 0 pour valeurs négatives, fonction d'identité pour les valeurs positives
+ * Regularisation: dropout, à chaque itération modifier les poids et biais de 75% des neuronnes (et pas tous)
+ * Decay learning rate: réduire le taux d'apprentissage petit à petit
+ * Convolutional network: application aux entrée à N dimensions, où N > 1 (ex: images de N x M pixels)
 
 ## Se tenir informé
 
