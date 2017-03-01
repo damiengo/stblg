@@ -85,7 +85,7 @@ date:   2016-10-18 22:14:28
 
 ## [Google ML Rules](http://martin.zinkevich.org/rules_of_ml/rules_of_ml.pdf)
 
-## [Tensor Flow in 3h (1:07:33)](https://cloud.google.com/blog/big-data/2017/01/learn-tensorflow-and-deep-learning-without-a-phd)
+## [Tensor Flow in 3h (2:00:17)](https://cloud.google.com/blog/big-data/2017/01/learn-tensorflow-and-deep-learning-without-a-phd)
 
  * Fonction d'activation: non linéraire
  * Classification: la fonction d'activation softmax convient bien pour la dernière couche
@@ -96,6 +96,9 @@ date:   2016-10-18 22:14:28
  * Regularisation: dropout, à chaque itération modifier les poids et biais de 75% des neuronnes (et pas tous)
  * Decay learning rate: réduire le taux d'apprentissage petit à petit
  * Convolutional network: application aux entrée à N dimensions, où N > 1 (ex: images de N x M pixels)
+ * Whitening data: == PCA, rescaler et de-corréler les données
+ * logit: somme des poids + biais
+ * Batch normalisation: whitening des données entre chaque couches du réseau, pour tirer le maxamimum d'avantage du passage dans les fonctions d'activation (les données centrées, pas de dé-correlation trop coûteux, sont mieux placées pour tirer parti des fonctions d'activation, qui agissent autout de 0)
 
 ## Se tenir informé
 
