@@ -85,7 +85,8 @@ date:   2016-10-18 22:14:28
 
 ## [Google ML Rules](http://martin.zinkevich.org/rules_of_ml/rules_of_ml.pdf)
 
-## [Tensor Flow in 3h (2:00:17)](https://cloud.google.com/blog/big-data/2017/01/learn-tensorflow-and-deep-learning-without-a-phd)
+## [Tensor Flow in 3h](https://cloud.google.com/blog/big-data/2017/01/learn-tensorflow-and-deep-learning-without-a-phd)
+## [Tensor Flow et l'apprentissage profond FR (05:05](https://www.youtube.com/watch?v=pHMfATDTvko)
 
  * Fonction d'activation: non linéraire
  * Classification: la fonction d'activation softmax convient bien pour la dernière couche
