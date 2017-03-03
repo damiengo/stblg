@@ -99,7 +99,7 @@ date:   2016-10-18 22:14:28
  * Whitening data: == PCA, rescaler et de-corréler les données
  * logit: somme des poids + biais
  * Batch normalisation: whitening des données entre chaque couches du réseau, pour tirer le maxamimum d'avantage du passage dans les fonctions d'activation (les données centrées, pas de dé-correlation trop coûteux, sont mieux placées pour tirer parti des fonctions d'activation, qui agissent autout de 0)
- * [Tensor Flow et l'apprentissage profond FR (05:05](https://www.youtube.com/watch?v=pHMfATDTvko)
+ * [Tensor Flow et l'apprentissage profond FR](https://www.youtube.com/watch?v=pHMfATDTvko)
 
 ## Se tenir informé
 
